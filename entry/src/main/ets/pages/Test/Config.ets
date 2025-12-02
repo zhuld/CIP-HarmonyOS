@@ -34,7 +34,6 @@ export const Test_Video_Input: ButtonModel[] = [
   new ButtonModel(37, $r('app.string.setup')),
 ];
 
-
 export const Test_Video_Output: ButtonModel[] = [
   new ButtonModel(41, "大屏", $r('app.media.LED')),
   new ButtonModel(42, "返看", $r('app.media.tv')),
@@ -47,7 +46,6 @@ export  const  Test_Volume_Input: VolumeModel[] =[
   new VolumeModel(52, '有线麦克风', 0, -30, 0),
   new VolumeModel(53, '音乐', 0, -30, 0),
 ];
-
 
 export  const  Test_Volume_Output: VolumeModel[] =[
   new VolumeModel(54, "总音量", 0, -30, 6),
@@ -78,7 +76,6 @@ export const Test_Camera_Position: ButtonModel[] = [
   new ButtonModel(77,'7'),
   new ButtonModel(78,'', $r('app.media.camera')),
 ];
-
 
 export const Test_Setup: ButtonModel[] = [
   new ButtonModel(0, $r('app.string.project')),
