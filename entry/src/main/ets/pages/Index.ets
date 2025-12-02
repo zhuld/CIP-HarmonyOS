@@ -40,7 +40,6 @@ struct Index {
   @Provide channelDArray : boolean[] = []
   @Provide channelAArray : number[] = []
   private connectTimer: number = 0;
-  @State inputMessage: string = 'hello from client';
   @State serverIP: string = '192.168.2.105';
   @State serverPort: number = 41794;
   @State cipId : number = 3
@@ -166,7 +165,7 @@ struct Index {
           SoundComponent({ crestronClient: this.crestronClient })
           CameraComponent({ crestronClient: this.crestronClient })
           SetupComponent()
-          ConnectComponent()
+          ConnectComponent({ serverIP: this.serverIP, serverPort: this.serverPort, ipId: this.cipId })
         }
         .enableScrollInteraction(false)
         .scrollBar(BarState.Off)
