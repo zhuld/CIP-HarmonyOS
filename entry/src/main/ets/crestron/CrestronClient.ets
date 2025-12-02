@@ -1,4 +1,4 @@
-import socket from '@ohos.net.socket';;
+import socket from '@ohos.net.socket';
 
 const op_Server_Accept = 0x0F // 服务器接受连接 0F 00 01 02
 const op_Client_IPID = 0x01 // 发送IPID 01 00 0B 00 00 00 00 00 XX 40 FF FF F1 01
