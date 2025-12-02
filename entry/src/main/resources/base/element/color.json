@@ -1,0 +1,64 @@
+{
+  "color": [
+    {
+      "name": "start_window_background",
+      "value": "#FFFFFF"
+    },
+    {
+      "name": "catalog_background_1",
+      "value": "#BBFFFFFF"
+    },
+    {
+      "name": "catalog_background_2",
+      "value": "#BBEEEEEE"
+    },
+    {
+      "name": "catalog_background_3",
+      "value": "#BB888888"
+    },
+    {
+      "name": "shadow_color",
+      "value": "#CC000000"
+    },
+    {
+      "name": "button_checked_light",
+      "value": "#FFE0AA92"
+    },
+    {
+      "name": "button_checked",
+      "value": "#FFE7521B"
+    },
+    {
+      "name": "button_light",
+      "value": "#FF87CEEB"
+    },
+    {
+      "name": "button",
+      "value": "#FF0A6BB5"
+    },
+    {
+      "name": "tab_button_light",
+      "value": "#FFB7B7B7"
+    },
+    {
+      "name": "tab_button",
+      "value": "#DDB7B7B7"
+    },
+    {
+      "name": "text_color_check",
+      "value": "#F0F6F6F6"
+    },
+    {
+      "name": "text_color",
+      "value": "#ff02082f"
+    },
+    {
+      "name": "background_1",
+      "value": "#FFBFC89E"
+    },
+    {
+      "name": "background_2",
+      "value": "#88BFC89E"
+    }
+  ]
+}

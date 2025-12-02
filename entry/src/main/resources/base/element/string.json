@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "中控控制面板"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "中控控制面板"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Controller"
+    },
+    {
+      "name": "Title",
+      "value": "中控控制面板"
+    },
+    {
+      "name": "subTitle",
+      "value": "华为"
+    },
+    {
+      "name": "video",
+      "value": "视频"
+    },
+    {
+      "name": "home",
+      "value": "首页"
+    },
+    {
+      "name": "HDMI",
+      "value": "视频切换"
+    },
+    {
+      "name": "volume",
+      "value": "声音控制"
+    },
+    {
+      "name": "camera",
+      "value": "摄像头"
+    },
+    {
+      "name": "setup",
+      "value": "设备控制"
+    }
+  ]
+}
