@@ -13,7 +13,7 @@ struct Config {
   @State isIpAddress: boolean = true;
   @State isPort: boolean = true;
   @State isId: boolean = true;
-  @State info:string = ''
+  @State info: string = '系统设置，请勿随意修改'
 
   aboutToAppear() {
     this.loadSettings();
@@ -32,20 +32,20 @@ struct Config {
   }
 
   // 保存设置到首选项
-  private async saveSettings() : Promise<boolean> {
+  private async saveSettings(): Promise<boolean> {
     if (!this.isValidIP(this.ipAddress)) {
       this.info = 'IP地址格式不正确'
       return Promise.resolve(false);
     }
     if (!this.isValidPort(this.port)) {
-      this.info = '端口号范围1-65535'
+      this.info = '端口号范围1-65535，默认41794'
       return Promise.resolve(false);
     }
     if (!this.isValidIpId(this.ipId)) {
       this.info = 'ID号范围1-255'
       return Promise.resolve(false);
     }
-    this.info = ''
+    this.info = '系统设置，请勿随意修改'
     try {
       const pref = await preferences.getPreferences(this.context, this.prefName);
       await pref.put('ip', this.ipAddress);
@@ -85,7 +85,7 @@ struct Config {
                 this.ipAddress = value;
                 if (this.isValidIP(value)) {
                   this.isIpAddress = true
-                  this.info = ''
+                  this.info = '系统设置，请勿随意修改'
                 } else {
                   this.isIpAddress = false
                   this.info = 'IP地址格式不正确'
@@ -109,10 +109,10 @@ struct Config {
                 this.port = Number(value);
                 if (this.isValidPort(Number(value))) {
                   this.isPort = true
-                  this.info = ''
-                }else {
+                  this.info = '系统设置，请勿随意修改'
+                } else {
                   this.isPort = false
-                  this.info = '端口号范围1-65535'
+                  this.info = '端口号范围1-65535，默认41794'
                 }
               })
               .fontColor(this.isPort ? $r('app.color.text_color') : Color.Red)
@@ -132,8 +132,8 @@ struct Config {
                 this.ipId = Number(value);
                 if (this.isValidIpId(Number(value))) {
                   this.isId = true
-                  this.info = ''
-                }else {
+                  this.info = '系统设置，请勿随意修改'
+                } else {
                   this.isId = false
                   this.info = 'ID号范围1-255'
                 }
@@ -176,8 +176,8 @@ struct Config {
         Text(this.info)
           .fontSize(32)
           .layoutWeight(2)
-          .fontColor(Color.Red)
-          .height(80)
+          .fontColor($r('app.color.text_color'))
+          .height(70)
       }
       .height('8%')
       .width('100%')
@@ -187,8 +187,8 @@ struct Config {
     .height('100%')
     .backgroundColor(Color.Transparent)
     .linearGradient({
-      angle:180,
-      colors:[
+      angle: 180,
+      colors: [
         [$r('app.color.background_1'), 0.0],
         [$r('app.color.background_2'), 1],
       ]
