@@ -120,7 +120,7 @@ export struct RoundButton {
     RelativeContainer() {
       Stack() {
         Image(this.icon)
-          .width('60%')
+          .width('50%')
           .aspectRatio(1)
           .fillColor(this.checked ? $r('app.color.text_color_check') : $r('app.color.text_color')) // 根据状态切换颜色
       }
