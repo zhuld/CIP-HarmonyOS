@@ -110,7 +110,7 @@ export struct MyButton {
 export struct RoundButton {
   private gradientAngle: number = 40
   @Prop label: string | Resource = ''
-  @Prop icon: Resource | undefined = $r('app.media.startIcon')
+  @Prop icon: Resource | undefined = undefined
   @Prop fontSize: number = 20
   @Prop checked: boolean = false
 
@@ -173,7 +173,7 @@ export struct RoundButton {
 
 @Component
 export struct IconButton {
-  @Prop icon: Resource = $r('app.media.startIcon')
+  @Prop icon: Resource | undefined = undefined
   @Prop checked: boolean = false
 
   onTouchAction?:(event: TouchEvent) => void
