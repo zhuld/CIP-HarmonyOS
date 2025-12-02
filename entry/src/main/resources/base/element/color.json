@@ -22,7 +22,7 @@
     },
     {
       "name": "button_checked_light",
-      "value": "#FFE0AA92"
+      "value": "#66E7521B"
     },
     {
       "name": "button_checked",
@@ -30,7 +30,7 @@
     },
     {
       "name": "button_light",
-      "value": "#FF87CEEB"
+      "value": "#880A6BB5"
     },
     {
       "name": "button",
@@ -38,15 +38,15 @@
     },
     {
       "name": "tab_button_light",
-      "value": "#FFB7B7B7"
+      "value": "#88B7B7B7"
     },
     {
       "name": "tab_button",
-      "value": "#DDB7B7B7"
+      "value": "#FFB7B7B7"
     },
     {
       "name": "text_color_check",
-      "value": "#F0F6F6F6"
+      "value": "#F0DAE1E9"
     },
     {
       "name": "text_color",
