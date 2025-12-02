@@ -5,7 +5,6 @@ import { ConfirmDialog } from "./Dialog";
 export struct Head {
   @State currentTime: string = ''
   @Prop isConnected: boolean
-
   private clockId: number = 0
 
   dialogController: CustomDialogController = new CustomDialogController({
