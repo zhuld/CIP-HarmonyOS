@@ -16,16 +16,15 @@ const op_Join_Request = 0x03
 const op_Client_Ping = 0x0D // 定时发送 0D 00 02 00 00
 const op_Server_Pong = 0x0E // 回复 0E 00 02 00 00
 
- export  enum JoinType {
-  Digital, // 0
-  Analog, // 1
-  Serial, // 2
-}
+ export enum JoinType {
+   Digital, // 0
+   Analog, // 1
+   Serial, // 2
+ }
 
 @Observed
 export class CrestronClient {
   private tcpSocket = socket.constructTCPSocketInstance();
-  //private isConnected: boolean = false;
   private cipId: number = 3;
   channelDArray: boolean[] = [];
   channelAArray: number[] = []
@@ -169,7 +168,7 @@ export class CrestronClient {
     });
   }
 
-  setupStatusListener(callback: ( joinType: JoinType, channel: number,value: number) => void) {
+  setupStatusListener(callback: (joinType: JoinType, channel: number, value: number) => void) {
     this.tcpSocket.on('message', async (value) => {
       if (!value || !value.message) {
         console.error('接收数据失败');
@@ -256,6 +255,7 @@ export class CrestronClient {
       }
     })
   }
+
   private toHexString(data: Uint8Array, space: string): string {
     let hexMessage = ""
     let s = space

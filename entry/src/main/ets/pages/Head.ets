@@ -5,6 +5,7 @@ import { ConfirmDialog } from "./Dialog";
 export struct Head {
   @State currentTime: string = ''
   @Prop isConnected: boolean
+
   private clockId: number = 0
 
   dialogController: CustomDialogController = new CustomDialogController({
@@ -65,6 +66,7 @@ export struct Head {
               })
           )
           .width(24)
+        Text()
       }
       .layoutWeight(1)
       .padding({ right: 20 })
