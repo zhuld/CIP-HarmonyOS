@@ -13,6 +13,9 @@
  * limitations under the License.
  */
 
+import { common } from '@kit.AbilityKit';
+import { preferences } from '@kit.ArkData';
+
 import { CameraComponent } from './Test/Camera';
 import { SetupComponent } from './Test/Setup';
 import { SoundComponent } from './Test/Sound';
@@ -24,10 +27,7 @@ import { PageList } from './Test/Config';
 import { Head } from './Head';
 import { CrestronClient, JoinType } from '../crestron/CrestronClient';
 import { ProcessDialog } from './Dialog';
-import { common } from '@kit.AbilityKit';
-import { preferences } from '@kit.ArkData';
-import { ConnectComponent } from './Connect';
-
+import { ConnectComponent } from './Connect'
 
 @Entry
 @Component
