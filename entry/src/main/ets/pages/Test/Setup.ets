@@ -19,7 +19,7 @@ export struct SetupComponent {
         if (buttonList[index].buttonId === 0) {
           GridCol({ span: 2 }) {
             Text(item.buttonName)
-              .fontSize(36)
+              .fontSize(32)
           }
         } else {
           GridCol({ span: 1 }) {
