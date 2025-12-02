@@ -22,7 +22,7 @@ export class ButtonModel {
   }
 }
 
-export class VolumeMode {
+export class VolumeModel {
   volumeId: number;
   volumeName: string | Resource;
   value: number;

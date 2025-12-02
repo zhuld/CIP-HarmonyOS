@@ -1,4 +1,4 @@
-import { ButtonModel, PageModel, VolumeMode } from "../../model/Models";
+import { ButtonModel, PageModel, VolumeModel } from "../../model/Models";
 
 export const PageList: PageModel[] = [
   new PageModel(1, $r('app.string.home'), $r('app.media.home')),
@@ -42,15 +42,15 @@ export const Test_Video_Output: ButtonModel[] = [
   new ButtonModel(44, "预留", $r('app.media.HDMI')),
 ];
 
-export  const  Test_Volume_Input: VolumeMode[] =[
-  new VolumeMode(51, '无线麦克风', -10, -30, 0),
-  new VolumeMode(52, '有线麦克风', 0, -30, 0),
-  new VolumeMode(53, '音乐', 0, -30, 0),
+export  const  Test_Volume_Input: VolumeModel[] =[
+  new VolumeModel(51, '无线麦克风', -10, -30, 0),
+  new VolumeModel(52, '有线麦克风', 0, -30, 0),
+  new VolumeModel(53, '音乐', 0, -30, 0),
 ];
 
 
-export  const  Test_Volume_Output: VolumeMode[] =[
-  new VolumeMode(54, "总音量", 0, -30, 6),
+export  const  Test_Volume_Output: VolumeModel[] =[
+  new VolumeModel(54, "总音量", 0, -30, 6),
 ];
 
 export const Test_Camera: ButtonModel[] = [

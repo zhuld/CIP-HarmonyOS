@@ -1,5 +1,5 @@
 import { CrestronClient } from '../../crestron/CrestronClient'
-import { VolumeMode } from '../../model/Models'
+import { VolumeModel } from '../../model/Models'
 import { VolumeBar,Category } from '../../view/Views'
 import { Test_Volume_Input, Test_Volume_Output } from './Config'
 
@@ -9,12 +9,12 @@ export struct SoundComponent {
   @Consume channelDArray : boolean[] = []
   @Consume channelAArray : number[] = []
   @Builder
-  VolumeBarContent(volumeList: VolumeMode[]) {
+  VolumeBarContent(volumeList: VolumeModel[]) {
     GridRow({
       columns: volumeList.length,
       gutter: { x: 40, y: 30 }
     }) {
-      ForEach(volumeList, (item: VolumeMode) => {
+      ForEach(volumeList, (item: VolumeModel) => {
         GridCol({ span: 1 }) {
           VolumeBar({
             name: item.volumeName,
@@ -34,7 +34,7 @@ export struct SoundComponent {
             }
           })
         }
-      }, (item: VolumeMode) => item.volumeId.toString())
+      }, (item: VolumeModel) => item.volumeId.toString())
     }
   }
 
