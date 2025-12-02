@@ -164,7 +164,7 @@ struct Index {
           VideoComponent({ crestronClient: this.crestronClient })
           SoundComponent({ crestronClient: this.crestronClient })
           CameraComponent({ crestronClient: this.crestronClient })
-          SetupComponent()
+          SetupComponent({ crestronClient: this.crestronClient })
           ConnectComponent({ serverIP: this.serverIP, serverPort: this.serverPort, ipId: this.cipId })
         }
         .enableScrollInteraction(false)

@@ -34,6 +34,7 @@ export const Test_Video_Input: ButtonModel[] = [
   new ButtonModel(37, $r('app.string.setup')),
 ];
 
+
 export const Test_Video_Output: ButtonModel[] = [
   new ButtonModel(41, "大屏", $r('app.media.LED')),
   new ButtonModel(42, "返看", $r('app.media.tv')),
@@ -76,4 +77,14 @@ export const Test_Camera_Position: ButtonModel[] = [
   new ButtonModel(76,'6'),
   new ButtonModel(77,'7'),
   new ButtonModel(78,'', $r('app.media.camera')),
+];
+
+
+export const Test_Setup: ButtonModel[] = [
+  new ButtonModel(0, $r('app.string.project')),
+  new ButtonModel(81, $r('app.string.on'),$r('app.media.onoff')),
+  new ButtonModel(82, $r('app.string.off'),$r('app.media.onoff')),
+  new ButtonModel(0, $r('app.string.camera')),
+  new ButtonModel(83, $r('app.string.on'),$r('app.media.onoff')),
+  new ButtonModel(84, $r('app.string.off'),$r('app.media.onoff')),
 ];

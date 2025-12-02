@@ -43,6 +43,18 @@
     {
       "name": "setup",
       "value": "设备控制"
+    },
+    {
+      "name": "on",
+      "value": "开机"
+    },
+    {
+      "name": "off",
+      "value": "关机"
+    },
+    {
+      "name": "project",
+      "value": "投影机"
     }
   ]
 }
