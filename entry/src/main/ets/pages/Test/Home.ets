@@ -35,6 +35,7 @@ export  struct HomeComponent {
         }, (item: ButtonModel) => item.buttonId.toString())
       }
       Text('长按2秒')
+        .fontColor($r('app.color.text_color'))
         .fontSize(26)
         .alignRules({
           bottom: { anchor: '__container__', align: VerticalAlign.Bottom },

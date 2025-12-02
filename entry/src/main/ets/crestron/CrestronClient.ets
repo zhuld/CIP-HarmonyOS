@@ -1,4 +1,4 @@
-import socket from '@ohos.net.socket';
+import socket from '@ohos.net.socket';;
 
 const op_Server_Accept = 0x0F // 服务器接受连接 0F 00 01 02
 const op_Client_IPID = 0x01 // 发送IPID 01 00 0B 00 00 00 00 00 XX 40 FF FF F1 01
@@ -28,6 +28,8 @@ export class CrestronClient {
   private cipId: number = 3;
   channelDArray: boolean[] = [];
   channelAArray: number[] = []
+  onMsgSend?:(message: string) => void
+
 
   constructor() {
     this.tcpSocket.bind({
@@ -90,6 +92,9 @@ export class CrestronClient {
             op_Join,
             new Uint8Array([0x00, 0x00, 0x03, op_Join_Digital, join % 0x100, join / 0x100]))
         })
+        if(this.onMsgSend) {
+          this.onMsgSend(`S_D${join+1}_H`)
+        }
       } catch (error) {
         console.error(`push发送失败: ${error.message}`);
       }
@@ -105,6 +110,9 @@ export class CrestronClient {
             op_Join,
             new Uint8Array([0x00, 0x00, 0x03, op_Join_Digital, join % 0x100, join / 0x100 | 0x80]))
         })
+        if(this.onMsgSend) {
+          this.onMsgSend(`S_D${join+1}_L`)
+        }
       } catch (error) {
         console.error(`release发送失败: ${error.message}`);
       }
@@ -133,6 +141,9 @@ export class CrestronClient {
             new Uint8Array([0x00, 0x00, 0x05, op_Join_Analog, join / 0x100, join % 0x100, value / 0x100,
               value % 0x100]))
         })
+        if(this.onMsgSend) {
+          this.onMsgSend(`S_A${join+1}_${value}`)
+        }
       } catch (error) {
         console.error(`level发送失败: ${error.message}`);
       }
@@ -151,19 +162,16 @@ export class CrestronClient {
   setupConnectListener(callback: (isConnected: boolean) => void) {
     this.tcpSocket.on('close', () => {
       console.info('TCP连接已关闭');
-      //this.isConnected = false;
       callback(false);
     });
 
     this.tcpSocket.on('connect', () => {
       console.info('TCP已连接');
-      //this.isConnected = true;
       callback(true);
     });
 
     this.tcpSocket.on('error', (error: Error) => {
       console.error(`TCP错误: ${error.message}`);
-      //this.isConnected = false;
       callback(false);
     });
   }

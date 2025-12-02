@@ -13,7 +13,8 @@ struct Config {
   @State isIpAddress: boolean = true;
   @State isPort: boolean = true;
   @State isId: boolean = true;
-  @State info: string = '系统设置，请勿随意修改'
+  @State showDebug: boolean = false;
+  @State info: string = '系统设置，请勿随意修改';
 
   aboutToAppear() {
     this.loadSettings();
@@ -26,6 +27,7 @@ struct Config {
       this.ipAddress = await pref.get('ip', '192.168.1.10') as string;
       this.port = await pref.get('port', 41794) as number;
       this.ipId = await pref.get('ipId', 3) as number;
+      this.showDebug = await pref.get('debug',false) as boolean
     } catch (error) {
       console.error('加载设置失败:', error.message);
     }
@@ -50,7 +52,8 @@ struct Config {
       const pref = await preferences.getPreferences(this.context, this.prefName);
       await pref.put('ip', this.ipAddress);
       await pref.put('port', this.port);
-      await pref.put('idId', this.ipId);
+      await pref.put('ipId', this.ipId);
+      await pref.put('debug',this.showDebug);
       await pref.flush();
       return Promise.resolve(true)
     } catch (error) {
@@ -80,6 +83,7 @@ struct Config {
             Text('IP地址：')
               .fontSize(32)
               .layoutWeight(1)
+              .fontColor($r('app.color.text_color'))
             TextInput({ text: this.ipAddress, placeholder: '输入IP地址' })
               .onChange((value: string) => {
                 this.ipAddress = value;
@@ -96,14 +100,15 @@ struct Config {
               .placeholderFont({ size: 32 })
               .fontSize(32)
               .borderRadius(5)
-              .layoutWeight(4)
+              .layoutWeight(3)
           }
 
           Row() {
             Text('端口号：')
               .fontSize(32)
               .layoutWeight(1)
-            TextInput({ text: this.port.toString(), placeholder: '输入端口号' })
+              .fontColor($r('app.color.text_color'))
+              TextInput({ text: this.port.toString(), placeholder: '输入端口号' })
               .type(InputType.Number)
               .onChange((value: string) => {
                 this.port = Number(value);
@@ -119,13 +124,14 @@ struct Config {
               .placeholderFont({ size: 32 })
               .fontSize(32)
               .borderRadius(5)
-              .layoutWeight(4)
+              .layoutWeight(3)
           }
 
           Row() {
             Text('ID号：')
               .fontSize(32)
               .layoutWeight(1)
+              .fontColor($r('app.color.text_color'))
             TextInput({ text: this.ipId.toString(), placeholder: '输入ID号' })
               .type(InputType.Number)
               .onChange((value: string) => {
@@ -142,7 +148,22 @@ struct Config {
               .placeholderFont({ size: 32 })
               .fontSize(32)
               .borderRadius(5)
-              .layoutWeight(4)
+              .layoutWeight(3)
+          }
+
+          Row() {
+            Text('显示调试信息：')
+              .fontSize(32)
+              .layoutWeight(1)
+              .fontColor($r('app.color.text_color'))
+            Checkbox()
+              .select(this.showDebug)
+              .layoutWeight(3)
+              .height(32)
+              .align(Alignment.Start)
+              .onClick(() =>{
+                this.showDebug = !this.showDebug
+              })
           }
         }
       }

@@ -215,10 +215,12 @@ export struct  VolumeBar {
         .fontSize(30)
         .layoutWeight(1)
         .maxLines(1)
+        .fontColor($r('app.color.text_color'))
       Text((Math.floor(this.value * (this.max - this.mini) / 65535) + this.mini).toString())
         .fontSize(30)
         .layoutWeight(1)
         .maxLines(1)
+        .fontColor($r('app.color.text_color'))
       Slider({
         min: this.mini,
         max: this.max,
@@ -353,6 +355,7 @@ export struct Category {
         .margin(10)
         .layoutWeight(1)
         .maxLines(1)
+        .fontColor($r('app.color.text_color'))
       // 内容区域
       Stack() {
         this.contentBuilder()

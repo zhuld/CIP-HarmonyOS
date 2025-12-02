@@ -40,11 +40,14 @@ struct Index {
   @Provide channelDArray : boolean[] = []
   @Provide channelAArray : number[] = []
   private connectTimer: number = 0;
+
   @State serverIP: string = '192.168.2.105';
   @State serverPort: number = 41794;
   @State cipId : number = 3
+  @State showDebug: boolean = false
   @State isConnected: boolean = false;
   @State inputValue: number = 0;
+  @State message: string = ''
   private isDialogOpened : boolean = false
   private lastPage : number = 0
 
@@ -82,6 +85,9 @@ struct Index {
 
     this.crestronClient.setupStatusListener( (joinType: JoinType, channel:number,value : number) =>{
       if(joinType === JoinType.Digital) {
+        if(this.showDebug) {
+          this.message = value === 1 ?`R_D${channel}_H`:`R_D${channel}_L`
+        }
         this.channelDArray.fill(value === 1 ? true:false, channel, channel)
         if(channel === 1){
           if(value === 1 && !this.isDialogOpened){
@@ -93,17 +99,20 @@ struct Index {
           }
         }
       }else if(joinType === JoinType.Analog){
+        if(this.showDebug) {
+          this.message = `R_A${channel}_${value}`
+        }
         this.channelAArray.fill(value,channel,channel)
       }
     })
-    try {
-      const pref = await preferences.getPreferences(this.context, 'network_settings');
-      this.serverIP = await pref.get('ip', '192.168.1.10') as string;
-      this.serverPort = await pref.get('port', 41794) as number;
-      this.cipId = await pref.get('ipId', 3) as number;
-    } catch (error) {
-      console.error('加载设置失败:', error.message);
-    }
+
+    this.crestronClient.onMsgSend = ((message: string) =>{
+      if(this.showDebug) {
+        this.message = message
+      }
+    })
+
+    await this.loadPreferences();
 
     this.crestronClient.connect(this.serverIP, this.serverPort, this.cipId);
 
@@ -117,6 +126,23 @@ struct Index {
     this.currentPage = PageList.length
   }
 
+  private async loadPreferences() {
+    try {
+      const pref = await preferences.getPreferences(this.context, 'network_settings');
+      this.serverIP = await pref.get('ip', '192.168.1.10') as string;
+      this.serverPort = await pref.get('port', 41794) as number;
+      this.cipId = await pref.get('ipId', 3) as number;
+      this.showDebug = await pref.get('debug', false) as boolean;
+    } catch (error) {
+      console.error('加载设置失败:', error.message);
+    }
+  }
+
+  async onPageShow(): Promise<void> {
+    await this.loadPreferences()
+    this.message = ''
+  }
+
   aboutToDisappear(): void {
     this.crestronClient.close();
     clearInterval(this.connectTimer)
@@ -124,7 +150,7 @@ struct Index {
 
   build() {
     Column() {
-      Head({isConnected:this.isConnected})
+      Head({isConnected:this.isConnected,message: this.message})
         .width('100%')
         .layoutWeight(1)
 

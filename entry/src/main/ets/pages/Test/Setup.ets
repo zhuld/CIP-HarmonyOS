@@ -20,6 +20,7 @@ export struct SetupComponent {
           GridCol({ span: 2 }) {
             Text(item.buttonName)
               .fontSize(32)
+              .fontColor($r('app.color.text_color'))
           }
         } else {
           GridCol({ span: 1 }) {
