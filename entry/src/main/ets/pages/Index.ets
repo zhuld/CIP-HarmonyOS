@@ -68,7 +68,6 @@ struct Index {
     },10000)
     this.crestronClient.setupConnectListener((isConnected: boolean) => {
       this.isConnected = isConnected;
-      console.info(`[connect] ${this.isConnected}`)
       if(this.isConnected) {
         this.channelDArray = this.crestronClient.channelDArray
         this.channelAArray = this.crestronClient.channelAArray

@@ -53,6 +53,10 @@
       "value": "#ff02082f"
     },
     {
+      "name": "text_color_red",
+      "value": "#FF9F0D0D"
+    },
+    {
       "name": "background_1",
       "value": "#FFBFC89E"
     },
