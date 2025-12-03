@@ -169,7 +169,7 @@ struct Config {
       }
       .align(Alignment.Top)
       .width('100%')
-      .height('48%')
+      .height('45%')
       .scrollable(ScrollDirection.Vertical)
 
       Row({ space: 40 }) {
@@ -200,7 +200,7 @@ struct Config {
           .fontColor($r('app.color.text_color'))
           .height(70)
       }
-      .height('8%')
+      .height('6%')
       .width('100%')
       .direction(Direction.Rtl)
     }

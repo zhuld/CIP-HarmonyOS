@@ -29,7 +29,8 @@ export class CrestronClient {
   channelDArray: boolean[] = [];
   channelAArray: number[] = []
   onMsgSend?:(message: string) => void
-
+  onMsgReceived?:(joinType: JoinType, channel: number, value: number) => void
+  onConnectChanged?:(isConnected: boolean) => void
 
   constructor() {
     this.tcpSocket.bind({
@@ -45,6 +46,108 @@ export class CrestronClient {
     for (let i = 0; i < 100; i++) {
       this.channelAArray.push(0)
     }
+
+    this.tcpSocket.on('message', async (value) => {
+      if (!value || !value.message || !this.onMsgReceived) {
+        return;
+      }
+      const message: Uint8Array = new Uint8Array(value.message);
+      let index = 0
+      while (index < message.length) {
+        let payloadType = message[index]
+        let payloadLength = message[index + 2]
+        let payload = message.slice(index + 3, index + 3 + payloadLength)
+        switch (payloadType) {
+          case op_Server_Accept:
+            if (payload.length === 1 && payload[0] === 0x02) {
+              try {
+                await this.tcpSocket.send({
+                  data: this.crestronMessageData(
+                    op_Client_IPID,
+                    new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, this.cipId, 0x40, 0xFF, 0xFF, 0xF1, 0x01]))
+                })
+              } catch (error) {
+                console.error(`发送IPID失败: ${error.message}`);
+              }
+            }
+            break
+          case op_Server_IPID:
+            if (this.toHexString(payload, "") === "0000001F" || this.toHexString(
+              payload, "") === "00000003") {
+              try {
+                await this.tcpSocket.send({
+                  data: this.crestronMessageData(
+                    op_Join,
+                    new Uint8Array([0x00, 0x00, 0x02, op_Join_Request, 0x00]))
+                })
+              } catch (error) {
+                console.error(`发送注册失败: ${error.message}`);
+              }
+            } else if (this.toHexString(payload, "") === "FFFF02") {
+              console.error(`服务器注册失败`);
+            }
+            break
+          case op_Join:
+            //Join事件
+            switch (payload[3]) {
+              case op_Join_Digital:
+              case op_Join_Digital1:
+                //digital
+                let channelD = payload[4] + (payload[5] & 0x7F) * 0x100 + 1
+                if (isNaN(channelD) === false) {
+                  let value = !(payload[5] & 0x80)
+                  if (this.channelDArray[channelD] !== value) {
+                    this.channelDArray[channelD] = value
+                    this.onMsgReceived(JoinType.Digital, channelD, value ? 1 : 0)
+                  }
+                }
+                break
+              case op_Join_Analog1:
+              case op_Join_Analog:
+                if (payloadLength === 8) {
+                  let channelA = payload[4] * 0x100 + payload[5] + 1
+                  if (isNaN(channelA) === false) {
+                    this.channelAArray[channelA] = payload[6] * 0x100 + payload[7]
+                    this.onMsgReceived(JoinType.Analog, channelA, this.channelAArray[channelA])
+                  }
+                } else if (payloadLength === 7) {
+                  let channelA = payload[4] + 1
+                  if (isNaN(channelA) === false) {
+                    this.channelAArray[channelA] = payload[5] * 0x100 + payload[6]
+                    this.onMsgReceived(JoinType.Analog, channelA, this.channelAArray[channelA])
+                  }
+                }
+                break
+            }
+            break
+          case op_Server_Pong:
+            //console.log('pong')
+            break
+        }
+        index = index + payloadLength + 3
+      }
+    })
+
+    this.tcpSocket.on('close', () => {
+      console.info('TCP连接已关闭');
+      if(this.onConnectChanged) {
+        this.onConnectChanged(false);
+      }
+    });
+
+    this.tcpSocket.on('connect', () => {
+      console.info('TCP已连接');
+      if(this.onConnectChanged) {
+        this.onConnectChanged(true);
+      }
+    });
+
+    this.tcpSocket.on('error', (error: Error) => {
+      console.error(`TCP错误: ${error.message}`);
+      if(this.onConnectChanged) {
+        this.onConnectChanged(false);
+      }
+    });
   }
 
   // 连接服务器
@@ -157,111 +260,6 @@ export class CrestronClient {
     m[2] = message.length % 0x100
     m.set(message, 3)
     return m.buffer
-  }
-
-  setupConnectListener(callback: (isConnected: boolean) => void) {
-    this.tcpSocket.on('close', () => {
-      console.info('TCP连接已关闭');
-      callback(false);
-    });
-
-    this.tcpSocket.on('connect', () => {
-      console.info('TCP已连接');
-      callback(true);
-    });
-
-    this.tcpSocket.on('error', (error: Error) => {
-      console.error(`TCP错误: ${error.message}`);
-      callback(false);
-    });
-  }
-
-  setupStatusListener(callback: (joinType: JoinType, channel: number, value: number) => void) {
-    this.tcpSocket.on('message', async (value) => {
-      if (!value || !value.message) {
-        console.error('接收数据失败');
-        return;
-      }
-      const message = await new Promise<Uint8Array>((resolve) => {
-        const buffer: ArrayBuffer = value.message;
-        const data: Uint8Array = new Uint8Array(buffer);
-        resolve(data);
-      });
-      let index = 0
-      while (index < message.length) {
-        let payloadType = message[index]
-        let payloadLength = message[index + 2]
-        let payload = message.slice(index + 3, index + 3 + payloadLength)
-        switch (payloadType) {
-          case op_Server_Accept:
-            if (payload.length === 1 && payload[0] === 0x02) {
-              try {
-                await this.tcpSocket.send({
-                  data: this.crestronMessageData(
-                    op_Client_IPID,
-                    new Uint8Array([0x00, 0x00, 0x00, 0x00, 0x00, this.cipId, 0x40, 0xFF, 0xFF, 0xF1, 0x01]))
-                })
-              } catch (error) {
-                console.error(`发送IPID失败: ${error.message}`);
-              }
-            }
-            break
-          case op_Server_IPID:
-            if (this.toHexString(payload, "") === "0000001F" || this.toHexString(
-              payload, "") === "00000003") {
-              try {
-                await this.tcpSocket.send({
-                  data: this.crestronMessageData(
-                    op_Join,
-                    new Uint8Array([0x00, 0x00, 0x02, op_Join_Request, 0x00]))
-                })
-              } catch (error) {
-                console.error(`发送注册失败: ${error.message}`);
-              }
-            } else if (this.toHexString(payload, "") === "FFFF02") {
-              console.error(`服务器注册失败`);
-            }
-            break
-          case op_Join:
-            //Join事件
-            switch (payload[3]) {
-              case op_Join_Digital:
-              case op_Join_Digital1:
-                //digital
-                let channelD = payload[4] + (payload[5] & 0x7F) * 0x100 + 1
-                if (isNaN(channelD) === false) {
-                  let value = !(payload[5] & 0x80)
-                  if (this.channelDArray[channelD] !== value) {
-                    this.channelDArray[channelD] = value
-                    callback(JoinType.Digital, channelD, value ? 1 : 0)
-                  }
-                }
-                break
-              case op_Join_Analog1:
-              case op_Join_Analog:
-                if (payloadLength === 8) {
-                  let channelA = payload[4] * 0x100 + payload[5] + 1
-                  if (isNaN(channelA) === false) {
-                    this.channelAArray[channelA] = payload[6] * 0x100 + payload[7]
-                    callback(JoinType.Analog, channelA, this.channelAArray[channelA])
-                  }
-                } else if (payloadLength === 7) {
-                  let channelA = payload[4] + 1
-                  if (isNaN(channelA) === false) {
-                    this.channelAArray[channelA] = payload[5] * 0x100 + payload[6]
-                    callback(JoinType.Analog, channelA, this.channelAArray[channelA])
-                  }
-                }
-                break
-            }
-            break
-          case op_Server_Pong:
-            //console.log('pong')
-            break
-        }
-        index = index + payloadLength + 3
-      }
-    })
   }
 
   private toHexString(data: Uint8Array, space: string): string {

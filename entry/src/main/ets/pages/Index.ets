@@ -62,52 +62,52 @@ struct Index {
   });
 
   async aboutToAppear() {
-    this.connectTimer = setInterval(()=>{
-      if(this.isConnected){
+    this.connectTimer = setInterval(() => {
+      if (this.isConnected) {
         this.crestronClient.ping();
-      }else{
+      } else {
         this.crestronClient.connect(this.serverIP, this.serverPort, this.cipId);
       }
-    },10000)
-    this.crestronClient.setupConnectListener((isConnected: boolean) => {
+    }, 10000)
+    this.crestronClient.onConnectChanged = ((isConnected: boolean) => {
       this.isConnected = isConnected;
-      if(this.isConnected) {
+      if (this.isConnected) {
         this.channelDArray = this.crestronClient.channelDArray
         this.channelAArray = this.crestronClient.channelAArray
         this.contentScroller.scrollToIndex(this.lastPage);
         this.currentPage = this.lastPage
-      }else {
+      } else {
         this.contentScroller.scrollToIndex(PageList.length);
         this.lastPage = this.currentPage
         this.currentPage = PageList.length
       }
     })
 
-    this.crestronClient.setupStatusListener( (joinType: JoinType, channel:number,value : number) =>{
-      if(joinType === JoinType.Digital) {
-        if(this.showDebug) {
-          this.message = value === 1 ?`R_D${channel}_H`:`R_D${channel}_L`
+    this.crestronClient.onMsgReceived = ((joinType: JoinType, channel: number, value: number) => {
+      if (joinType === JoinType.Digital) {
+        if (this.showDebug) {
+          this.message = value === 1 ? `R_D${channel}_H` : `R_D${channel}_L`
         }
-        this.channelDArray.fill(value === 1 ? true:false, channel, channel)
-        if(channel === 1){
-          if(value === 1 && !this.isDialogOpened){
+        this.channelDArray.fill(value === 1 ? true : false, channel, channel)
+        if (channel === 1) {
+          if (value === 1 && !this.isDialogOpened) {
             this.dialogProcess.open()
             this.isDialogOpened = true
-          }else{
+          } else {
             this.dialogProcess.close()
             this.isDialogOpened = false
           }
         }
-      }else if(joinType === JoinType.Analog){
-        if(this.showDebug) {
+      } else if (joinType === JoinType.Analog) {
+        if (this.showDebug) {
           this.message = `R_A${channel}_${value}`
         }
-        this.channelAArray.fill(value,channel,channel)
+        this.channelAArray.fill(value, channel, channel)
       }
     })
 
-    this.crestronClient.onMsgSend = ((message: string) =>{
-      if(this.showDebug) {
+    this.crestronClient.onMsgSend = ((message: string) => {
+      if (this.showDebug) {
         this.message = message
       }
     })
