@@ -42,7 +42,7 @@ export  struct CameraComponent {
   PositionContent(buttonList :ButtonModel[],columns:number) {
     GridRow({
       columns: columns,
-      gutter: { x: 100, y: 30 }
+      gutter: { x: 120, y: 20 }
     }) {
       ForEach(buttonList, (item: ButtonModel) => {
         GridCol({ span: 1 }) {
@@ -61,7 +61,22 @@ export  struct CameraComponent {
             })
         }
       },(item: ButtonModel) => item.buttonId.toString())
-    }.padding({right:60,left:60})
+      GridCol({ span: 2 }) {
+        SquareButton({
+          label: "9",
+          //icon: item.buttonIcon,
+          fontSize: 30,
+          checked: this.channelDArray[79],
+          onTouchAction: (event: TouchEvent) => {
+            if (event.type === TouchType.Down) {
+              this.crestronClient?.push(79)
+            } else if (event.type === TouchType.Up) {
+              this.crestronClient?.release(79)
+            }
+          }
+        }).width('27%')
+      }
+    }.padding({right:70,left:70})
   }
 
   build() {
