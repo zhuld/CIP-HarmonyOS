@@ -64,7 +64,6 @@ export  struct CameraComponent {
       GridCol({ span: 2 }) {
         SquareButton({
           label: "9",
-          //icon: item.buttonIcon,
           fontSize: 30,
           checked: this.channelDArray[79],
           onTouchAction: (event: TouchEvent) => {
