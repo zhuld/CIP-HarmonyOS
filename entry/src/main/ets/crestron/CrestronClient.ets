@@ -28,7 +28,8 @@ export class CrestronClient {
   private cipId: number = 3;
   channelDArray: boolean[] = [];
   channelAArray: number[] = []
-  onMsgSend?:(message: string) => void
+
+  onMsgSend?:(joinType: JoinType, channel: number, value: number) => void
   onMsgReceived?:(joinType: JoinType, channel: number, value: number) => void
   onConnectChanged?:(isConnected: boolean) => void
 
@@ -196,7 +197,7 @@ export class CrestronClient {
             new Uint8Array([0x00, 0x00, 0x03, op_Join_Digital, join % 0x100, join / 0x100]))
         })
         if(this.onMsgSend) {
-          this.onMsgSend(`S_D${join+1}_H`)
+          this.onMsgSend(JoinType.Digital, join+1, 1)
         }
       } catch (error) {
         console.error(`push发送失败: ${error.message}`);
@@ -214,7 +215,7 @@ export class CrestronClient {
             new Uint8Array([0x00, 0x00, 0x03, op_Join_Digital, join % 0x100, join / 0x100 | 0x80]))
         })
         if(this.onMsgSend) {
-          this.onMsgSend(`S_D${join+1}_L`)
+          this.onMsgSend(JoinType.Digital, join+1, 0)
         }
       } catch (error) {
         console.error(`release发送失败: ${error.message}`);
@@ -245,7 +246,7 @@ export class CrestronClient {
               value % 0x100]))
         })
         if(this.onMsgSend) {
-          this.onMsgSend(`S_A${join+1}_${value}`)
+          this.onMsgSend(JoinType.Analog, join+1, value)
         }
       } catch (error) {
         console.error(`level发送失败: ${error.message}`);

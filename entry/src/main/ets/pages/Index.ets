@@ -40,14 +40,15 @@ struct Index {
   @Provide channelDArray : boolean[] = []
   @Provide channelAArray : number[] = []
   private connectTimer: number = 0;
+  readonly prefName: string = 'network_settings';
 
   @State serverIP: string = '192.168.2.105';
   @State serverPort: number = 41794;
   @State cipId : number = 3
   @State showDebug: boolean = false
   @State isConnected: boolean = false;
-  @State inputValue: number = 0;
-  @State message: string = ''
+  @State messageT: string = ''
+  @State messageR: string = ''
   private isDialogOpened : boolean = false
   private lastPage : number = 0
 
@@ -86,7 +87,7 @@ struct Index {
     this.crestronClient.onMsgReceived = ((joinType: JoinType, channel: number, value: number) => {
       if (joinType === JoinType.Digital) {
         if (this.showDebug) {
-          this.message = value === 1 ? `R_D${channel}_H` : `R_D${channel}_L`
+          this.messageR = value === 1 ? `${channel}:High` : `${channel}:Low`
         }
         this.channelDArray.fill(value === 1 ? true : false, channel, channel)
         if (channel === 1) {
@@ -100,15 +101,19 @@ struct Index {
         }
       } else if (joinType === JoinType.Analog) {
         if (this.showDebug) {
-          this.message = `R_A${channel}_${value}`
+          this.messageR = `${channel}:${value}`
         }
         this.channelAArray.fill(value, channel, channel)
       }
     })
 
-    this.crestronClient.onMsgSend = ((message: string) => {
+    this.crestronClient.onMsgSend = ((joinType: JoinType, channel: number, value: number) => {
       if (this.showDebug) {
-        this.message = message
+        if(joinType === JoinType.Digital) {
+          this.messageT = value === 1?  `${channel}:Push`:`${channel}:Release`
+        }else if (joinType === JoinType.Analog){
+          this.messageT = `${channel}:${value}`
+        }
       }
     })
 
@@ -128,7 +133,7 @@ struct Index {
 
   private async loadPreferences() {
     try {
-      const pref = await preferences.getPreferences(this.context, 'network_settings');
+      const pref = await preferences.getPreferences(this.context, this.prefName);
       this.serverIP = await pref.get('ip', '192.168.1.10') as string;
       this.serverPort = await pref.get('port', 41794) as number;
       this.cipId = await pref.get('ipId', 3) as number;
@@ -140,7 +145,8 @@ struct Index {
 
   async onPageShow(): Promise<void> {
     await this.loadPreferences()
-    this.message = ''
+    this.messageT = ''
+    this.messageR = ''
   }
 
   aboutToDisappear(): void {
@@ -150,7 +156,7 @@ struct Index {
 
   build() {
     Column() {
-      Head({isConnected:this.isConnected,message: this.message})
+      Head({isConnected:this.isConnected,messageT: this.messageT, messageR: this.messageR})
         .width('100%')
         .layoutWeight(1)
 
@@ -190,7 +196,7 @@ struct Index {
           SoundComponent({ crestronClient: this.crestronClient })
           CameraComponent({ crestronClient: this.crestronClient })
           SetupComponent({ crestronClient: this.crestronClient })
-          ConnectComponent({ serverIP: this.serverIP, serverPort: this.serverPort, ipId: this.cipId })
+          ConnectComponent({ serverIP: this.serverIP, serverPort: this.serverPort, ipId: this.cipId ,isConnected: this.isConnected })
         }
         .enableScrollInteraction(false)
         .scrollBar(BarState.Off)

@@ -80,10 +80,19 @@ export struct ProcessDialog {
         .fontSize(30)
         .fontColor($r('app.color.text_color'))
         .layoutWeight(2)
-      LoadingProgress()
-        .color($r('app.color.button'))
-        .layoutWeight(9)
+      Progress({
+        type: ProgressType.Ring,
+        value: 0
+      })
+        .style({
+          status: ProgressStatus.LOADING,
+          strokeWidth: 10
+        })
         .width('100%')
+        .layoutWeight(9)
+        .color($r('app.color.text_color'))
+        .backgroundColor(Color.Transparent)
+        .padding(70)
     }
     .padding({
       top: 10,

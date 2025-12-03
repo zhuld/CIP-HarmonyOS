@@ -8,7 +8,7 @@ struct Config {
   @State ipAddress: string = '192.168.1.1';
   @State port: number = 8080;
   @State ipId: number = 3;
-  private prefName: string = 'network_settings';
+  readonly prefName: string = 'network_settings';
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @State isIpAddress: boolean = true;
   @State isPort: boolean = true;

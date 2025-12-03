@@ -5,7 +5,8 @@ import { ConfirmDialog } from "./Dialog";
 export struct Head {
   @State currentTime: string = ''
   @Prop isConnected: boolean
-  @Prop message: string
+  @Prop messageT: string
+  @Prop messageR: string
   private clockId: number = 0
 
   dialogController: CustomDialogController = new CustomDialogController({
@@ -46,7 +47,7 @@ export struct Head {
         .layoutWeight(1)
         .textAlign(TextAlign.Center)
         .fontColor($r('app.color.text_color'))
-      Row({space: 20}) {
+      Row({space: 10}) {
         Text(this.currentTime)
           .fontSize(24)
           .fontColor($r('app.color.text_color'))
@@ -66,9 +67,14 @@ export struct Head {
               })
           )
           .width(24)
-        Text(this.message)
+        Text(this.messageT)
           .fontSize(24)
           .fontColor($r('app.color.text_color'))
+          .width(130)
+        Text(this.messageR)
+          .fontSize(24)
+          .fontColor($r('app.color.text_color'))
+          .width(130)
       }
       .layoutWeight(1)
       .padding({ right: 20 })

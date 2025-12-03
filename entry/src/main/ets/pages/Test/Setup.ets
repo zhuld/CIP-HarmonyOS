@@ -52,7 +52,7 @@ export struct SetupComponent {
           this.SetupContent(Test_Setup, 2)
         }
       })
-        .width('50%')
+        .width('60%')
     }
     .margin({ bottom: 10, right: 10, left: 2 })
   }
