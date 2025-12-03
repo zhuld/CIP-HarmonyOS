@@ -178,12 +178,11 @@ struct Index {
               }
             })
               .padding({
-                left:10,
-                right:30,
-                bottom:20,
-                top:10
+                left: 10,
+                right: 30,
+                bottom: 20,
+                top: 10
               })
-
           },)
         }
         .height('100%')
