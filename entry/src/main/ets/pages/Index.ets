@@ -28,6 +28,7 @@ import { Head } from './Head';
 import { CrestronClient, JoinType } from '../crestron/CrestronClient';
 import { ProcessDialog } from './Dialog';
 import { ConnectComponent } from './Connect'
+import { Video2Component } from './Test/Video2';
 
 @Entry
 @Component
@@ -189,8 +190,9 @@ struct Index {
         .width('14%')
         .scrollBar(BarState.Off)
         //内容
-        List({scroller:this.contentScroller}) {
+        List({scroller:this.contentScroller ,space: 100}) {
           HomeComponent({ crestronClient: this.crestronClient })
+          Video2Component({ crestronClient: this.crestronClient })
           VideoComponent({ crestronClient: this.crestronClient })
           SoundComponent({ crestronClient: this.crestronClient })
           CameraComponent({ crestronClient: this.crestronClient })
@@ -201,6 +203,9 @@ struct Index {
         .scrollBar(BarState.Off)
         .height('100%')
         .width('86%')
+        .onScrollStart(()=>{
+          this.contentScroller.scrollToIndex(this.currentPage)
+        })
       }
       .width('100%')
       .layoutWeight(10)

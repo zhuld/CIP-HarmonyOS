@@ -7,7 +7,7 @@ import { Test_Video_Input, Test_Video_Output } from './Config'
 export struct VideoComponent {
   @ObjectLink crestronClient: CrestronClient
   @Consume channelDArray: boolean[] = []
-  @Consume channelAArray: boolean[] = []
+  @Consume channelAArray: number[] = []
 
   @Builder
   VideoContent(buttonList: ButtonModel[], columns: number) {
@@ -40,19 +40,19 @@ export struct VideoComponent {
     // HelloComponent自定义组件组合系统组件Row和Text
     Row({ space: 30 }) {
       Category({
-        title: '输入源', // 动态绑定标题
-        contentBuilder: () => {
-          this.VideoContent(Test_Video_Input, 2)
-        }
-      })
-        .layoutWeight(2)
-      Category({
-        title: '输出源', // 动态绑定标题
+        title: '输出设备', // 动态绑定标题
         contentBuilder: () => {
           this.VideoContent(Test_Video_Output, 1)
         } // 动态绑定内容
       })
         .layoutWeight(1)
+      Category({
+        title: '输入信号', // 动态绑定标题
+        contentBuilder: () => {
+          this.VideoContent(Test_Video_Input, 2)
+        }
+      })
+        .layoutWeight(2)
     }
     .margin({ bottom: 10, right: 10, left: 2 })
   }

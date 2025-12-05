@@ -7,7 +7,7 @@ import { Test_Camera, Test_Camera_Position } from "./Config";
 export  struct CameraComponent {
   @ObjectLink crestronClient : CrestronClient
   @Consume channelDArray : boolean[] = []
-  @Consume channelAArray : boolean[] = []
+  @Consume channelAArray : number[] = []
   @Builder
   CameraContent(buttonList :ButtonModel[],columns:number) {
     GridRow({

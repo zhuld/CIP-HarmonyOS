@@ -1,11 +1,12 @@
 import { ButtonModel, PageModel, VolumeModel } from "../../model/Models";
 
 export const PageList: PageModel[] = [
-  new PageModel(1, $r('app.string.home'), $r('app.media.home')),
-  new PageModel(2, $r('app.string.HDMI'),$r('app.media.HDMI')),
-  new PageModel(3, $r('app.string.volume'), $r('app.media.volume')),
-  new PageModel(4, $r('app.string.camera'), $r('app.media.camera')),
-  new PageModel(5, $r('app.string.setup'), $r('app.media.setup')),
+  new PageModel($r('app.string.home'), $r('app.media.home')),
+  new PageModel($r('app.string.HDMI'),$r('app.media.HDMI')),
+  new PageModel($r('app.string.HDMI'),$r('app.media.HDMI')),
+  new PageModel($r('app.string.volume'), $r('app.media.volume')),
+  new PageModel($r('app.string.camera'), $r('app.media.camera')),
+  new PageModel($r('app.string.setup'), $r('app.media.setup')),
 ];
 
 export const Test_Home_1: ButtonModel[] = [
@@ -25,14 +26,26 @@ export const Test_Home_2: ButtonModel[] = [
 ];
 
 export const Test_Video_Input: ButtonModel[] = [
-  new ButtonModel(31, $r('app.string.video')),
-  new ButtonModel(32, $r('app.string.camera')),
-  new ButtonModel(33, $r('app.string.HDMI')),
-  new ButtonModel(34, $r('app.string.volume')),
-  new ButtonModel(35, $r('app.string.camera')),
-  new ButtonModel(36, $r('app.string.home')),
-  new ButtonModel(37, $r('app.string.setup')),
-];
+  new ButtonModel(31, '演讲台',undefined,$r('app.color.input_color_1')),
+  new ButtonModel(32, '地插',undefined,$r('app.color.input_color_2')),
+  new ButtonModel(33, '墙插',undefined,$r('app.color.input_color_3')),
+  new ButtonModel(34, '无线投屏',undefined,$r('app.color.input_color_4')),
+  new ButtonModel(35, '电脑',undefined,$r('app.color.input_color_5')),
+  new ButtonModel(36, '预留',undefined,$r('app.color.input_color_6')),
+  new ButtonModel(37, '地插后',undefined,$r('app.color.input_color_7')),
+  new ButtonModel(38, '墙插后',undefined,$r('app.color.input_color_8')),
+]
+
+// export const Test_Video_Input: ButtonModel[] = [
+//   new ButtonModel(31, '演讲台',undefined,$r('app.color.input_color_1')),
+//   new ButtonModel(32, '地插',undefined,$r('app.color.input_color_2')),
+//   new ButtonModel(33, '墙插',undefined,$r('app.color.input_color_3')),
+//   new ButtonModel(34, '无线投屏',undefined,$r('app.color.input_color_4')),
+//   new ButtonModel(35, '电脑',undefined,$r('app.color.input_color_5')),
+//   new ButtonModel(36, '预留',undefined,$r('app.color.input_color_6')),
+//   new ButtonModel(37, '地插后',undefined,$r('app.color.input_color_7')),
+//   new ButtonModel(38, '墙插后',undefined,$r('app.color.input_color_8')),
+// ]
 
 export const Test_Video_Output: ButtonModel[] = [
   new ButtonModel(41, "大屏", $r('app.media.LED')),

@@ -1,13 +1,10 @@
 export class  PageModel {
-  pageId: number;
   pageName: string | Resource;
   pageIcon: Resource|undefined;
 
-  constructor(pageId: number, pageName: string | Resource, pageIcon: Resource | undefined = undefined) {
-    this.pageId = pageId;
+  constructor( pageName: string | Resource, pageIcon: Resource | undefined = undefined) {
     this.pageName = pageName;
     this.pageIcon = pageIcon;
-    //this.classifyContent = classifyContent;
   }
 }
 
@@ -15,10 +12,12 @@ export class ButtonModel {
   buttonId: number;
   buttonName: string | Resource;
   buttonIcon: Resource | undefined;
-  constructor(buttonId: number, buttonName: string | Resource = '' , buttonIcon: Resource | undefined = undefined) {
+  buttonColor: ResourceColor |undefined;
+  constructor(buttonId: number, buttonName: string | Resource = '' , buttonIcon: Resource | undefined = undefined ,buttonColor: ResourceColor | undefined = undefined) {
     this.buttonId = buttonId;
     this.buttonName = buttonName;
     this.buttonIcon = buttonIcon;
+    this.buttonColor = buttonColor
   }
 }
 

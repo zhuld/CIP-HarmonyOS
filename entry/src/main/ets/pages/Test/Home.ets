@@ -7,7 +7,7 @@ import { Test_Home_1, Test_Home_2 } from "./Config";
 export  struct HomeComponent {
   @ObjectLink crestronClient : CrestronClient
   @Consume channelDArray : boolean[] = []
-  @Consume channelAArray : boolean[] = []
+  @Consume channelAArray : number[] = []
   @Builder
   SystemContent(buttonList :ButtonModel[],columns:number) {
     RelativeContainer() {

@@ -7,7 +7,7 @@ import { Test_Setup } from './Config'
 export struct SetupComponent {
   @ObjectLink crestronClient: CrestronClient
   @Consume channelDArray: boolean[] = []
-  @Consume channelAArray: boolean[] = []
+  @Consume channelAArray: number[] = []
 
   @Builder
   SetupContent(buttonList: ButtonModel[], columns: number) {

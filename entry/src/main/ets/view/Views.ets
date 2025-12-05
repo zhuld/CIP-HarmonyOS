@@ -1,5 +1,14 @@
-import { unifiedDataChannel } from "@kit.ArkData"
-
+export const inputColor : Array<ResourceColor> = [
+  $r('app.color.tab_button'),
+  $r('app.color.input_color_1'),
+  $r('app.color.input_color_2'),
+  $r('app.color.input_color_3'),
+  $r('app.color.input_color_4'),
+  $r('app.color.input_color_5'),
+  $r('app.color.input_color_6'),
+  $r('app.color.input_color_7'),
+  $r('app.color.input_color_8'),
+]
 @Component
 export struct NormalButton {
   private  gradientAngle: number = 40
@@ -61,56 +70,105 @@ export struct InputButton {
   @Prop label: string | Resource
   @Prop icon: Resource
   @Prop fontSize: number = 20
-  @Prop checked: boolean = false
-
-  onTouchAction?:(event: TouchEvent) => void
+  @Prop foreColor: ResourceColor = $r('app.color.button')
+  @State checked: boolean = false
+  @State opacityValue: number = 1
+  onDragAction?:(start: boolean) => void
 
   build() {
     Row({space:this.icon? 10:0}) {
       Image(this.icon)
         .height(this.icon ? '60%' : 0)
         .aspectRatio(1)
-        .fillColor(this.checked ? $r('app.color.text_color_check') : $r('app.color.text_color')) // 根据状态切换颜色
+        .fillColor($r('app.color.text_color')) // 根据状态切换颜色
       Text(this.label)
-        .fontColor(this.checked ? $r('app.color.text_color_check') : $r('app.color.text_color'))
+        .fontColor($r('app.color.text_color'))
         .maxLines(1)
         .fontSize(this.fontSize)
     }
-    // .onTouch((event: TouchEvent) =>{
-    //   if (this.onTouchAction) {
-    //     this.onTouchAction(event)
-    //   }
-    // })
     .justifyContent(FlexAlign.Center)
     .borderRadius("5%")
     .linearGradient({
       angle: this.gradientAngle,
-      colors: this.checked ?
-        [ [$r('app.color.button_checked_light'), 0.1],
-          [$r('app.color.button_checked'), 1.0]]:
-        [ [$r('app.color.button_light'), 0.1],
-          [$r('app.color.button'), 1.0] ]
+      colors:
+        [ [$r('app.color.tab_button_light'), 0.1],
+          [this.foreColor, 1.0] ]
     })
     .size({ width: '100%', height: '100%'})
     .backgroundColor(Color.Transparent)
     .margin({
       top: this.checked ? 3 : 0,
-      left: this.checked  ? 3 : 0
+      left: this.checked ? 3 : 0
     })
     .shadow({
-      radius: this.checked  ? 8 : 15,
+      radius: this.checked ? 8 : 15,
       color: $r('app.color.shadow_color'),
       offsetX: this.checked ? 2 : 5,
       offsetY: this.checked ? 3 : 6
     })
+    .opacity(this.opacityValue)
     .animation({
       duration: 100,
-      curve: Curve.EaseInOut
+      curve: Curve.EaseInOut,
     })
-    .draggable(true).onDragStart((event) => {
-      event.setData(new unifiedDataChannel.UnifiedData());
-      console.info(`[drag] start `)
-    });
+    .onTouch((event: TouchEvent) => {
+      if (event.type === TouchType.Down) {
+        this.checked = true;
+      } else {
+        this.checked = false
+      }
+    })
+    .draggable(true)
+    .onDragStart(() => {
+      if(this.onDragAction){
+        this.onDragAction(true)
+        this.opacityValue = 0.2
+      }
+    })
+    .onDragEnd(() => {
+      if(this.onDragAction){
+        this.onDragAction(false)
+        this.opacityValue = 1
+      }
+    })
+  }
+}
+
+@Component
+export struct OutputButton {
+  private  gradientAngle: number = 40
+  @Prop label: string | Resource
+  @Prop icon: Resource
+  @Prop fontSize: number = 20
+  @Prop foreColor: number = 0
+
+  build() {
+    Row({space:this.icon? 10:0}) {
+      Image(this.icon)
+        .height(this.icon ? '60%' : 0)
+        .aspectRatio(1)
+        .fillColor($r('app.color.text_color')) // 根据状态切换颜色
+      Text(this.label)
+        .fontColor($r('app.color.text_color'))
+        .maxLines(1)
+        .fontSize(this.fontSize)
+    }
+    .justifyContent(FlexAlign.Center)
+    .borderRadius("5%")
+    .linearGradient({
+      angle: this.gradientAngle,
+      colors:
+      [ [$r('app.color.tab_button_light'), 0.1],
+        [inputColor[this.foreColor], 1.0] ]
+    })
+    .size({ width: '100%', height: '100%'})
+    .backgroundColor(Color.Transparent)
+    .shadow({
+      radius: 15,
+      color: $r('app.color.shadow_color'),
+      offsetX: 5,
+      offsetY: 6
+    })
   }
 }
 
@@ -343,7 +401,6 @@ export struct TabButton {
           this.onTouchAction(event)
         }
       })
-      //.visibility(this.isEnabled? Visibility.Visible: Visibility.Hidden)
   }
 }
 
