@@ -18,7 +18,7 @@ export const Test_Home_1: ButtonModel[] = [
 
 export const Test_Home_2: ButtonModel[] = [
   new ButtonModel(21, '', $r('app.media.volume')),
-  new ButtonModel(22, $r('app.string.camera'), $r('app.media.camera')),
+  new ButtonModel(22, $r('app.string.camera'), $r('app.media.mute')),
   new ButtonModel(23, $r('app.string.HDMI'), $r('app.media.HDMI')),
   new ButtonModel(24, $r('app.string.volume'), $r('app.media.volume')),
   new ButtonModel(25, $r('app.string.camera'), $r('app.media.camera')),

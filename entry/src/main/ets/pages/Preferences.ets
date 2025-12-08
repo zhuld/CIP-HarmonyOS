@@ -76,7 +76,7 @@ struct Config {
   }
 
   build() {
-    Column() {
+    Column({space:20}) {
       Scroll() {
         Column({ space: 20 }) {
           Row() {
@@ -100,7 +100,7 @@ struct Config {
               .placeholderFont({ size: 32 })
               .fontSize(32)
               .borderRadius(5)
-              .layoutWeight(3)
+              .layoutWeight(2)
           }
 
           Row() {
@@ -124,7 +124,7 @@ struct Config {
               .placeholderFont({ size: 32 })
               .fontSize(32)
               .borderRadius(5)
-              .layoutWeight(3)
+              .layoutWeight(2)
           }
 
           Row() {
@@ -148,7 +148,7 @@ struct Config {
               .placeholderFont({ size: 32 })
               .fontSize(32)
               .borderRadius(5)
-              .layoutWeight(3)
+              .layoutWeight(2)
           }
 
           Row() {
@@ -156,21 +156,23 @@ struct Config {
               .fontSize(32)
               .layoutWeight(1)
               .fontColor($r('app.color.text_color'))
-            Checkbox()
-              .select(this.showDebug)
-              .layoutWeight(3)
+            Toggle({ type: ToggleType.Switch, isOn: this.showDebug })
               .height(32)
-              .align(Alignment.Start)
+              .width(55)
               .onClick(() =>{
                 this.showDebug = !this.showDebug
               })
           }
+
         }
       }
       .align(Alignment.Top)
       .width('100%')
-      .height('45%')
+      .height('42%')
       .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.Auto)
+      .padding({right:20})
+      .clip(true)
 
       Row({ space: 40 }) {
         MyButton({ label: '保存', fontSize: 32, })
@@ -200,7 +202,7 @@ struct Config {
           .fontColor($r('app.color.text_color'))
           .height(70)
       }
-      .height('6%')
+      .height(70)
       .width('100%')
       .direction(Direction.Rtl)
     }

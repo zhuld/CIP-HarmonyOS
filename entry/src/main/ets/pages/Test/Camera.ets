@@ -40,12 +40,13 @@ export  struct CameraComponent {
 
   @Builder
   PositionContent(buttonList :ButtonModel[],columns:number) {
-    GridRow({
-      columns: columns,
-      gutter: { x: 120, y: 20 }
-    }) {
-      ForEach(buttonList, (item: ButtonModel) => {
-        GridCol({ span: 1 }) {
+    RelativeContainer() {
+      GridRow({
+        columns: columns,
+        gutter: { x: 120, y: 20 }
+      }) {
+        ForEach(buttonList, (item: ButtonModel) => {
+          GridCol({ span: 1 }) {
             SquareButton({
               label: item.buttonName,
               icon: item.buttonIcon,
@@ -59,25 +60,33 @@ export  struct CameraComponent {
                 }
               }
             })
-        }
-      },(item: ButtonModel) => item.buttonId.toString())
-      GridCol({ span: 2 }) {
-        SquareButton({
-          label: "9",
-          fontSize: 30,
-          checked: this.channelDArray[79],
-          onTouchAction: (event: TouchEvent) => {
-            if (event.type === TouchType.Down) {
-              this.crestronClient?.push(79)
-            } else if (event.type === TouchType.Up) {
-              this.crestronClient?.release(79)
-            }
           }
-        }).width('27%')
-      }
-    }.padding({right:70,left:70})
+        }, (item: ButtonModel) => item.buttonId.toString())
+        GridCol({ span: 2 }) {
+          SquareButton({
+            label: "9",
+            fontSize: 30,
+            checked: this.channelDArray[79],
+            onTouchAction: (event: TouchEvent) => {
+              if (event.type === TouchType.Down) {
+                this.crestronClient?.push(79)
+              } else if (event.type === TouchType.Up) {
+                this.crestronClient?.release(79)
+              }
+            }
+          }).width('27%')
+        }
+      } //.padding({ right: 70, left: 70 })
+      Row({space:20}) {
+        Text('自动跟踪')
+          .fontColor($r('app.color.text_color'))
+          .fontSize(26)
+      }.alignRules({
+        bottom: { anchor: '__container__', align: VerticalAlign.Bottom },
+        end: { anchor: '__container__', align: HorizontalAlign.End }
+      })
+    }.padding({ right: 70, left: 70 })
   }
-
   build() {
     Row({ space: 30 }) {
       Category({

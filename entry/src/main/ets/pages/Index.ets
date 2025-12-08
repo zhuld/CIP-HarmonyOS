@@ -160,7 +160,6 @@ struct Index {
       Head({isConnected:this.isConnected,messageT: this.messageT, messageR: this.messageR})
         .width('100%')
         .layoutWeight(1)
-
       Row() {
         // [Start Side_tab_list]
         // 创建分类列表，用于显示页面选项，并通过Scroller实现滚动功能
@@ -208,9 +207,13 @@ struct Index {
         })
       }
       .width('100%')
-      .layoutWeight(10)
+      .layoutWeight(12)
     }
-    .padding(20)
+    .padding({
+      left:20,
+      right:20,
+      bottom:20
+    })
     .backgroundColor(Color.Transparent)
     .linearGradient({
       angle:180,

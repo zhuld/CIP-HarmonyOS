@@ -64,6 +64,7 @@ export struct NormalButton {
   }
 }
 
+
 @Component
 export struct InputButton {
   private  gradientAngle: number = 40
@@ -240,8 +241,9 @@ export struct RoundButton {
     RelativeContainer() {
       Stack() {
         Image(this.icon)
-          .width('50%')
+          .width('60%')
           .aspectRatio(1)
+          .objectFit(ImageFit.Auto)
           .fillColor(this.checked ? $r('app.color.text_color_check') : $r('app.color.text_color')) // 根据状态切换颜色
       }
       .onTouch((event: TouchEvent) =>{
