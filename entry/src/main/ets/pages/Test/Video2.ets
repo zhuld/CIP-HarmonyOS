@@ -1,6 +1,8 @@
 import { CrestronClient } from '../../crestron/CrestronClient';
 import { ButtonModel } from '../../model/Models'
-import { Category, InputButton, OutputButton } from '../../view/Views'
+import { Category } from '../../view/Category';
+import { InputButton } from '../../view/InputButton';
+import { OutputButton } from '../../view/OutputButton';
 import { Test_Video_Input, Test_Video_Output  } from './Config'
 
 @Component

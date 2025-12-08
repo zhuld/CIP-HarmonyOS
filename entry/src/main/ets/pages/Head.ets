@@ -1,4 +1,4 @@
-import { IconButton, } from "../view/Views";
+import { IconButton } from "../view/IconButton";
 import { ConfirmDialog } from "./Dialog";
 
 @Component

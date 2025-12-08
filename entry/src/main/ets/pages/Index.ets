@@ -22,7 +22,7 @@ import { SoundComponent } from './Test/Sound';
 import { VideoComponent } from './Test/Video';
 import { HomeComponent } from './Test/Home';
 import { PageModel } from '../model/Models';
-import { TabButton } from '../view/Views';
+import { TabButton } from '../view/TabButton';
 import { PageList } from './Test/Config';
 import { Head } from './Head';
 import { CrestronClient, JoinType } from '../crestron/CrestronClient';

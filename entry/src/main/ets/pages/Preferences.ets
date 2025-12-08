@@ -1,6 +1,6 @@
 import { preferences } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';
-import { MyButton } from '../view/Views';
+import { MyButton } from '../view/MyButton';
 
 @Entry
 @Component
