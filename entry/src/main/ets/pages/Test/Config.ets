@@ -36,17 +36,6 @@ export const Test_Video_Input: ButtonModel[] = [
   new ButtonModel(38, '墙插后',undefined,$r('app.color.input_color_8')),
 ]
 
-// export const Test_Video_Input: ButtonModel[] = [
-//   new ButtonModel(31, '演讲台',undefined,$r('app.color.input_color_1')),
-//   new ButtonModel(32, '地插',undefined,$r('app.color.input_color_2')),
-//   new ButtonModel(33, '墙插',undefined,$r('app.color.input_color_3')),
-//   new ButtonModel(34, '无线投屏',undefined,$r('app.color.input_color_4')),
-//   new ButtonModel(35, '电脑',undefined,$r('app.color.input_color_5')),
-//   new ButtonModel(36, '预留',undefined,$r('app.color.input_color_6')),
-//   new ButtonModel(37, '地插后',undefined,$r('app.color.input_color_7')),
-//   new ButtonModel(38, '墙插后',undefined,$r('app.color.input_color_8')),
-// ]
-
 export const Test_Video_Output: ButtonModel[] = [
   new ButtonModel(41, "大屏", $r('app.media.LED')),
   new ButtonModel(42, "返看", $r('app.media.tv')),
@@ -66,13 +55,13 @@ export  const  Test_Volume_Output: VolumeModel[] =[
 
 export const Test_Camera: ButtonModel[] = [
   new ButtonModel(0),
-  new ButtonModel(61, "", $r('sys.media.ohos_ic_public_arrow_up')),
+  new ButtonModel(61, "", $r('app.media.up')),
   new ButtonModel(0),
-  new ButtonModel(62, "", $r('sys.media.ohos_ic_public_arrow_left')),
+  new ButtonModel(62, "", $r('app.media.left')),
   new ButtonModel(0),
-  new ButtonModel(63, "", $r('sys.media.ohos_ic_public_arrow_right')),
+  new ButtonModel(63, "", $r('app.media.right')),
   new ButtonModel(0),
-  new ButtonModel(64, "", $r('sys.media.ohos_ic_public_arrow_down')),
+  new ButtonModel(64, "", $r('app.media.down')),
   new ButtonModel(0),
   new ButtonModel(65, "", $r('app.media.zoomin')),
   new ButtonModel(0),

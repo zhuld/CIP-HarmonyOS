@@ -80,9 +80,6 @@ export  struct CameraComponent {
         }
       } //.padding({ right: 70, left: 70 })
       Row({space:5}) {
-        Text('自动跟踪')
-          .fontColor($r('app.color.text_color'))
-          .fontSize(26)
         SquareButton({
           icon: this.channelDArray[80]? $r('app.media.check'): undefined,
           checked: this.channelDArray[80],
@@ -98,9 +95,12 @@ export  struct CameraComponent {
           .margin({
             top: -10
           })
+        Text('自动跟踪')
+          .fontColor($r('app.color.text_color'))
+          .fontSize(26)
       }.alignRules({
         bottom: { anchor: '__container__', align: VerticalAlign.Bottom },
-        end: { anchor: '__container__', align: HorizontalAlign.End }
+        start: { anchor: '__container__', align: HorizontalAlign.Start }
       })
     }.padding({ right: 70, left: 70 })
   }
