@@ -16,24 +16,26 @@ export  struct CameraComponent {
       columns: columns,
       gutter: { x: 10, y: -30 }
     }) {
-      ForEach(buttonList, (item: ButtonModel,index) => {
+      ForEach(buttonList, (item: ButtonModel,index?:number) => {
         GridCol({ span: 1 }) {
-          if (buttonList[index].buttonId === 0) {
+          if (index!==undefined) {
+            if (buttonList[index].buttonId === 0) {
               Text(``)
-          } else {
-            RoundButton({
-              label: item.buttonName,
-              icon: item.buttonIcon,
-              fontSize: 30,
-              checked: this.channelDArray[item.buttonId],
-              onTouchAction: (event: TouchEvent) => {
-                if (event.type === TouchType.Down) {
-                  this.crestronClient?.push(item.buttonId)
-                } else if (event.type === TouchType.Up) {
-                  this.crestronClient?.release(item.buttonId)
+            } else {
+              RoundButton({
+                label: item.buttonName,
+                icon: item.buttonIcon,
+                fontSize: 30,
+                checked: this.channelDArray[item.buttonId],
+                onTouchAction: (event: TouchEvent) => {
+                  if (event.type === TouchType.Down) {
+                    this.crestronClient?.push(item.buttonId)
+                  } else if (event.type === TouchType.Up) {
+                    this.crestronClient?.release(item.buttonId)
+                  }
                 }
-              }
-            })
+              })
+            }
           }
         }
       },(item: ButtonModel) => item.buttonId.toString())

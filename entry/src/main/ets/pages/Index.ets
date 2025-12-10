@@ -38,27 +38,26 @@ struct Index {
   private contentScroller: Scroller = new Scroller();
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @State crestronClient: CrestronClient = new CrestronClient();
-  @Provide channelDArray : boolean[] = []
-  @Provide channelAArray : number[] = []
+  @Provide channelDArray: boolean[] = []
+  @Provide channelAArray: number[] = []
   private connectTimer: number = 0;
   readonly prefName: string = 'network_settings';
-
   @State serverIP: string = '192.168.2.105';
   @State serverPort: number = 41794;
-  @State cipId : number = 3
+  @State cipId: number = 3
   @State showDebug: boolean = false
   @State isConnected: boolean = false;
   @State messageT: string = ''
   @State messageR: string = ''
-  private isDialogOpened : boolean = false
-  private lastPage : number = 0
+  private isDialogOpened: boolean = false
+  private lastPage: number = 0
 
   dialogProcess: CustomDialogController = new CustomDialogController({
     builder: ProcessDialog({
       title: '操作执行中',
     }),
     alignment: DialogAlignment.Center,
-    autoCancel:false,
+    autoCancel: false,
     width: '50%',
     height: '50%',
   });
@@ -110,9 +109,9 @@ struct Index {
 
     this.crestronClient.onMsgSend = ((joinType: JoinType, channel: number, value: number) => {
       if (this.showDebug) {
-        if(joinType === JoinType.Digital) {
-          this.messageT = value === 1?  `${channel}:Push`:`${channel}:Release`
-        }else if (joinType === JoinType.Analog){
+        if (joinType === JoinType.Digital) {
+          this.messageT = value === 1 ? `${channel}:Push` : `${channel}:Release`
+        } else if (joinType === JoinType.Analog) {
           this.messageT = `${channel}:${value}`
         }
       }
@@ -157,7 +156,7 @@ struct Index {
 
   build() {
     Column() {
-      Head({isConnected:this.isConnected,messageT: this.messageT, messageR: this.messageR})
+      Head({ isConnected: this.isConnected, messageT: this.messageT, messageR: this.messageR })
         .width('100%')
         .layoutWeight(1)
       Row() {
@@ -188,21 +187,27 @@ struct Index {
         .height('100%')
         .width('14%')
         .scrollBar(BarState.Off)
+
         //内容
-        List({scroller:this.contentScroller ,space: 100}) {
+        List({ scroller: this.contentScroller, space: 100 }) {
           HomeComponent({ crestronClient: this.crestronClient })
           Video2Component({ crestronClient: this.crestronClient })
           VideoComponent({ crestronClient: this.crestronClient })
           SoundComponent({ crestronClient: this.crestronClient })
           CameraComponent({ crestronClient: this.crestronClient })
           SetupComponent({ crestronClient: this.crestronClient })
-          ConnectComponent({ serverIP: this.serverIP, serverPort: this.serverPort, ipId: this.cipId ,isConnected: this.isConnected })
+          ConnectComponent({
+            serverIP: this.serverIP,
+            serverPort: this.serverPort,
+            ipId: this.cipId,
+            isConnected: this.isConnected
+          })
         }
         .enableScrollInteraction(false)
         .scrollBar(BarState.Off)
         .height('100%')
         .width('86%')
-        .onScrollStart(()=>{
+        .onScrollStart(() => {
           this.contentScroller.scrollToIndex(this.currentPage)
         })
       }
@@ -210,14 +215,14 @@ struct Index {
       .layoutWeight(12)
     }
     .padding({
-      left:20,
-      right:20,
-      bottom:20
+      left: 20,
+      right: 20,
+      bottom: 20,
+      top: 0
     })
-    .backgroundColor(Color.Transparent)
     .linearGradient({
-      angle:180,
-      colors:[
+      angle: 180,
+      colors: [
         [$r('app.color.background_1'), 0.0],
         [$r('app.color.background_2'), 1],
       ]
@@ -225,4 +230,3 @@ struct Index {
     .expandSafeArea([SafeAreaType.SYSTEM], [SafeAreaEdge.TOP, SafeAreaEdge.BOTTOM])
   }
 }
-

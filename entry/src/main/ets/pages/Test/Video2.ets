@@ -21,7 +21,7 @@ export struct Video2Component {
         columns: columns,
         gutter: { x: 40, y: 40 }
       }) {
-        ForEach(inputList, (item: ButtonModel, index) => {
+        ForEach(inputList, (item: ButtonModel, index?:number) => {
           GridCol({ span: 1 }) {
             InputButton({
               label: item.buttonName,
@@ -57,9 +57,9 @@ export struct Video2Component {
       columns: columns,
       gutter: { x: 40, y: 40 }
     }) {
-      ForEach(outputList, (item: ButtonModel, index) => {
+      ForEach(outputList, (item: ButtonModel, index?: number) => {
         GridCol({ span: 1 }) {
-          Row() {
+          if (index !== undefined) {
             OutputButton({
               label: item.buttonName,
               icon: item.buttonIcon,
