@@ -23,7 +23,7 @@ export struct SoundComponent {
             mini: item.mini,
             max: item.max,
             checked: this.channelDArray[item.volumeId],
-            onTouchAction: (event: TouchEvent) => {
+            onMuteAction: (event: TouchEvent) => {
               if (event.type === TouchType.Down) {
                 this.crestronClient?.push(item.volumeId)
               } else if (event.type === TouchType.Up) {

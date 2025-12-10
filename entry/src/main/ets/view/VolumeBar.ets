@@ -8,10 +8,9 @@ export struct  VolumeBar {
   @Prop value: number = 0
   @Prop checked: boolean
   private lastValue: number = 0
-
   @State onPressed :boolean = false
 
-  onTouchAction?:(event: TouchEvent) => void
+  onMuteAction?:(event: TouchEvent) => void
   onVolumeChanged?:(value: number) => void
 
   build() {
@@ -33,10 +32,10 @@ export struct  VolumeBar {
         step: 1,
         direction: Axis.Vertical,
         reverse: true,
-      })
+      }) //滑块形状参数
         .layoutWeight(10)
         .blockColor($r('app.color.button'))
-        .trackThickness(10) // 设置滑动条粗细为10.showTips(false) // 关闭默认提示
+        .trackThickness(10) // 设置滑动条粗细为10
         .trackColor($r('app.color.button_checked_light'))
         .selectedColor($r('app.color.button_checked'))
         .showSteps(true)
@@ -57,8 +56,8 @@ export struct  VolumeBar {
       })
         .width('70')
         .onTouch((event: TouchEvent) =>{
-          if (this.onTouchAction) {
-            this.onTouchAction(event)
+          if (this.onMuteAction) {
+            this.onMuteAction(event)
           }
         })
     }

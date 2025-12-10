@@ -198,7 +198,7 @@ struct Config {
           })
         Text(this.info)
           .fontSize(32)
-          .layoutWeight(2)
+          .layoutWeight(3)
           .fontColor($r('app.color.text_color'))
           .height(70)
       }

@@ -17,28 +17,30 @@ export struct SetupComponent {
         columns: columns,
         gutter: { x: 40, y: 40 }
       }) {
-        ForEach(buttonList, (item: ButtonModel, index) => {
-          if (buttonList[index].buttonId === 0) {
-            GridCol({ span: 2 }) {
-              Text(item.buttonName)
-                .fontSize(32)
-                .fontColor($r('app.color.text_color'))
-            }
-          } else {
-            GridCol({ span: 1 }) {
-              NormalButton({
-                label: item.buttonName,
-                icon: item.buttonIcon,
-                fontSize: 30,
-                checked: this.channelDArray[item.buttonId],
-                onTouchAction: (event: TouchEvent) => {
-                  if (event.type === TouchType.Down) {
-                    this.crestronClient?.push(item.buttonId)
-                  } else if (event.type === TouchType.Up) {
-                    this.crestronClient?.release(item.buttonId)
+        ForEach(buttonList, (item: ButtonModel, index?:number) => {
+          if(index!==undefined) {
+            if (buttonList[index].buttonId === 0) {
+              GridCol({ span: 2 }) {
+                Text(item.buttonName)
+                  .fontSize(32)
+                  .fontColor($r('app.color.text_color'))
+              }
+            } else {
+              GridCol({ span: 1 }) {
+                NormalButton({
+                  label: item.buttonName,
+                  icon: item.buttonIcon,
+                  fontSize: 30,
+                  checked: this.channelDArray[item.buttonId],
+                  onTouchAction: (event: TouchEvent) => {
+                    if (event.type === TouchType.Down) {
+                      this.crestronClient?.push(item.buttonId)
+                    } else if (event.type === TouchType.Up) {
+                      this.crestronClient?.release(item.buttonId)
+                    }
                   }
-                }
-              }).height(80)
+                }).height(80)
+              }
             }
           }
         }, (item: ButtonModel) => item.buttonId.toString())
