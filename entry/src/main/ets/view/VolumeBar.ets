@@ -8,7 +8,7 @@ export struct  VolumeBar {
   @Prop value: number = 0
   @Prop checked: boolean
   private lastValue: number = 0
-  @State onPressed :boolean = false
+  @State pressed :boolean = false
 
   onMuteAction?:(event: TouchEvent) => void
   onVolumeChanged?:(value: number) => void
@@ -34,7 +34,7 @@ export struct  VolumeBar {
         reverse: true,
       }) //滑块形状参数
         .layoutWeight(10)
-        .blockColor($r('app.color.button'))
+        .blockColor(this.pressed? $r('app.color.button_checked'):$r('app.color.button'))
         .trackThickness(10) // 设置滑动条粗细为10
         .trackColor($r('app.color.button_checked_light'))
         .selectedColor($r('app.color.button_checked'))
@@ -52,7 +52,7 @@ export struct  VolumeBar {
       RoundButton({
         label: '',
         checked : this.checked,
-        icon: $r('app.media.mute')
+        icon:  this.checked ?$r('app.media.mute') :$r('app.media.unmute')
       })
         .width('70')
         .onTouch((event: TouchEvent) =>{
