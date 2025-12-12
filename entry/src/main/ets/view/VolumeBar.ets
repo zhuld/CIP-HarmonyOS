@@ -32,7 +32,7 @@ export struct  VolumeBar {
         step: 1,
         direction: Axis.Vertical,
         reverse: true,
-      }) //滑块形状参数
+      })
         .layoutWeight(10)
         .blockColor(this.pressed? $r('app.color.button_checked'):$r('app.color.button'))
         .trackThickness(10) // 设置滑动条粗细为10
@@ -43,6 +43,7 @@ export struct  VolumeBar {
         .onChange((value: number) => {
           if(this.lastValue !== value) {
             this.lastValue = value
+            console.info(`[slider] ${this.lastValue}  ${value}`)
           }else {
             if (this.onVolumeChanged) {
               this.onVolumeChanged(Math.floor((value - this.mini) / (this.max - this.mini) * 65535))

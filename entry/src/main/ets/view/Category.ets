@@ -20,8 +20,10 @@ export struct Category {
       .layoutWeight(8)
       .width('100%')
       .padding({
-        top:10,bottom:10,
-        right:20,left:20
+        top:10,
+        bottom:10,
+        right:20,
+        left:20
       })
       .alignContent(Alignment.Top)
     }
