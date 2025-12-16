@@ -76,6 +76,7 @@ export  struct HomeComponent {
     Row({ space: 30 }) {
       Category({
         title: '系统开关', // 动态绑定标题
+        icon:$r('app.media.setup'),
         contentBuilder: () =>{
           this.SystemContent(Test_Home_1,1)
         }

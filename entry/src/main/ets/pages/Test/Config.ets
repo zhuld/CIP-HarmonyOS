@@ -41,6 +41,7 @@ export const Test_Video_Output: ButtonModel[] = [
   new ButtonModel(42, "返看", $r('app.media.tv')),
   new ButtonModel(43, "监视器", $r('app.media.monitor')),
   new ButtonModel(44, "预留", $r('app.media.HDMI')),
+  new ButtonModel(45, "辅流", $r('app.media.Aux')),
 ];
 
 export  const  Test_Volume_Input: VolumeModel[] =[

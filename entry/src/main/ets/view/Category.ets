@@ -1,18 +1,25 @@
 @Component
 export struct Category {
   @Builder  BuilderFunction() {}
-  @Prop title: string = "默认标题"; // 可修改的标题文本
+  @Prop title: string | Resource ; // 可修改的标题文本
+  @Prop icon: Resource;
   @BuilderParam contentBuilder:  () => void = this.BuilderFunction; // 可修改的内容区域
 
   build() {
     Column({space: 20}) {
       // 标题区域
-      Text(this.title)
-        .fontSize(30)
-        .margin(10)
-        .layoutWeight(1)
-        .maxLines(1)
-        .fontColor($r('app.color.text_color'))
+      Row({space:10}) {
+        Image(this.icon)
+          .height(this.icon ? '70%' : 0)
+          .aspectRatio(1)
+          .fillColor($r('app.color.text_color')) // 根据状态切换颜色
+        Text(this.title)
+          .fontSize(30)
+          .maxLines(1)
+          .fontColor($r('app.color.text_color'))
+      }
+      .margin(10)
+      .layoutWeight(1)
       // 内容区域
       Stack() {
         this.contentBuilder()

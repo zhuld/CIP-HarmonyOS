@@ -55,7 +55,7 @@ export struct Video2Component {
   OutputContent(outputList: ButtonModel[], columns: number) {
     GridRow({
       columns: columns,
-      gutter: { x: 40, y: 40 }
+      gutter: { x: 40, y: 20 }
     }) {
       ForEach(outputList, (item: ButtonModel, index?: number) => {
         GridCol({ span: 1 }) {
