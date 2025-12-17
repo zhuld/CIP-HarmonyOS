@@ -5,6 +5,8 @@ export struct SquareButton {
   @Prop icon: Resource | undefined
   @Prop fontSize: number = 20
   @Prop checked: boolean = false
+  @Prop buttonColor: ResourceColor =  $r('app.color.button')
+  @Prop buttonColor2: ResourceColor =  $r('app.color.button_light')
   onTouchAction?: (event: TouchEvent) => void
 
   build() {
@@ -30,8 +32,8 @@ export struct SquareButton {
       colors: this.checked ?
         [[$r('app.color.button_checked_light'), 0.1],
           [$r('app.color.button_checked'), 1.0]] :
-        [[$r('app.color.tab_button_light'), 0.1],
-          [$r('app.color.tab_button'), 1.0]]
+        [[this.buttonColor2, 0.1],
+          [this.buttonColor, 1.0]]
     })
     .size({ width: '100%', height: '100%' })
     .backgroundColor(Color.Transparent)

@@ -44,42 +44,47 @@ export  struct CameraComponent {
 
   @Builder
   PositionContent(buttonList :ButtonModel[],columns:number) {
-    RelativeContainer() {
-      GridRow({
-        columns: columns,
-        gutter: { x: 120, y: 30 }
-      }) {
-        ForEach(buttonList, (item: ButtonModel) => {
-          GridCol({ span: 1 }) {
-            SquareButton({
-              label: item.buttonName,
-              icon: item.buttonIcon,
-              fontSize: 30,
-              checked: this.channelDArray[item.buttonId],
-              onTouchAction: (event: TouchEvent) => {
-                if (event.type === TouchType.Down) {
-                  this.crestronClient?.push(item.buttonId)
-                } else if (event.type === TouchType.Up) {
-                  this.crestronClient?.release(item.buttonId)
-                }
-              }
-            })
-          }
-        }, (item: ButtonModel) => item.buttonId.toString())
-        GridCol({ span: 2 }) {
+    GridRow({
+      columns: columns,
+      gutter: { x: 120, y: 20 }
+    }) {
+      GridCol({ span: 2 }) {
+        Rect()
+          .width(160)
+          .height(10)
+          .margin(10)
+          .fill($r('app.color.button_light'))
+      }
+      ForEach(buttonList, (item: ButtonModel) => {
+        GridCol({ span: 1 }) {
           SquareButton({
-            label: "9",
+            label: item.buttonName,
+            icon: item.buttonIcon,
             fontSize: 30,
-            checked: this.channelDArray[79],
+            checked: this.channelDArray[item.buttonId],
             onTouchAction: (event: TouchEvent) => {
               if (event.type === TouchType.Down) {
-                this.crestronClient?.push(79)
+                this.crestronClient?.push(item.buttonId)
               } else if (event.type === TouchType.Up) {
-                this.crestronClient?.release(79)
+                this.crestronClient?.release(item.buttonId)
               }
             }
-          }).width('27%')
+          })
         }
+      }, (item: ButtonModel) => item.buttonId.toString())
+      GridCol({ span: 2 }) {
+        SquareButton({
+          label: "9",
+          fontSize: 30,
+          checked: this.channelDArray[79],
+          onTouchAction: (event: TouchEvent) => {
+            if (event.type === TouchType.Down) {
+              this.crestronClient?.push(79)
+            } else if (event.type === TouchType.Up) {
+              this.crestronClient?.release(79)
+            }
+          }
+        }).width('27%')
       }
     }.padding({ right: 70, left: 70 })
   }

@@ -5,6 +5,8 @@ export struct RoundButton {
   @Prop icon: Resource | undefined
   @Prop fontSize: number = 20
   @Prop checked: boolean = false
+  @Prop buttonColor: ResourceColor =  $r('app.color.button')
+  @Prop buttonColor2: ResourceColor =  $r('app.color.button_light')
 
   onTouchAction?:(event: TouchEvent) => void
 
@@ -30,8 +32,8 @@ export struct RoundButton {
         colors: this.checked ?
           [[$r('app.color.button_checked_light'), 0.1],
             [$r('app.color.button_checked'), 1.0]] :
-          [[$r('app.color.button_light'), 0.1],
-            [$r('app.color.button'), 1.0]]
+          [[this.buttonColor2, 0.1],
+            [this.buttonColor, 1.0]]
       })
       .shadow({
         radius: this.checked ? 8 : 15,
