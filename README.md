@@ -1,1 +1,0 @@
-Crestron CIP client working under HarmonyOS Demo
