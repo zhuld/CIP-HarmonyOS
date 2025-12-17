@@ -101,7 +101,7 @@ export  struct CameraComponent {
           } // 动态绑定内容
         })
         Row({ space: 10 }) {
-          RoundButton({
+          SquareButton({
             icon: this.channelDArray[80] ? $r('app.media.check') : undefined,
             checked: this.channelDArray[80],
             onTouchAction: (event: TouchEvent) => {
