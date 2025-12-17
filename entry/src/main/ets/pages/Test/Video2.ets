@@ -16,38 +16,29 @@ export struct Video2Component {
 
   @Builder
   InputContent(inputList: ButtonModel[], columns: number) {
-    RelativeContainer() {
-      GridRow({
-        columns: columns,
-        gutter: { x: 40, y: 40 }
-      }) {
-        ForEach(inputList, (item: ButtonModel, index?:number) => {
-          GridCol({ span: 1 }) {
-            InputButton({
-              label: item.buttonName,
-              icon: item.buttonIcon,
-              fontSize: 30,
-              foreColor: item.buttonColor,
-              onDragAction: (start: boolean) => {
-                if (start && index !== undefined) {
-                  this.dragItem = index + 1
-                } else {
-                  this.dragItem = 0
-                }
+    GridRow({
+      columns: columns,
+      gutter: { x: 40, y: 40 }
+    }) {
+      ForEach(inputList, (item: ButtonModel, index?: number) => {
+        GridCol({ span: 1 }) {
+          InputButton({
+            label: item.buttonName,
+            icon: item.buttonIcon,
+            fontSize: 30,
+            foreColor: item.buttonColor,
+            onDragAction: (start: boolean) => {
+              if (start && index !== undefined) {
+                this.dragItem = index + 1
+              } else {
+                this.dragItem = 0
               }
-            })
-              .height(80)
-          }
-        }, (item: ButtonModel) => item.buttonId.toString()
-        )
-      }
-      Text('拖拽输入信号到输出设备')
-        .fontColor($r('app.color.text_color'))
-        .fontSize(26)
-        .alignRules({
-          bottom: { anchor: '__container__', align: VerticalAlign.Bottom },
-          end: { anchor: '__container__', align: HorizontalAlign.End }
-        })
+            }
+          })
+            .height(80)
+        }
+      }, (item: ButtonModel) => item.buttonId.toString()
+      )
     }.padding({ right: 20, left: 20 })
   }
 
@@ -99,6 +90,7 @@ export struct Video2Component {
 
       Category({
         title: '输入信号', // 动态绑定标题
+        subTitle: '拖拽输入信号到输出设备',
         contentBuilder: () => {
           this.InputContent(Test_Video_Input, 2)
         }

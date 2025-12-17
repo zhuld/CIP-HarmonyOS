@@ -7,18 +7,19 @@ import { Test_Camera, Test_Camera_Position } from "./Config";
 
 @Component
 export  struct CameraComponent {
-  @ObjectLink crestronClient : CrestronClient
-  @Consume channelDArray : boolean[] = []
-  @Consume channelAArray : number[] = []
+  @ObjectLink crestronClient: CrestronClient
+  @Consume channelDArray: boolean[] = []
+  @Consume channelAArray: number[] = []
+
   @Builder
-  CameraContent(buttonList :ButtonModel[],columns:number) {
+  CameraContent(buttonList: ButtonModel[], columns: number) {
     GridRow({
       columns: columns,
       gutter: { x: 10, y: -30 }
     }) {
-      ForEach(buttonList, (item: ButtonModel,index?:number) => {
+      ForEach(buttonList, (item: ButtonModel, index?: number) => {
         GridCol({ span: 1 }) {
-          if (index!==undefined) {
+          if (index !== undefined) {
             if (buttonList[index].buttonId === 0) {
               Text(``)
             } else {
@@ -38,12 +39,12 @@ export  struct CameraComponent {
             }
           }
         }
-      },(item: ButtonModel) => item.buttonId.toString())
-    }.padding({right:30,left:30})
+      }, (item: ButtonModel) => item.buttonId.toString())
+    }.padding({ right: 30, left: 30 })
   }
 
   @Builder
-  PositionContent(buttonList :ButtonModel[],columns:number) {
+  PositionContent(buttonList: ButtonModel[], columns: number) {
     GridRow({
       columns: columns,
       gutter: { x: 120, y: 20 }
@@ -55,6 +56,7 @@ export  struct CameraComponent {
           .margin(10)
           .fill($r('app.color.button_light'))
       }
+
       ForEach(buttonList, (item: ButtonModel) => {
         GridCol({ span: 1 }) {
           SquareButton({
@@ -88,6 +90,7 @@ export  struct CameraComponent {
       }
     }.padding({ right: 70, left: 70 })
   }
+
   build() {
     Row({ space: 30 }) {
       Category({
@@ -101,38 +104,28 @@ export  struct CameraComponent {
       Stack() {
         Category({
           title: '预置位', // 动态绑定标题
+          subTitle: '自动跟踪',
           contentBuilder: () => {
             this.PositionContent(Test_Camera_Position, 2)
           } // 动态绑定内容
         })
-        Row({ space: 10 }) {
-          SquareButton({
-            icon: this.channelDArray[80] ? $r('app.media.check') : undefined,
-            checked: this.channelDArray[80],
-            onTouchAction: (event: TouchEvent) => {
-              if (event.type === TouchType.Down) {
-                this.crestronClient?.push(80)
-              } else if (event.type === TouchType.Up) {
-                this.crestronClient?.release(80)
-              }
+        SquareButton({
+          icon: this.channelDArray[80] ? $r('app.media.check') : undefined,
+          checked: this.channelDArray[80],
+          onTouchAction: (event: TouchEvent) => {
+            if (event.type === TouchType.Down) {
+              this.crestronClient?.push(80)
+            } else if (event.type === TouchType.Up) {
+              this.crestronClient?.release(80)
             }
-          })
-            .width(26)
-          Text('自动跟踪')
-            .fontColor($r('app.color.text_color'))
-            .fontSize(26)
-        }
-        .height(30)
-        .width('100%')
-        .padding({
-          top:20,
-          right:30
+          }
         })
-        .justifyContent(FlexAlign.End)
+          .width(26)
+          .margin({ right: 150 , top: 20})
       }
-      .alignContent(Alignment.Top)
+      .alignContent(Alignment.TopEnd)
       .layoutWeight(1)
     }
-    .margin({ bottom: 10, right: 10 ,left:2})
+    .margin({ bottom: 10, right: 10, left: 2 })
   }
 }

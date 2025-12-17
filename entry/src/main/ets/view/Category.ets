@@ -1,31 +1,44 @@
 @Component
 export struct Category {
-  @Builder  BuilderFunction() {}
-  @Prop title: string | Resource ; // 可修改的标题文本
-  @Prop icon: Resource;
-  @BuilderParam contentBuilder:  () => void = this.BuilderFunction; // 可修改的内容区域
+  @Builder
+  BuilderFunction() {
+  }
+
+  @Prop title: string | Resource = ''; // 可修改的标题文本
+  @Prop subTitle: string | Resource = ''; // 可修改的副标题文本
+  @Prop icon: Resource | undefined = undefined;
+  @BuilderParam contentBuilder: () => void = this.BuilderFunction; // 可修改的内容区域
 
   build() {
-    Column({space: 10}) {
+    Column({ space: 10 }) {
       // 标题区域
-      Row({space:10}) {
-        Image(this.icon)
-          .height(this.icon ? '70%' : 0)
-          .aspectRatio(1)
-          .fillColor($r('app.color.text_color')) // 根据状态切换颜色
-        Text(this.title)
-          .fontSize(30)
+      Row() {
+        Row({ space: 10 }) {
+          Image(this.icon)
+            .height(this.icon ? '70%' : 0)
+            .aspectRatio(1)
+            .fillColor($r('app.color.text_color')) // 根据状态切换颜色
+          Text(this.title)
+            .fontSize(30)
+            .maxLines(1)
+            .fontColor($r('app.color.text_color'))
+        }
+
+        Text(this.subTitle)
+          .fontSize(26)
           .maxLines(1)
           .fontColor($r('app.color.text_color'))
       }
+      .justifyContent(this.subTitle ? FlexAlign.SpaceBetween : FlexAlign.Center)
       .width('100%')
       .padding({
-        top:10,
-        bottom:10,
-        left:30,
-        right:30
+        top: 10,
+        bottom: 10,
+        left: 30,
+        right: 30
       })
       .layoutWeight(1)
+
       // 内容区域
       Stack() {
         this.contentBuilder()
@@ -33,10 +46,10 @@ export struct Category {
       .layoutWeight(8)
       .width('100%')
       .padding({
-        top:10,
-        bottom:10,
-        right:20,
-        left:20
+        top: 10,
+        bottom: 10,
+        right: 20,
+        left: 20
       })
       .alignContent(Alignment.Top)
     }
@@ -45,7 +58,7 @@ export struct Category {
     .borderRadius(30)
     .backgroundColor(Color.Transparent)
     .linearGradient({
-      colors:[
+      colors: [
         [$r('app.color.catalog_background_1'), 0.0],
         [$r('app.color.catalog_background_2'), 0.1],
         [$r('app.color.catalog_background_3'), 0.1],
@@ -53,10 +66,10 @@ export struct Category {
       ]
     })
     .shadow({
-      radius:  15,
-      color:  $r('app.color.shadow_color'),
-      offsetX:  8,
-      offsetY:  10
+      radius: 15,
+      color: $r('app.color.shadow_color'),
+      offsetX: 8,
+      offsetY: 10
     })
   }
 }

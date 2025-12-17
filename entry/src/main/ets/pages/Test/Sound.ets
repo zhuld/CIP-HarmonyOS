@@ -44,6 +44,7 @@ export struct SoundComponent {
     Row({ space: 30 }) {
       Category({
         title: '输入', // 动态绑定标题
+        subTitle: '请勿随意调整音量',
         contentBuilder: () =>{
           this.VolumeBarContent(Test_Volume_Input)
         }

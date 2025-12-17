@@ -12,38 +12,29 @@ export  struct HomeComponent {
   @Consume channelAArray : number[] = []
   @Builder
   SystemContent(buttonList :ButtonModel[],columns:number) {
-    RelativeContainer() {
-      GridRow({
-        columns: columns,
-        gutter: { x: 40, y: 40 }
-      }) {
-        ForEach(buttonList, (item: ButtonModel) => {
-          GridCol({ span: 1 }) {
-            NormalButton({
-              label: item.buttonName,
-              icon: item.buttonIcon,
-              fontSize: 30,
-              checked: this.channelDArray[item.buttonId],
-              onTouchAction: (event: TouchEvent) => {
-                if (event.type === TouchType.Down) {
-                  this.crestronClient?.push(item.buttonId)
-                } else if (event.type === TouchType.Up) {
-                  this.crestronClient?.release(item.buttonId)
-                }
+    GridRow({
+      columns: columns,
+      gutter: { x: 40, y: 40 }
+    }) {
+      ForEach(buttonList, (item: ButtonModel) => {
+        GridCol({ span: 1 }) {
+          NormalButton({
+            label: item.buttonName,
+            icon: item.buttonIcon,
+            fontSize: 30,
+            checked: this.channelDArray[item.buttonId],
+            onTouchAction: (event: TouchEvent) => {
+              if (event.type === TouchType.Down) {
+                this.crestronClient?.push(item.buttonId)
+              } else if (event.type === TouchType.Up) {
+                this.crestronClient?.release(item.buttonId)
               }
-            })
-              .height(80)
-          }
-        }, (item: ButtonModel) => item.buttonId.toString())
-      }
-      Text('长按2秒')
-        .fontColor($r('app.color.text_color'))
-        .fontSize(26)
-        .alignRules({
-          bottom: { anchor: '__container__', align: VerticalAlign.Bottom },
-          end: { anchor: '__container__', align: HorizontalAlign.End }
-        })
-    }.padding({right:20,left:20})
+            }
+          })
+            .height(80)
+        }
+      }, (item: ButtonModel) => item.buttonId.toString())
+    }.padding({ right: 20, left: 20 })
   }
 
   @Builder
@@ -76,6 +67,7 @@ export  struct HomeComponent {
     Row({ space: 30 }) {
       Category({
         title: '系统开关', // 动态绑定标题
+        subTitle: '长按2秒',
         icon:$r('app.media.setup'),
         contentBuilder: () =>{
           this.SystemContent(Test_Home_1,1)
