@@ -47,7 +47,7 @@ export  struct CameraComponent {
     RelativeContainer() {
       GridRow({
         columns: columns,
-        gutter: { x: 120, y: 20 }
+        gutter: { x: 120, y: 30 }
       }) {
         ForEach(buttonList, (item: ButtonModel) => {
           GridCol({ span: 1 }) {
@@ -101,7 +101,7 @@ export  struct CameraComponent {
           } // 动态绑定内容
         })
         Row({ space: 10 }) {
-          SquareButton({
+          RoundButton({
             icon: this.channelDArray[80] ? $r('app.media.check') : undefined,
             checked: this.channelDArray[80],
             onTouchAction: (event: TouchEvent) => {
@@ -112,10 +112,10 @@ export  struct CameraComponent {
               }
             }
           })
-            .width(30)
+            .width(26)
           Text('自动跟踪')
             .fontColor($r('app.color.text_color'))
-            .fontSize(30)
+            .fontSize(26)
         }
         .height(30)
         .width('100%')
