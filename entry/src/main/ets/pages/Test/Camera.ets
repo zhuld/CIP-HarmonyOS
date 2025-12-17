@@ -81,46 +81,52 @@ export  struct CameraComponent {
           }).width('27%')
         }
       }
-      Row({space:10}) {
-        SquareButton({
-          icon: this.channelDArray[80]? $r('app.media.check'): undefined,
-          checked: this.channelDArray[80],
-          onTouchAction: (event: TouchEvent) => {
-            if (event.type === TouchType.Down) {
-              this.crestronClient?.push(80)
-            } else if (event.type === TouchType.Up) {
-              this.crestronClient?.release(80)
-            }
-          }
-        })
-          .width(30)
-          .margin({top: -6})
-        Text('自动跟踪')
-          .fontColor($r('app.color.text_color'))
-          .fontSize(26)
-      }.alignRules({
-        bottom: { anchor: '__container__', align: VerticalAlign.Bottom },
-        start: { anchor: '__container__', align: HorizontalAlign.Start }
-      })
     }.padding({ right: 70, left: 70 })
   }
   build() {
     Row({ space: 30 }) {
       Category({
         title: '摄像机控制', // 动态绑定标题
-        contentBuilder: () =>{
-          this.CameraContent(Test_Camera,3)
+        contentBuilder: () => {
+          this.CameraContent(Test_Camera, 3)
         }
       })
         .layoutWeight(1)
 
-      Category({
-        title: '预置位', // 动态绑定标题
-        contentBuilder: () =>{
-          this.PositionContent(Test_Camera_Position,2)
-        } // 动态绑定内容
-      })
-        .layoutWeight(1)
+      Stack() {
+        Category({
+          title: '预置位', // 动态绑定标题
+          contentBuilder: () => {
+            this.PositionContent(Test_Camera_Position, 2)
+          } // 动态绑定内容
+        })
+        Row({ space: 10 }) {
+          SquareButton({
+            icon: this.channelDArray[80] ? $r('app.media.check') : undefined,
+            checked: this.channelDArray[80],
+            onTouchAction: (event: TouchEvent) => {
+              if (event.type === TouchType.Down) {
+                this.crestronClient?.push(80)
+              } else if (event.type === TouchType.Up) {
+                this.crestronClient?.release(80)
+              }
+            }
+          })
+            .width(30)
+          Text('自动跟踪')
+            .fontColor($r('app.color.text_color'))
+            .fontSize(30)
+        }
+        .height(30)
+        .width('100%')
+        .padding({
+          top:20,
+          right:30
+        })
+        .justifyContent(FlexAlign.End)
+      }
+      .alignContent(Alignment.Top)
+      .layoutWeight(1)
     }
     .margin({ bottom: 10, right: 10 ,left:2})
   }
