@@ -6,7 +6,7 @@ export struct Category {
   @BuilderParam contentBuilder:  () => void = this.BuilderFunction; // 可修改的内容区域
 
   build() {
-    Column({space: 20}) {
+    Column({space: 10}) {
       // 标题区域
       Row({space:10}) {
         Image(this.icon)
