@@ -11,7 +11,34 @@ export struct VideoComponent {
   @Consume channelAArray: number[] = []
 
   @Builder
-  VideoContent(buttonList: ButtonModel[], columns: number) {
+  InputContent(buttonList: ButtonModel[], columns: number) {
+    GridRow({
+      columns: columns,
+      gutter: { x: 40, y: 40 }
+    }) {
+      ForEach(buttonList, (item: ButtonModel) => {
+        GridCol({ span: 1 }) {
+          NormalButton({
+            label: item.buttonName,
+            icon: item.buttonIcon,
+            fontSize: 30,
+            checked: this.channelDArray[item.buttonId],
+            onTouchAction: (event: TouchEvent) => {
+              if (event.type === TouchType.Down) {
+                this.crestronClient?.push(item.buttonId)
+              } else if (event.type === TouchType.Up) {
+                this.crestronClient?.release(item.buttonId)
+              }
+            }
+          })
+            .height(80)
+        }
+      }, (item: ButtonModel) => item.buttonId.toString())
+    }.padding({ right: 20, left: 20 })
+  }
+
+  @Builder
+  OutputContent(buttonList: ButtonModel[], columns: number) {
     GridRow({
       columns: columns,
       gutter: { x: 40, y: 20 }
@@ -43,14 +70,14 @@ export struct VideoComponent {
       Category({
         title: '输出设备', // 动态绑定标题
         contentBuilder: () => {
-          this.VideoContent(Test_Video_Output, 1)
+          this.OutputContent(Test_Video_Output, 1)
         } // 动态绑定内容
       })
         .layoutWeight(1)
       Category({
         title: '输入信号', // 动态绑定标题
         contentBuilder: () => {
-          this.VideoContent(Test_Video_Input, 2)
+          this.InputContent(Test_Video_Input, 2)
         }
       })
         .layoutWeight(2)

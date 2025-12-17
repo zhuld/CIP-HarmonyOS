@@ -18,7 +18,13 @@ export struct Category {
           .maxLines(1)
           .fontColor($r('app.color.text_color'))
       }
-      .margin(10)
+      .width('100%')
+      .padding({
+        top:10,
+        bottom:10,
+        left:30,
+        right:30
+      })
       .layoutWeight(1)
       // 内容区域
       Stack() {
