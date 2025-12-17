@@ -69,6 +69,7 @@ export struct VideoComponent {
     Row({ space: 30 }) {
       Category({
         title: '输出设备', // 动态绑定标题
+        icon: $r('app.media.output'),
         contentBuilder: () => {
           this.OutputContent(Test_Video_Output, 1)
         } // 动态绑定内容
@@ -76,6 +77,7 @@ export struct VideoComponent {
         .layoutWeight(1)
       Category({
         title: '输入信号', // 动态绑定标题
+        icon: $r('app.media.input'),
         contentBuilder: () => {
           this.InputContent(Test_Video_Input, 2)
         }
