@@ -53,6 +53,10 @@
       "value": "#ff02082f"
     },
     {
+      "name": "subTitle_color",
+      "value": "#FF0D185D"
+    },
+    {
       "name": "text_color_red",
       "value": "#FF9F0D0D"
     },

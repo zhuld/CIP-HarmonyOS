@@ -27,7 +27,7 @@ export struct Category {
         Text(this.subTitle)
           .fontSize(26)
           .maxLines(1)
-          .fontColor($r('app.color.text_color'))
+          .fontColor($r('app.color.subTitle_color'))
       }
       .justifyContent(this.subTitle ? FlexAlign.SpaceBetween : FlexAlign.Center)
       .width('100%')
