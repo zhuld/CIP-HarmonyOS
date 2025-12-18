@@ -55,10 +55,17 @@ export  struct CameraComponent {
           .height(10)
           .margin(10)
           .fill($r('app.color.button_light'))
+          .shadow({
+            radius: 5,
+            color: $r('app.color.shadow_color'),
+            offsetX: 5,
+            offsetY: 5,
+          })
       }
+      //.backgroundColor(Color.Transparent)
 
-      ForEach(buttonList, (item: ButtonModel) => {
-        GridCol({ span: 1 }) {
+      ForEach(buttonList, (item: ButtonModel,index:number) => {
+        GridCol({ span: index +1 < buttonList.length?  1 : 2 }) {
           SquareButton({
             label: item.buttonName,
             icon: item.buttonIcon,
@@ -72,22 +79,9 @@ export  struct CameraComponent {
               }
             }
           })
+            .width( index +1 < buttonList.length? '100%': '27%')
         }
       }, (item: ButtonModel) => item.buttonId.toString())
-      GridCol({ span: 2 }) {
-        SquareButton({
-          label: "9",
-          fontSize: 30,
-          checked: this.channelDArray[79],
-          onTouchAction: (event: TouchEvent) => {
-            if (event.type === TouchType.Down) {
-              this.crestronClient?.push(79)
-            } else if (event.type === TouchType.Up) {
-              this.crestronClient?.release(79)
-            }
-          }
-        }).width('27%')
-      }
     }.padding({ right: 70, left: 70 })
   }
 

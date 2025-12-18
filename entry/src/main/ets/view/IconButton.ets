@@ -11,7 +11,7 @@ export struct IconButton {
       Image(this.icon)
         .width('100%')
         .aspectRatio(1)
-        .fillColor(this.checked ? $r('app.color.button_checked'):$r('app.color.button')) // 根据状态切换颜色
+        .fillColor(this.checked ? $r('app.color.text_color_check'):$r('app.color.text_color')) // 根据状态切换颜色
     }
     .onTouch((event: TouchEvent) =>{
       if (this.onTouchAction) {

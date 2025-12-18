@@ -1,3 +1,4 @@
+import { BatteryStatusComponent } from "../view/Battery";
 import { IconButton } from "../view/IconButton";
 import { ConfirmDialog } from "./Dialog";
 
@@ -7,28 +8,28 @@ export struct Head {
   @Prop isConnected: boolean
   @Prop messageT: string
   @Prop messageR: string
-  @Prop title:string | Resource
-  @Prop subTitle:string | Resource
+  @Prop title: string | Resource
+  @Prop subTitle: string | Resource
   private clockId: number = 0
-
+  private sizeHeight: number = 20
   dialogController: CustomDialogController = new CustomDialogController({
     builder: ConfirmDialog({
       title: '操作确认',
       message: '确定要执行此操作吗？'
     }),
     alignment: DialogAlignment.Center,
-    autoCancel:false,
+    autoCancel: false,
     width: '50%',
     height: '50%',
   });
+
   // 定时器更新逻辑:
   aboutToAppear(): void {
     this.clockId = setInterval(() => {
       let now = new Date();
       this.currentTime =
         `${now.getHours().toString().padStart(2, '0')}:` +
-          `${now.getMinutes().toString().padStart(2, '0')}:` +
-          `${now.getSeconds().toString().padStart(2, '0')}`;
+          `${now.getMinutes().toString().padStart(2, '0')}` ;
     }, 1000)
   }
 
@@ -39,19 +40,20 @@ export struct Head {
   build() {
     Row() {
       Text(this.subTitle)
-        .fontSize(24)
+        .fontSize(this.sizeHeight)
         .layoutWeight(1)
         .textAlign(TextAlign.Start)
-        .padding({ left: 20 })
+        .padding({ left: 10 })
         .fontColor($r('app.color.text_color'))
       Text(this.title)
-        .fontSize(26)
+        .fontSize(this.sizeHeight + 2)
         .layoutWeight(1)
         .textAlign(TextAlign.Center)
         .fontColor($r('app.color.text_color'))
-      Row({space: 10}) {
+      Row({ space: 10 }) {
+        BatteryStatusComponent({sizeHeight:18})
         IconButton({
-          icon: this.isConnected? $r('app.media.connection'):$r('app.media.disconnect'),
+          icon: this.isConnected ? $r('app.media.connection') : $r('app.media.disconnect'),
           checked: !this.isConnected
         })
           .gesture(
@@ -65,21 +67,20 @@ export struct Head {
                 });
               })
           )
-          .width(24)
+          .width(this.sizeHeight)
         Text(this.currentTime)
-          .fontSize(24)
+          .fontSize(this.sizeHeight)
           .fontColor($r('app.color.text_color'))
         Text(this.messageT)
-          .fontSize(24)
+          .fontSize(this.sizeHeight)
           .fontColor($r('app.color.text_color'))
-          .width(130)
+          .width(120)
         Text(this.messageR)
-          .fontSize(24)
+          .fontSize(this.sizeHeight)
           .fontColor($r('app.color.text_color'))
-          .width(130)
+          .width(120)
       }
       .layoutWeight(1)
-      .padding({ right: 20 })
       .direction(Direction.Rtl)
     }
   }

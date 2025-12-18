@@ -217,13 +217,13 @@ struct Index {
         })
       }
       .width('100%')
-      .layoutWeight(12)
+      .layoutWeight(20)
     }
     .padding({
+      top: 4,
+      right: 16,
       left: 20,
-      right: 20,
-      bottom: 20,
-      top: 0
+      bottom: 16
     })
     .linearGradient({
       angle: 180,
