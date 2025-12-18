@@ -2,7 +2,7 @@ import { CrestronClient } from '../../crestron/CrestronClient'
 import { VolumeModel } from '../../model/Models'
 import { Category } from '../../view/Category'
 import { VolumeBar } from '../../view/VolumeBar'
-import { Test_Volume_Input, Test_Volume_Output } from './Config'
+import { testVolumeInput, testVolumeOutput } from './Config'
 
 @Component
 export struct SoundComponent {
@@ -43,18 +43,20 @@ export struct SoundComponent {
     // HelloComponent自定义组件组合系统组件Row和Text
     Row({ space: 30 }) {
       Category({
-        title: '输入', // 动态绑定标题
-        subTitle: '请勿随意调整音量',
+        title: testVolumeInput.title, // 动态绑定标题
+        subTitle: testVolumeOutput.subTitle,
         contentBuilder: () =>{
-          this.VolumeBarContent(Test_Volume_Input)
+          this.VolumeBarContent(testVolumeInput.volumeList)
         }
       })
         .layoutWeight(3)
 
       Category({
-        title: '输出', // 动态绑定标题
+        title: testVolumeOutput.title, // 动态绑定标题
+        subTitle: testVolumeOutput.subTitle,
+        icon: testVolumeOutput.icon,
         contentBuilder: () =>{
-          this.VolumeBarContent(Test_Volume_Output)
+          this.VolumeBarContent(testVolumeOutput.volumeList)
         }
       })
         .layoutWeight(1)

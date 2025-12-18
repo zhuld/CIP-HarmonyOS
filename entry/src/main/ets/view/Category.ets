@@ -1,13 +1,17 @@
+import { SquareButton } from "./SquareButton";
+
 @Component
 export struct Category {
   @Builder
   BuilderFunction() {
   }
-
   @Prop title: string | Resource = ''; // 可修改的标题文本
   @Prop subTitle: string | Resource = ''; // 可修改的副标题文本
   @Prop icon: Resource | undefined = undefined;
+  @Prop checked: boolean = false;
+  @Prop checkButton: boolean = false;
   @BuilderParam contentBuilder: () => void = this.BuilderFunction; // 可修改的内容区域
+  onTouchAction?:(event: TouchEvent) => void
 
   build() {
     Column({ space: 10 }) {
@@ -24,16 +28,29 @@ export struct Category {
             .fontColor($r('app.color.text_color'))
         }
 
-        Text(this.subTitle)
-          .fontSize(26)
-          .maxLines(1)
-          .fontColor($r('app.color.subTitle_color'))
+        Row({ space: 10 }) {
+          SquareButton({
+            checked: this.checked,
+            icon: this.checked ? $r('app.media.check') : undefined,
+            onTouchAction: (event: TouchEvent) => {
+                if (this.onTouchAction) {
+                  this.onTouchAction(event)
+                }
+            }
+          })
+            .width(30)
+            .visibility(this.checkButton? Visibility.Visible : Visibility.None)
+          Text(this.subTitle)
+            .fontSize(26)
+            .maxLines(1)
+            .fontColor($r('app.color.subTitle_color'))
+        }
       }
       .justifyContent(this.subTitle ? FlexAlign.SpaceBetween : FlexAlign.Center)
       .width('100%')
       .padding({
         top: 10,
-        bottom: 10,
+        bottom: 20,
         left: 30,
         right: 30
       })
@@ -43,7 +60,7 @@ export struct Category {
       Stack() {
         this.contentBuilder()
       }
-      .layoutWeight(8)
+      .layoutWeight(7)
       .width('100%')
       .padding({
         top: 10,

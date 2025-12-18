@@ -1,7 +1,7 @@
 {
   "app": {
     "bundleName": "com.junjie.Controller",
-    "patchVersionCode": 2000077,
+    "patchVersionCode": 2000081,
     "versionCode": 1000000
   },
   "module": {

@@ -2,7 +2,7 @@ import { CrestronClient } from '../../crestron/CrestronClient';
 import { ButtonModel } from '../../model/Models'
 import { Category } from '../../view/Category';
 import { NormalButton } from '../../view/NormalButton';
-import { Test_Video_Input, Test_Video_Output } from './Config'
+import { testVideoInput, testVideoOutput } from './Config'
 
 @Component
 export struct VideoComponent {
@@ -68,18 +68,18 @@ export struct VideoComponent {
     // HelloComponent自定义组件组合系统组件Row和Text
     Row({ space: 30 }) {
       Category({
-        title: '输出设备', // 动态绑定标题
-        icon: $r('app.media.output'),
+        title: testVideoOutput.title, // 动态绑定标题
+        icon: testVideoOutput.icon,
         contentBuilder: () => {
-          this.OutputContent(Test_Video_Output, 1)
+          this.OutputContent(testVideoOutput.buttonList, 1)
         } // 动态绑定内容
       })
         .layoutWeight(1)
       Category({
-        title: '输入信号', // 动态绑定标题
-        icon: $r('app.media.input'),
+        title: testVideoInput.title, // 动态绑定标题
+        icon: testVideoInput.icon,
         contentBuilder: () => {
-          this.InputContent(Test_Video_Input, 2)
+          this.InputContent(testVideoInput.buttonList, 2)
         }
       })
         .layoutWeight(2)

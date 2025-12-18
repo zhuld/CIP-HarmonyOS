@@ -7,6 +7,8 @@ export struct Head {
   @Prop isConnected: boolean
   @Prop messageT: string
   @Prop messageR: string
+  @Prop title:string | Resource
+  @Prop subTitle:string | Resource
   private clockId: number = 0
 
   dialogController: CustomDialogController = new CustomDialogController({
@@ -36,21 +38,18 @@ export struct Head {
 
   build() {
     Row() {
-      Text($r('app.string.subTitle'))
+      Text(this.subTitle)
         .fontSize(24)
         .layoutWeight(1)
         .textAlign(TextAlign.Start)
         .padding({ left: 20 })
         .fontColor($r('app.color.text_color'))
-      Text($r('app.string.Title'))
+      Text(this.title)
         .fontSize(26)
         .layoutWeight(1)
         .textAlign(TextAlign.Center)
         .fontColor($r('app.color.text_color'))
       Row({space: 10}) {
-        Text(this.currentTime)
-          .fontSize(24)
-          .fontColor($r('app.color.text_color'))
         IconButton({
           icon: this.isConnected? $r('app.media.connection'):$r('app.media.disconnect'),
           checked: !this.isConnected
@@ -67,6 +66,9 @@ export struct Head {
               })
           )
           .width(24)
+        Text(this.currentTime)
+          .fontSize(24)
+          .fontColor($r('app.color.text_color'))
         Text(this.messageT)
           .fontSize(24)
           .fontColor($r('app.color.text_color'))

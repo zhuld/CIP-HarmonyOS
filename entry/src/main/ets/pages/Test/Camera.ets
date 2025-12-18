@@ -3,7 +3,7 @@ import { ButtonModel } from "../../model/Models";
 import { Category } from "../../view/Category";
 import { RoundButton } from "../../view/RoundButton";
 import { SquareButton } from "../../view/SquareButton";
-import { Test_Camera, Test_Camera_Position } from "./Config";
+import { testCamera, testPosition } from "./Config";
 
 @Component
 export  struct CameraComponent {
@@ -94,37 +94,30 @@ export  struct CameraComponent {
   build() {
     Row({ space: 30 }) {
       Category({
-        title: '摄像机控制', // 动态绑定标题
+        title: testCamera.title, // 动态绑定标题
         contentBuilder: () => {
-          this.CameraContent(Test_Camera, 3)
+          this.CameraContent(testCamera.buttonList, 3)
         }
       })
         .layoutWeight(1)
 
-      Stack() {
-        Category({
-          title: '预置位', // 动态绑定标题
-          subTitle: '自动跟踪',
-          contentBuilder: () => {
-            this.PositionContent(Test_Camera_Position, 2)
-          } // 动态绑定内容
-        })
-        SquareButton({
-          icon: this.channelDArray[80] ? $r('app.media.check') : undefined,
-          checked: this.channelDArray[80],
-          onTouchAction: (event: TouchEvent) => {
-            if (event.type === TouchType.Down) {
-              this.crestronClient?.push(80)
-            } else if (event.type === TouchType.Up) {
-              this.crestronClient?.release(80)
-            }
+      Category({
+        title: testPosition.title, // 动态绑定标题
+        subTitle: testPosition.subTitle,
+        checkButton: testPosition.checkId ? true : false,
+        checked: this.channelDArray[testPosition.checkId],
+        onTouchAction: (event: TouchEvent) => {
+          if (event.type === TouchType.Down) {
+            this.crestronClient?.push(testPosition.checkId)
+          } else if (event.type === TouchType.Up) {
+            this.crestronClient?.release(testPosition.checkId)
           }
-        })
-          .width(26)
-          .margin({ right: 150 , top: 20})
-      }
-      .alignContent(Alignment.TopEnd)
-      .layoutWeight(1)
+        },
+        contentBuilder: () => {
+          this.PositionContent(testPosition.buttonList, 2)
+        } // 动态绑定内容
+      })
+        .layoutWeight(1)
     }
     .margin({ bottom: 10, right: 10, left: 2 })
   }

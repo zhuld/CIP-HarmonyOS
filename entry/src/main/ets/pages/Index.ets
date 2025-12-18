@@ -23,7 +23,7 @@ import { VideoComponent } from './Test/Video';
 import { HomeComponent } from './Test/Home';
 import { PageModel } from '../model/Models';
 import { TabButton } from '../view/TabButton';
-import { PageList } from './Test/Config';
+import { pages } from './Test/Config';
 import { Head } from './Head';
 import { CrestronClient, JoinType } from '../crestron/CrestronClient';
 import { ProcessDialog } from './Dialog';
@@ -51,7 +51,6 @@ struct Index {
   @State messageR: string = ''
   private isDialogOpened: boolean = false
   private lastPage: number = 0
-
   dialogProcess: CustomDialogController = new CustomDialogController({
     builder: ProcessDialog({
       title: '操作执行中',
@@ -78,9 +77,9 @@ struct Index {
         this.contentScroller.scrollToIndex(this.lastPage);
         this.currentPage = this.lastPage
       } else {
-        this.contentScroller.scrollToIndex(PageList.length);
+        this.contentScroller.scrollToIndex(pages.pageList.length);
         this.lastPage = this.currentPage
-        this.currentPage = PageList.length
+        this.currentPage = pages.pageList.length
       }
     })
 
@@ -127,8 +126,8 @@ struct Index {
     for (let i = 0; i < 100; i++) {
       this.channelAArray.push(0)
     }
-    this.contentScroller.scrollToIndex(PageList.length);
-    this.currentPage = PageList.length
+    this.contentScroller.scrollToIndex(pages.pageList.length);
+    this.currentPage = pages.pageList.length
   }
 
   private async loadPreferences() {
@@ -156,14 +155,20 @@ struct Index {
 
   build() {
     Column() {
-      Head({ isConnected: this.isConnected, messageT: this.messageT, messageR: this.messageR })
+      Head({
+        isConnected: this.isConnected,
+        messageT: this.messageT,
+        messageR: this.messageR,
+        title: pages.title,
+        subTitle: pages.subTitle
+      })
         .width('100%')
         .layoutWeight(1)
       Row() {
         // [Start Side_tab_list]
         // 创建分类列表，用于显示页面选项，并通过Scroller实现滚动功能
         List({ scroller: this.tabScroller }) {
-          ForEach(PageList, (item: PageModel, index?: number) => {
+          ForEach(pages.pageList, (item: PageModel, index?: number) => {
             TabButton({
               label: item.pageName,
               icon: item.pageIcon,

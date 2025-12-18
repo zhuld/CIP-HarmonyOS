@@ -3,7 +3,7 @@ import { ButtonModel } from "../../model/Models";
 import { Category } from "../../view/Category";
 import { NormalButton } from "../../view/NormalButton";
 import { RoundButton } from "../../view/RoundButton";
-import { Test_Home_1, Test_Home_2 } from "./Config";
+import { testHome1, testHome2 } from "./Config";
 
 @Component
 export  struct HomeComponent {
@@ -21,6 +21,7 @@ export  struct HomeComponent {
           NormalButton({
             label: item.buttonName,
             icon: item.buttonIcon,
+            buttonColor: item.buttonColor,
             fontSize: 30,
             checked: this.channelDArray[item.buttonId],
             onTouchAction: (event: TouchEvent) => {
@@ -66,19 +67,19 @@ export  struct HomeComponent {
   build() {
     Row({ space: 30 }) {
       Category({
-        title: '系统开关', // 动态绑定标题
-        subTitle: '长按2秒',
-        icon:$r('app.media.setup'),
+        title: testHome1.title, // 动态绑定标题
+        subTitle: testHome1.subTitle,
+        icon:testHome1.icon,
         contentBuilder: () =>{
-          this.SystemContent(Test_Home_1,1)
+          this.SystemContent(testHome1.buttonList,1)
         }
       })
         .layoutWeight(2)
 
       Category({
-        title: '模式选择', // 动态绑定标题
+        title: testHome2.title, // 动态绑定标题
         contentBuilder: () =>{
-          this.ModeContent(Test_Home_2,3)
+          this.ModeContent(testHome2.buttonList,3)
         } // 动态绑定内容
       })
         .layoutWeight(3)

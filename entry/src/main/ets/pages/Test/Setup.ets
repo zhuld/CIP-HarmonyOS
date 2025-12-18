@@ -2,7 +2,7 @@ import { CrestronClient } from '../../crestron/CrestronClient';
 import { ButtonModel } from '../../model/Models'
 import { Category } from '../../view/Category';
 import { NormalButton } from '../../view/NormalButton';
-import { Test_Setup } from './Config'
+import { testSetup } from './Config'
 
 @Component
 export struct SetupComponent {
@@ -50,10 +50,11 @@ export struct SetupComponent {
     // HelloComponent自定义组件组合系统组件Row和Text
     Row({ space: 30 }) {
       Category({
-        title: '设备开关', // 动态绑定标题
-        subTitle: '长按2秒',
+        title: testSetup.title, // 动态绑定标题
+        subTitle: testSetup.subTitle,
+        icon: testSetup.icon,
         contentBuilder: () => {
-          this.SetupContent(Test_Setup, 2)
+          this.SetupContent(testSetup.buttonList, 2)
         }
       })
         .width('60%')
