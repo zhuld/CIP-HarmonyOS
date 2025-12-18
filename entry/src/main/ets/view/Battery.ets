@@ -52,12 +52,12 @@ export struct BatteryStatusComponent {
     }
   }
 
-  private getChargeStatusText(state: number): string {
-    switch (state) {
-      case 0: return "未充电";
-      case 1: return "充电中";
-      case 2: return "放电中";
-      case 3: return "已充满";
+  private getChargeStatusText(chargeState: batteryInfo.BatteryChargeState): string {
+    switch (chargeState) {
+      case batteryInfo.BatteryChargeState.NONE: return "未充电";
+      case batteryInfo.BatteryChargeState.ENABLE: return "充电中";
+      case batteryInfo.BatteryChargeState.DISABLE: return "放电中";
+      case batteryInfo.BatteryChargeState.FULL: return "已充满";
       default: return "未知状态";
     }
   }
@@ -82,7 +82,7 @@ export struct BatteryStatusComponent {
       //   .fontSize(this.sizeHeight)
       //   .fontColor($r('app.color.text_color'))
       IconButton({
-        icon: this.chargingStatus === 1? $r('app.media.charging'): $r('app.media.blank')
+        icon: this.chargingStatus === batteryInfo.BatteryChargeState.ENABLE? $r('app.media.charging'): $r('app.media.blank')
       })
         .width(this.sizeHeight)
     }
