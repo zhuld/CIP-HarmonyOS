@@ -163,7 +163,6 @@ struct Config {
                 this.showDebug = !this.showDebug
               })
           }
-
         }
       }
       .align(Alignment.Top)
@@ -171,7 +170,7 @@ struct Config {
       .height('42%')
       .scrollable(ScrollDirection.Vertical)
       .scrollBar(BarState.Auto)
-      .padding({right:20})
+      .padding({right:20,left:20})
       .clip(true)
 
       Row({ space: 40 }) {
@@ -204,9 +203,10 @@ struct Config {
       }
       .height(70)
       .width('100%')
+      .padding({right:20,left:20})
       .direction(Direction.Rtl)
     }
-    .padding(40)
+    .padding(30)
     .height('100%')
     .backgroundColor(Color.Transparent)
     .linearGradient({

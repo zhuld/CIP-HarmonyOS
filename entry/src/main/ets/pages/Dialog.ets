@@ -61,7 +61,7 @@ export struct ConfirmDialog{
       colors:[
         [$r('app.color.catalog_background_1'), 0.2],
         [$r('app.color.catalog_background_2'), 0.2],
-        [$r('app.color.catalog_background_1'), 0.26]
+        [$r('app.color.catalog_background_1'), 0.24]
       ]
     })
   }

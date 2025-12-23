@@ -52,7 +52,7 @@ struct Index {
   private lastPage: number = 0
   dialogProcess: CustomDialogController = new CustomDialogController({
     builder: ProcessDialog({
-      title: '操作执行中',
+      title: '执行中，请稍后',
     }),
     alignment: DialogAlignment.Center,
     autoCancel: false,
