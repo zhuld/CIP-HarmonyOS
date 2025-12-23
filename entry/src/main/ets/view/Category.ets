@@ -84,9 +84,10 @@ export struct Category {
     })
     .shadow({
       radius: 15,
-      color: $r('app.color.shadow_color'),
-      offsetX: 8,
-      offsetY: 10
+      color:  ColoringStrategy.AVERAGE, //  $r('app.color.shadow_color'),
+      fill: true,
+      offsetX: 10,
+      offsetY: 12,
     })
   }
 }
