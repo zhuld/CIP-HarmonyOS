@@ -2,16 +2,16 @@ import { BatteryStatusComponent } from "../view/Battery";
 import { IconButton } from "../view/IconButton";
 import { ConfirmDialog } from "./Dialog";
 
-@Component
+@ComponentV2
 export struct Head {
-  @State currentTime: string = ''
-  @Prop isConnected: boolean = false
-  @Prop messageT: string = ''
-  @Prop messageR: string = ''
-  @Prop title: string | Resource = ''
-  @Prop subTitle: string | Resource = ''
+  @Local currentTime: string = ''
+  @Param isConnected: boolean = false
+  @Param messageT: string = ''
+  @Param messageR: string = ''
+  @Param title: string | Resource = ''
+  //@Param subTitle: string | Resource = ''
   private clockId: number = 0
-  private sizeHeight: number = 20
+  @Param sizeHeight: number = 20
   dialogController: CustomDialogController = new CustomDialogController({
     builder: ConfirmDialog({
       title: '操作确认',
@@ -39,19 +39,20 @@ export struct Head {
 
   build() {
     Row() {
-      Text(this.subTitle)
+      // Text(this.subTitle)
+      //   .fontSize(this.sizeHeight)
+      //   .layoutWeight(1)
+      //   .textAlign(TextAlign.Start)
+      //   .padding({ left: 10 })
+      //   .fontColor($r('app.color.text_color'))
+      Text(this.title)
         .fontSize(this.sizeHeight)
         .layoutWeight(1)
-        .textAlign(TextAlign.Start)
         .padding({ left: 10 })
-        .fontColor($r('app.color.text_color'))
-      Text(this.title)
-        .fontSize(this.sizeHeight + 2)
-        .layoutWeight(1)
-        .textAlign(TextAlign.Center)
+        .textAlign(TextAlign.Start)
         .fontColor($r('app.color.text_color'))
       Row({ space: 10 }) {
-        BatteryStatusComponent({sizeHeight:18})
+        BatteryStatusComponent({sizeHeight:this.sizeHeight})
         IconButton({
           icon: this.isConnected ? $r('app.media.connection') : $r('app.media.disconnect'),
           checked: !this.isConnected

@@ -3,7 +3,7 @@ import { RoundButton } from "./RoundButton"
 @Component
 export struct  VolumeBar {
   @Prop name: string | Resource
-  @Prop mini: number
+  @Prop min: number
   @Prop max: number
   @Prop value: number = 0
   @Prop checked: boolean
@@ -19,15 +19,15 @@ export struct  VolumeBar {
         .layoutWeight(1)
         .maxLines(1)
         .fontColor($r('app.color.text_color'))
-      Text((Math.floor(this.value * (this.max - this.mini) / 65535) + this.mini).toString())
+      Text((Math.floor(this.value * (this.max - this.min) / 65535) + this.min).toString())
         .fontSize(30)
         .layoutWeight(1)
         .maxLines(1)
         .fontColor($r('app.color.text_color'))
       Slider({
-        min: this.mini,
+        min: this.min,
         max: this.max,
-        value: Math.floor(this.value * (this.max - this.mini) / 65535) + this.mini,
+        value: Math.floor(this.value * (this.max - this.min) / 65535) + this.min,
         step: 1,
         direction: Axis.Vertical,
         reverse: true,
@@ -44,11 +44,10 @@ export struct  VolumeBar {
             this.lastValue = value
           } else {
             if (this.onVolumeChanged) {
-              this.onVolumeChanged(Math.floor((value - this.mini) / (this.max - this.mini) * 65535))
+              this.onVolumeChanged(Math.floor((value - this.min) / (this.max - this.min) * 65535))
             }
           }
         })
-        //.sliderInteractionMode(SliderInteraction.SLIDE_ONLY)
       RoundButton({
         label: '',
         checked: this.checked,

@@ -76,10 +76,9 @@ export struct Category {
     .backgroundColor(Color.Transparent)
     .linearGradient({
       colors: [
-        [$r('app.color.catalog_background_1'), 0.0],
+        [$r('app.color.catalog_background_1'), 0.1],
         [$r('app.color.catalog_background_2'), 0.1],
-        [$r('app.color.catalog_background_3'), 0.1],
-        [$r('app.color.catalog_background_2'), 0.14]
+        [$r('app.color.catalog_background_1'), 0.12]
       ]
     })
     .shadow({

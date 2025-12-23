@@ -20,7 +20,7 @@ export struct SoundComponent {
           VolumeBar({
             name: item.volumeName,
             value: this.channelAArray[item.volumeId],
-            mini: item.mini,
+            min: item.mini,
             max: item.max,
             checked: this.channelDArray[item.volumeId],
             onMuteAction: (event: TouchEvent) => {

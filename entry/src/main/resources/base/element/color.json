@@ -10,16 +10,9 @@
     },
     {
       "name": "catalog_background_2",
-      "value": "#BBEEEEEE"
-    },
-    {
-      "name": "catalog_background_3",
       "value": "#BB888888"
     },
-    {
-      "name": "shadow_color",
-      "value": "#CC787881"
-    },
+
     {
       "name": "button_checked_light",
       "value": "#66E7521B"

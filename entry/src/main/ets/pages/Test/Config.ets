@@ -1,8 +1,7 @@
 import { ButtonModel, Buttons, PageModel, Pages, VolumeModel, Volumes } from "../../model/Models";
 
 export const pages: Pages = new Pages(
-  '控制面板',
-  'Harmony',
+  'HarmonyOS-控制面板',
   [
     new PageModel($r('app.string.home'), $r('app.media.home')),
     new PageModel($r('app.string.HDMI'),$r('app.media.HDMI')),

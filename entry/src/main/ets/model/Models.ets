@@ -10,12 +10,10 @@ export class PageModel {
 
 export class Pages {
   title: string | Resource;
-  subTitle: string | Resource;
   pageList: PageModel[];
 
-  constructor(title: string | Resource = '', subTitle: string | Resource = '', pageList: PageModel[]) {
+  constructor(title: string | Resource = '',  pageList: PageModel[]) {
     this.title = title;
-    this.subTitle = subTitle;
     this.pageList = pageList;
   }
 }

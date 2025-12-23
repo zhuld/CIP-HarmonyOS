@@ -57,7 +57,7 @@ export  struct CameraComponent {
           .fill($r('app.color.button_light'))
           .shadow({
             radius: 5,
-            color: $r('app.color.shadow_color'),
+            color: ColoringStrategy.AVERAGE,
             offsetX: 5,
             offsetY: 5,
           })

@@ -59,6 +59,7 @@ export struct SetupComponent {
       })
         .width('60%')
     }
+
     .margin({ bottom: 10, right: 10, left: 2 })
   }
 }
