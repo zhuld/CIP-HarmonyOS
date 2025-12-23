@@ -16,11 +16,11 @@ const op_Join_Request = 0x03
 const op_Client_Ping = 0x0D // 定时发送 0D 00 02 00 00
 const op_Server_Pong = 0x0E // 回复 0E 00 02 00 00
 
- export enum JoinType {
-   Digital, // 0
-   Analog, // 1
-   Serial, // 2
- }
+export enum JoinType {
+  Digital, // 0
+  Analog, // 1
+  Serial, // 2
+}
 
 @ObservedV2
 export class CrestronClient {

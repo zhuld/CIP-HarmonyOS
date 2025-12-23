@@ -1,4 +1,3 @@
-
 @ComponentV2
 export struct IconButton {
   @Param icon: Resource | undefined = undefined
