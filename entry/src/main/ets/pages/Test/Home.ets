@@ -5,11 +5,9 @@ import { NormalButton } from "../../view/NormalButton";
 import { RoundButton } from "../../view/RoundButton";
 import { testHome1, testHome2 } from "./Config";
 
-@Component
-export  struct HomeComponent {
-  @ObjectLink crestronClient : CrestronClient
-  @Consume channelDArray : boolean[] = []
-  @Consume channelAArray : number[] = []
+@ComponentV2
+export struct HomeComponent {
+  @Param @Require crestronClient : CrestronClient
   @Builder
   SystemContent(buttonList :ButtonModel[],columns:number) {
     GridRow({
@@ -23,7 +21,7 @@ export  struct HomeComponent {
             icon: item.buttonIcon,
             buttonColor: item.buttonColor,
             fontSize: 30,
-            checked: this.channelDArray[item.buttonId],
+            checked: this.crestronClient.channelDArray[item.buttonId],
             onTouchAction: (event: TouchEvent) => {
               if (event.type === TouchType.Down) {
                 this.crestronClient?.push(item.buttonId)
@@ -50,7 +48,7 @@ export  struct HomeComponent {
             label: item.buttonName,
             icon: item.buttonIcon,
             fontSize: 24,
-            checked: this.channelDArray[item.buttonId],
+            checked: this.crestronClient.channelDArray[item.buttonId],
             onTouchAction: (event: TouchEvent) => {
               if (event.type === TouchType.Down) {
                 this.crestronClient?.push(item.buttonId)

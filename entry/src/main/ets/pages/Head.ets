@@ -9,7 +9,6 @@ export struct Head {
   @Param messageT: string = ''
   @Param messageR: string = ''
   @Param title: string | Resource = ''
-  //@Param subTitle: string | Resource = ''
   private clockId: number = 0
   @Param fontSize: number = 20
   dialogController: CustomDialogController = new CustomDialogController({
@@ -39,12 +38,6 @@ export struct Head {
 
   build() {
     Row() {
-      // Text(this.subTitle)
-      //   .fontSize(this.sizeHeight)
-      //   .layoutWeight(1)
-      //   .textAlign(TextAlign.Start)
-      //   .padding({ left: 10 })
-      //   .fontColor($r('app.color.text_color'))
       Text(this.title)
         .fontSize(this.fontSize)
         .layoutWeight(1)

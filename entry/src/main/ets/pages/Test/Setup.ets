@@ -4,11 +4,9 @@ import { Category } from '../../view/Category';
 import { NormalButton } from '../../view/NormalButton';
 import { testSetup } from './Config'
 
-@Component
+@ComponentV2
 export struct SetupComponent {
-  @ObjectLink crestronClient: CrestronClient
-  @Consume channelDArray: boolean[] = []
-  @Consume channelAArray: number[] = []
+  @Param @Require crestronClient: CrestronClient
 
   @Builder
   SetupContent(buttonList: ButtonModel[], columns: number) {
@@ -30,7 +28,7 @@ export struct SetupComponent {
                 label: item.buttonName,
                 icon: item.buttonIcon,
                 fontSize: 30,
-                checked: this.channelDArray[item.buttonId],
+                checked: this.crestronClient.channelDArray[item.buttonId],
                 onTouchAction: (event: TouchEvent) => {
                   if (event.type === TouchType.Down) {
                     this.crestronClient?.push(item.buttonId)

@@ -4,11 +4,9 @@ import { Category } from '../../view/Category'
 import { VolumeBar } from '../../view/VolumeBar'
 import { testVolumeInput, testVolumeOutput } from './Config'
 
-@Component
+@ComponentV2
 export struct SoundComponent {
-  @ObjectLink crestronClient : CrestronClient
-  @Consume channelDArray : boolean[] = []
-  @Consume channelAArray : number[] = []
+  @Param @Require crestronClient : CrestronClient
   @Builder
   VolumeBarContent(volumeList: VolumeModel[]) {
     GridRow({
@@ -19,10 +17,10 @@ export struct SoundComponent {
         GridCol({ span: 1 }) {
           VolumeBar({
             name: item.volumeName,
-            value: this.channelAArray[item.volumeId],
+            value: this.crestronClient.channelAArray[item.volumeId],
             min: item.mini,
             max: item.max,
-            checked: this.channelDArray[item.volumeId],
+            checked: this.crestronClient.channelDArray[item.volumeId],
             onMuteAction: (event: TouchEvent) => {
               if (event.type === TouchType.Down) {
                 this.crestronClient?.push(item.volumeId)

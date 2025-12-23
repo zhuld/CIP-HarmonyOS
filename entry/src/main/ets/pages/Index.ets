@@ -20,6 +20,8 @@ import { CameraComponent } from './Test/Camera';
 import { SetupComponent } from './Test/Setup';
 import { SoundComponent } from './Test/Sound';
 import { VideoComponent } from './Test/Video';
+import { ConnectComponent } from './Connect'
+import { Video2Component } from './Test/Video2';
 import { HomeComponent } from './Test/Home';
 import { PageModel } from '../model/Models';
 import { TabButton } from '../view/TabButton';
@@ -27,28 +29,25 @@ import { pages } from './Test/Config';
 import { Head } from './Head';
 import { CrestronClient, JoinType } from '../crestron/CrestronClient';
 import { ProcessDialog } from './Dialog';
-import { ConnectComponent } from './Connect'
-import { Video2Component } from './Test/Video2';
+
 
 @Entry
-@Component
+@ComponentV2
 struct Index {
-  @State currentPage: number = 0;
+  @Local currentPage: number = 0;
   private tabScroller: Scroller = new Scroller();
   private contentScroller: Scroller = new Scroller();
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  @State crestronClient: CrestronClient = new CrestronClient();
-  @Provide channelDArray: boolean[] = []
-  @Provide channelAArray: number[] = []
+  @Local crestronClient: CrestronClient = new CrestronClient();
   private connectTimer: number = 0;
   readonly prefName: string = 'network_settings';
-  @State serverIP: string = '192.168.2.105';
-  @State serverPort: number = 41794;
-  @State cipId: number = 3
-  @State showDebug: boolean = false
-  @State isConnected: boolean = false;
-  @State messageT: string = ''
-  @State messageR: string = ''
+  @Local serverIP: string = '192.168.2.105';
+  @Local serverPort: number = 41794;
+  @Local cipId: number = 3
+  @Local showDebug: boolean = false
+  @Local isConnected: boolean = false;
+  @Local messageT: string = ''
+  @Local messageR: string = ''
   private isDialogOpened: boolean = false
   private lastPage: number = 0
   dialogProcess: CustomDialogController = new CustomDialogController({
@@ -72,8 +71,6 @@ struct Index {
     this.crestronClient.onConnectChanged = ((isConnected: boolean) => {
       this.isConnected = isConnected;
       if (this.isConnected) {
-        this.channelDArray = this.crestronClient.channelDArray
-        this.channelAArray = this.crestronClient.channelAArray
         this.contentScroller.scrollToIndex(this.lastPage);
         this.currentPage = this.lastPage
       } else {
@@ -88,7 +85,6 @@ struct Index {
         if (this.showDebug) {
           this.messageR = value === 1 ? `${channel}:High` : `${channel}:Low`
         }
-        this.channelDArray.fill(value === 1 ? true : false, channel, channel)
         if (channel === 1) {
           if (value === 1 && !this.isDialogOpened) {
             this.dialogProcess.open()
@@ -102,7 +98,6 @@ struct Index {
         if (this.showDebug) {
           this.messageR = `${channel}:${value}`
         }
-        this.channelAArray.fill(value, channel, channel)
       }
     })
 
@@ -120,12 +115,6 @@ struct Index {
 
     this.crestronClient.connect(this.serverIP, this.serverPort, this.cipId);
 
-    for (let i = 0; i < 500; i++) {
-      this.channelDArray.push(false)
-    }
-    for (let i = 0; i < 100; i++) {
-      this.channelAArray.push(0)
-    }
     this.contentScroller.scrollToIndex(pages.pageList.length);
     this.currentPage = pages.pageList.length
   }
@@ -160,7 +149,6 @@ struct Index {
         messageT: this.messageT,
         messageR: this.messageR,
         title: pages.title,
-        //subTitle: pages.subTitle,
         fontSize:18,
       })
         .width('100%')

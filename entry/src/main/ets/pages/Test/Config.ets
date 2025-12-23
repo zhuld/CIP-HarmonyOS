@@ -120,7 +120,7 @@ export const testPosition: Buttons = new Buttons(
     new ButtonModel(78,'8'),
     new ButtonModel(79,'全景'),
   ],
-  80
+  70
 )
 
 export const testSetup: Buttons = new Buttons(

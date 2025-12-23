@@ -22,12 +22,12 @@ const op_Server_Pong = 0x0E // 回复 0E 00 02 00 00
    Serial, // 2
  }
 
-@Observed
+@ObservedV2
 export class CrestronClient {
   private tcpSocket = socket.constructTCPSocketInstance();
   private cipId: number = 3;
-  channelDArray: boolean[] = [];
-  channelAArray: number[] = []
+  @Trace channelDArray: boolean[] = [];
+  @Trace channelAArray: number[] = []
 
   onMsgSend?:(joinType: JoinType, channel: number, value: number) => void
   onMsgReceived?:(joinType: JoinType, channel: number, value: number) => void
@@ -49,7 +49,7 @@ export class CrestronClient {
     }
 
     this.tcpSocket.on('message', async (value) => {
-      if (!value || !value.message || !this.onMsgReceived) {
+      if (!value || !value.message ) {
         return;
       }
       const message: Uint8Array = new Uint8Array(value.message);
@@ -99,7 +99,9 @@ export class CrestronClient {
                   let value = !(payload[5] & 0x80)
                   if (this.channelDArray[channelD] !== value) {
                     this.channelDArray[channelD] = value
-                    this.onMsgReceived(JoinType.Digital, channelD, value ? 1 : 0)
+                    if(this.onMsgReceived) {
+                      this.onMsgReceived(JoinType.Digital, channelD, value ? 1 : 0)
+                    }
                   }
                 }
                 break
@@ -109,13 +111,17 @@ export class CrestronClient {
                   let channelA = payload[4] * 0x100 + payload[5] + 1
                   if (isNaN(channelA) === false) {
                     this.channelAArray[channelA] = payload[6] * 0x100 + payload[7]
-                    this.onMsgReceived(JoinType.Analog, channelA, this.channelAArray[channelA])
+                    if(this.onMsgReceived) {
+                      this.onMsgReceived(JoinType.Analog, channelA, this.channelAArray[channelA])
+                    }
                   }
                 } else if (payloadLength === 7) {
                   let channelA = payload[4] + 1
                   if (isNaN(channelA) === false) {
                     this.channelAArray[channelA] = payload[5] * 0x100 + payload[6]
-                    this.onMsgReceived(JoinType.Analog, channelA, this.channelAArray[channelA])
+                    if(this.onMsgReceived) {
+                      this.onMsgReceived(JoinType.Analog, channelA, this.channelAArray[channelA])
+                    }
                   }
                 }
                 break

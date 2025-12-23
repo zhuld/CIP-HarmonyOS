@@ -5,11 +5,9 @@ import { RoundButton } from "../../view/RoundButton";
 import { SquareButton } from "../../view/SquareButton";
 import { testCamera, testPosition } from "./Config";
 
-@Component
-export  struct CameraComponent {
-  @ObjectLink crestronClient: CrestronClient
-  @Consume channelDArray: boolean[] = []
-  @Consume channelAArray: number[] = []
+@ComponentV2
+export struct CameraComponent {
+  @Param @Require  crestronClient: CrestronClient
 
   @Builder
   CameraContent(buttonList: ButtonModel[], columns: number) {
@@ -27,7 +25,7 @@ export  struct CameraComponent {
                 label: item.buttonName,
                 icon: item.buttonIcon,
                 fontSize: 30,
-                checked: this.channelDArray[item.buttonId],
+                checked: this.crestronClient.channelDArray[item.buttonId],
                 onTouchAction: (event: TouchEvent) => {
                   if (event.type === TouchType.Down) {
                     this.crestronClient?.push(item.buttonId)
@@ -62,7 +60,6 @@ export  struct CameraComponent {
             offsetY: 5,
           })
       }
-      //.backgroundColor(Color.Transparent)
 
       ForEach(buttonList, (item: ButtonModel,index:number) => {
         GridCol({ span: index +1 < buttonList.length?  1 : 2 }) {
@@ -70,7 +67,7 @@ export  struct CameraComponent {
             label: item.buttonName,
             icon: item.buttonIcon,
             fontSize: 30,
-            checked: this.channelDArray[item.buttonId],
+            checked: this.crestronClient.channelDArray[item.buttonId],
             onTouchAction: (event: TouchEvent) => {
               if (event.type === TouchType.Down) {
                 this.crestronClient?.push(item.buttonId)
@@ -99,7 +96,7 @@ export  struct CameraComponent {
         title: testPosition.title, // 动态绑定标题
         subTitle: testPosition.subTitle,
         checkButton: testPosition.checkId ? true : false,
-        checked: this.channelDArray[testPosition.checkId],
+        checked: this.crestronClient.channelDArray[testPosition.checkId],
         onTouchAction: (event: TouchEvent) => {
           if (event.type === TouchType.Down) {
             this.crestronClient?.push(testPosition.checkId)

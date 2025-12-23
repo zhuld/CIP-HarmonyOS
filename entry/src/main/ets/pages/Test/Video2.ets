@@ -5,14 +5,12 @@ import { InputButton } from '../../view/InputButton';
 import { OutputButton } from '../../view/OutputButton';
 import { testVideoInput, testVideoOutput  } from './Config'
 
-@Component
+@ComponentV2
 export struct Video2Component {
-  @ObjectLink crestronClient: CrestronClient
-  @Consume channelDArray: boolean[] = []
-  @Consume channelAArray: number[] = []
-  @State dragItem: number = 0
-  @State dragOn: boolean[] = []
-  @State scaleValue: number[] = [1.0]
+  @Param @Require crestronClient: CrestronClient
+  @Local dragItem: number = 0
+  @Local dragOn: boolean[] = []
+  @Local scaleValue: number[] = [1.0]
 
   @Builder
   InputContent(inputList: ButtonModel[], columns: number) {
@@ -55,7 +53,7 @@ export struct Video2Component {
               label: item.buttonName,
               icon: item.buttonIcon,
               fontSize: 30,
-              foreColor: this.channelAArray[item.buttonId]
+              foreColor: this.crestronClient.channelAArray[item.buttonId]
             })
               .scale({ x: this.scaleValue[index], y: this.scaleValue[index] })
               .animation({ duration: 100, curve: Curve.EaseInOut })

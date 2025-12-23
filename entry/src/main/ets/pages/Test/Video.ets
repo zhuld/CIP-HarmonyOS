@@ -4,11 +4,9 @@ import { Category } from '../../view/Category';
 import { NormalButton } from '../../view/NormalButton';
 import { testVideoInput, testVideoOutput } from './Config'
 
-@Component
+@ComponentV2
 export struct VideoComponent {
-  @ObjectLink crestronClient: CrestronClient
-  @Consume channelDArray: boolean[] = []
-  @Consume channelAArray: number[] = []
+  @Param @Require crestronClient: CrestronClient
 
   @Builder
   InputContent(buttonList: ButtonModel[], columns: number) {
@@ -22,7 +20,7 @@ export struct VideoComponent {
             label: item.buttonName,
             icon: item.buttonIcon,
             fontSize: 30,
-            checked: this.channelDArray[item.buttonId],
+            checked: this.crestronClient.channelDArray[item.buttonId],
             onTouchAction: (event: TouchEvent) => {
               if (event.type === TouchType.Down) {
                 this.crestronClient?.push(item.buttonId)
@@ -49,7 +47,7 @@ export struct VideoComponent {
             label: item.buttonName,
             icon: item.buttonIcon,
             fontSize: 30,
-            checked: this.channelDArray[item.buttonId],
+            checked: this.crestronClient.channelDArray[item.buttonId],
             onTouchAction: (event: TouchEvent) => {
               if (event.type === TouchType.Down) {
                 this.crestronClient?.push(item.buttonId)
