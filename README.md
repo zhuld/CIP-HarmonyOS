@@ -1,4 +1,4 @@
 # CIPClient
-## Crestron CIP client working under HarmonyOS Demo
+## Demo Crestron CIP client working under HarmonyOS
 
 ![image](/preview/Screenshot.png)
