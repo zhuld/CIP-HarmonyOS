@@ -9,13 +9,13 @@ export const inputColor : Array<ResourceColor> = [
   $r('app.color.input_color_7'),
   $r('app.color.input_color_8'),
 ]
-@Component
+@ComponentV2
 export struct OutputButton {
   private  gradientAngle: number = 40
-  @Prop label: string | Resource
-  @Prop icon: Resource
-  @Prop fontSize: number = 20
-  @Prop foreColor: number = 0
+  @Param label: string | Resource | undefined = undefined
+  @Param icon: Resource | undefined = undefined
+  @Param fontSize: number = 20
+  @Param foreColor: number = 0
 
   build() {
     Row({space:this.icon? 10:0}) {

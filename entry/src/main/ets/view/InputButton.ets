@@ -1,13 +1,13 @@
-@Component
+@ComponentV2
 export struct InputButton {
   private  gradientAngle: number = 40
-  @Prop label: string | Resource
-  @Prop icon: Resource
-  @Prop fontSize: number = 20
-  @Prop foreColor: ResourceColor = $r('app.color.button')
-  @State checked: boolean = false
-  @State opacityValue: number = 1
-  onDragAction?:(start: boolean) => void
+  @Param label: string | Resource | undefined = undefined
+  @Param icon: Resource | undefined = undefined
+  @Param fontSize: number = 20
+  @Param foreColor: ResourceColor = $r('app.color.button')
+  @Local checked: boolean = false
+  @Local opacityValue: number = 1
+  @Event onDragAction?:(start: boolean) => void
 
   build() {
     Row({space:this.icon? 10:0}) {

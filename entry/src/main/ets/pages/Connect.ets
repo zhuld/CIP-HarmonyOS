@@ -1,11 +1,11 @@
 import { Category } from "../view/Category"
 
-@Component
+@ComponentV2
 export struct ConnectComponent{
-  @Prop serverIP: string
-  @Prop serverPort: number
-  @Prop ipId: number
-  @Prop isConnected: boolean
+  @Param serverIP: string = '192.168.1.10'
+  @Param serverPort: number = 41794
+  @Param ipId: number = 3
+  @Param isConnected: boolean = false
   @Builder
   ConnectContent(){
     Column() {

@@ -1,17 +1,17 @@
 import { SquareButton } from "./SquareButton";
 
-@Component
+@ComponentV2
 export struct Category {
   @Builder
   BuilderFunction() {
   }
-  @Prop title: string | Resource = ''; // 可修改的标题文本
-  @Prop subTitle: string | Resource = ''; // 可修改的副标题文本
-  @Prop icon: Resource | undefined = undefined;
-  @Prop checked: boolean = false;
-  @Prop checkButton: boolean = false;
+  @Param title: string | Resource = ''; // 可修改的标题文本
+  @Param subTitle: string | Resource = ''; // 可修改的副标题文本
+  @Param icon: Resource | undefined = undefined;
+  @Param checked: boolean = false;
+  @Param checkButton: boolean = false;
   @BuilderParam contentBuilder: () => void = this.BuilderFunction; // 可修改的内容区域
-  onTouchAction?:(event: TouchEvent) => void
+  @Event onTouchAction?:(event: TouchEvent) => void
 
   build() {
     Column({ space: 10 }) {

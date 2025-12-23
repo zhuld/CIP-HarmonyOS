@@ -11,7 +11,7 @@ export struct Head {
   @Param title: string | Resource = ''
   //@Param subTitle: string | Resource = ''
   private clockId: number = 0
-  @Param sizeHeight: number = 20
+  @Param fontSize: number = 20
   dialogController: CustomDialogController = new CustomDialogController({
     builder: ConfirmDialog({
       title: '操作确认',
@@ -46,13 +46,13 @@ export struct Head {
       //   .padding({ left: 10 })
       //   .fontColor($r('app.color.text_color'))
       Text(this.title)
-        .fontSize(this.sizeHeight)
+        .fontSize(this.fontSize)
         .layoutWeight(1)
         .padding({ left: 10 })
         .textAlign(TextAlign.Start)
         .fontColor($r('app.color.text_color'))
       Row({ space: 10 }) {
-        BatteryStatusComponent({sizeHeight:this.sizeHeight})
+        BatteryStatusComponent({sizeHeight:this.fontSize})
         IconButton({
           icon: this.isConnected ? $r('app.media.connection') : $r('app.media.disconnect'),
           checked: !this.isConnected
@@ -68,16 +68,16 @@ export struct Head {
                 });
               })
           )
-          .width(this.sizeHeight)
+          .width(this.fontSize)
         Text(this.currentTime)
-          .fontSize(this.sizeHeight)
+          .fontSize(this.fontSize)
           .fontColor($r('app.color.text_color'))
         Text(this.messageT)
-          .fontSize(this.sizeHeight)
+          .fontSize(this.fontSize)
           .fontColor($r('app.color.text_color'))
           .width(120)
         Text(this.messageR)
-          .fontSize(this.sizeHeight)
+          .fontSize(this.fontSize)
           .fontColor($r('app.color.text_color'))
           .width(120)
       }

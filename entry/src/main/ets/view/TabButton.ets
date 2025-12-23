@@ -1,13 +1,13 @@
 import { SquareButton } from "./SquareButton"
 
-@Component
+@ComponentV2
 export struct TabButton {
-  @Prop label: string | Resource
-  @Prop icon: Resource | undefined
-  @Prop fontSize: number = 20
-  @Prop checked: boolean = false
-  @Prop isEnabled: boolean = true
-  onTouchAction?: (event: TouchEvent) => void
+  @Param label: string | Resource | undefined = undefined
+  @Param icon: Resource | undefined = undefined
+  @Param fontSize: number = 20
+  @Param checked: boolean = false
+  @Param isEnabled: boolean = true
+  @Event onTouchAction?: (event: TouchEvent) => void
 
   build() {
     SquareButton({

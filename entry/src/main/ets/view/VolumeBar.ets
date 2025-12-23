@@ -1,16 +1,16 @@
 import { RoundButton } from "./RoundButton"
 
-@Component
+@ComponentV2
 export struct  VolumeBar {
-  @Prop name: string | Resource
-  @Prop min: number
-  @Prop max: number
-  @Prop value: number = 0
-  @Prop checked: boolean
+  @Param name: string | Resource | undefined = undefined
+  @Param min: number = 0
+  @Param max: number = 100
+  @Param value: number = 0
+  @Param checked: boolean = false
   private lastValue: number = 0
-  @State pressed: boolean = false
-  onMuteAction?: (event: TouchEvent) => void
-  onVolumeChanged?: (value: number) => void
+  @Local pressed: boolean = false
+  @Event onMuteAction?: (event: TouchEvent) => void
+  @Event onVolumeChanged?: (value: number) => void
 
   build() {
     Column({ space: 10 }) {

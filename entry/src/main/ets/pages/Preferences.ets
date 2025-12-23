@@ -3,18 +3,18 @@ import { common } from '@kit.AbilityKit';
 import { MyButton } from '../view/MyButton';
 
 @Entry
-@Component
+@ComponentV2
 struct Config {
-  @State ipAddress: string = '192.168.1.1';
-  @State port: number = 8080;
-  @State ipId: number = 3;
+  @Local ipAddress: string = '192.168.1.1';
+  @Local port: number = 8080;
+  @Local ipId: number = 3;
   readonly prefName: string = 'network_settings';
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  @State isIpAddress: boolean = true;
-  @State isPort: boolean = true;
-  @State isId: boolean = true;
-  @State showDebug: boolean = false;
-  @State info: string = '系统设置，请勿随意修改';
+  @Local isIpAddress: boolean = true;
+  @Local isPort: boolean = true;
+  @Local isId: boolean = true;
+  @Local showDebug: boolean = false;
+  @Local info: string = '系统设置，请勿随意修改';
 
   aboutToAppear() {
     this.loadSettings();

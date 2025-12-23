@@ -1,12 +1,12 @@
 import { batteryInfo, BusinessError, commonEventManager } from '@kit.BasicServicesKit';
 import { IconButton } from './IconButton';
 
-@Component
+@ComponentV2
 export struct BatteryStatusComponent {
-  @State batterySOC: string = "0%"; // 电量百分比
-  @State chargingStatusText: string = ""; // 充电状态
-  @State chargingStatus: number = 0
-  @Prop sizeHeight: number = 20
+  @Local batterySOC: string = "0%"; // 电量百分比
+  @Local chargingStatusText: string = ""; // 充电状态
+  @Local chargingStatus: number = 0
+  @Param sizeHeight: number = 20
   private subscriber: commonEventManager.CommonEventSubscriber | null = null;
 
   aboutToAppear() {

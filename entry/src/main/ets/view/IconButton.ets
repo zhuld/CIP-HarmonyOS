@@ -1,10 +1,10 @@
 
-@Component
+@ComponentV2
 export struct IconButton {
-  @Prop icon: Resource | undefined = undefined
-  @Prop checked: boolean = false
+  @Param icon: Resource | undefined = undefined
+  @Param checked: boolean = false
 
-  onTouchAction?:(event: TouchEvent) => void
+  @Event onTouchAction?:(event: TouchEvent) => void
 
   build() {
     Row({space:5}) {

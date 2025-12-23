@@ -161,7 +161,7 @@ struct Index {
         messageR: this.messageR,
         title: pages.title,
         //subTitle: pages.subTitle,
-        sizeHeight:18,
+        fontSize:18,
       })
         .width('100%')
         .layoutWeight(1)

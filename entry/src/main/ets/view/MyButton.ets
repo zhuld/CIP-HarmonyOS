@@ -1,12 +1,12 @@
-@Component
+@ComponentV2
 export struct MyButton {
   private gradientAngle: number = 40
-  @Prop label: string | Resource
-  @Prop icon: Resource
-  @Prop fontSize: number = 20
-  @Prop checked: boolean = false
-  @Prop buttonColor: ResourceColor =  $r('app.color.button')
-  @Prop buttonColor2: ResourceColor =  $r('app.color.button_light')
+  @Param label: string | Resource | undefined = undefined
+  @Param icon: Resource | undefined = undefined
+  @Param fontSize: number = 20
+  @Local checked: boolean = false
+  @Param buttonColor: ResourceColor =  $r('app.color.button')
+  @Param buttonColor2: ResourceColor =  $r('app.color.button_light')
 
   build() {
     Row({ space: this.icon ? 5 : 0 }) {

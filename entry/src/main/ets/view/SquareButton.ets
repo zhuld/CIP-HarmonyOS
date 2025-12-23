@@ -1,13 +1,14 @@
-@Component
+@ComponentV2
 export struct SquareButton {
   private gradientAngle: number = 40
-  @Prop label: string | Resource
-  @Prop icon: Resource | undefined
-  @Prop fontSize: number = 20
-  @Prop checked: boolean = false
-  @Prop buttonColor: ResourceColor =  $r('app.color.button')
-  @Prop buttonColor2: ResourceColor =  $r('app.color.button_light')
-  onTouchAction?: (event: TouchEvent) => void
+  @Param label: string | Resource | undefined = undefined
+  @Param icon: Resource | undefined = undefined
+  @Param fontSize: number = 20
+  @Param checked: boolean = false
+  @Param buttonColor: ResourceColor =  $r('app.color.button')
+  @Param buttonColor2: ResourceColor =  $r('app.color.button_light')
+
+  @Event onTouchAction?: (event: TouchEvent) => void
 
   build() {
     Column() {
