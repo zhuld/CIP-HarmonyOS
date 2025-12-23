@@ -1,6 +1,5 @@
 import { BatteryStatusComponent } from "../view/Battery";
 import { IconButton } from "../view/IconButton";
-import { ConfirmDialog } from "./Dialog";
 
 @ComponentV2
 export struct Head {
@@ -11,16 +10,16 @@ export struct Head {
   @Param title: string | Resource = ''
   private clockId: number = 0
   @Param fontSize: number = 20
-  dialogController: CustomDialogController = new CustomDialogController({
-    builder: ConfirmDialog({
-      title: '操作确认',
-      message: '确定要执行此操作吗？'
-    }),
-    alignment: DialogAlignment.Center,
-    autoCancel: false,
-    width: '50%',
-    height: '50%',
-  });
+  // dialogController: CustomDialogController = new CustomDialogController({
+  //   builder: ConfirmDialog({
+  //     title: '操作确认',
+  //     message: '确定要执行此操作吗？'
+  //   }),
+  //   alignment: DialogAlignment.Center,
+  //   autoCancel: false,
+  //   width: '50%',
+  //   height: '50%',
+  // });
 
   // 定时器更新逻辑:
   aboutToAppear(): void {
