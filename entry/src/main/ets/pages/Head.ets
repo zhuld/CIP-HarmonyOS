@@ -5,11 +5,11 @@ import { ConfirmDialog } from "./Dialog";
 @Component
 export struct Head {
   @State currentTime: string = ''
-  @Prop isConnected: boolean
-  @Prop messageT: string
-  @Prop messageR: string
-  @Prop title: string | Resource
-  @Prop subTitle: string | Resource
+  @Prop isConnected: boolean = false
+  @Prop messageT: string = ''
+  @Prop messageR: string = ''
+  @Prop title: string | Resource = ''
+  @Prop subTitle: string | Resource = ''
   private clockId: number = 0
   private sizeHeight: number = 20
   dialogController: CustomDialogController = new CustomDialogController({
