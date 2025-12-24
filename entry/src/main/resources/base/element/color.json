@@ -15,27 +15,27 @@
 
     {
       "name": "button_checked_light",
-      "value": "#66E7521B"
+      "value": "#FFEE7549"
     },
     {
       "name": "button_checked",
-      "value": "#FFE7521B"
+      "value": "#FFB13C11"
     },
     {
       "name": "button_light",
-      "value": "#880A6BB5"
+      "value": "#FF3C9AE3"
     },
     {
       "name": "button",
-      "value": "#FF0A6BB5"
+      "value": "#FF085894"
     },
     {
       "name": "tab_button_light",
-      "value": "#88B7B7B7"
+      "value": "#FFDEDEDE"
     },
     {
       "name": "tab_button",
-      "value": "#FFB7B7B7"
+      "value": "#FF919090"
     },
     {
       "name": "text_color_check",

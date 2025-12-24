@@ -52,7 +52,7 @@ export struct CameraComponent {
           .width(160)
           .height(10)
           .margin(10)
-          .fill($r('app.color.button_light'))
+          .fill($r('app.color.tab_button'))
           .shadow({
             radius: 5,
             color: ColoringStrategy.AVERAGE,

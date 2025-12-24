@@ -35,8 +35,8 @@ export struct  VolumeBar {
         .layoutWeight(10)
         .blockColor(this.pressed ? $r('app.color.button_checked') : $r('app.color.button'))
         .trackThickness(10) // 设置滑动条粗细为10
-        .trackColor($r('app.color.button_checked_light'))
-        .selectedColor($r('app.color.button_checked'))
+        .trackColor($r('app.color.tab_button_light'))
+        .selectedColor($r('app.color.button_checked_light'))
         .showSteps(true)
         .minResponsiveDistance(1)
         .onChange((value: number) => {
@@ -49,7 +49,6 @@ export struct  VolumeBar {
           }
         })
       RoundButton({
-        label: '',
         checked: this.checked,
         icon: this.checked ? $r('app.media.mute') : $r('app.media.unmute')
       })
