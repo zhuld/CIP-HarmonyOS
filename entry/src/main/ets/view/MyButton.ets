@@ -1,6 +1,7 @@
+import { animationDuration, gradientAngle } from "../pages/global"
+
 @ComponentV2
 export struct MyButton {
-  private gradientAngle: number = 40
   @Param label: string | Resource | undefined = undefined
   @Param icon: Resource | undefined = undefined
   @Param fontSize: number = 20
@@ -29,7 +30,7 @@ export struct MyButton {
     .justifyContent(FlexAlign.Center)
     .borderRadius("5%")
     .linearGradient({
-      angle: this.gradientAngle,
+      angle: gradientAngle,
       colors: this.checked ?
         [[$r('app.color.button_checked_light'), 0.1],
           [$r('app.color.button_checked'), 1.0]] :
@@ -50,7 +51,7 @@ export struct MyButton {
       offsetY: this.checked ? 3 : 6
     })
     .animation({
-      duration: 100,
+      duration: animationDuration,
       curve: Curve.EaseInOut
     })
   }

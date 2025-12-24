@@ -3,6 +3,7 @@ import { ButtonModel } from '../../model/Models'
 import { Category } from '../../view/Category';
 import { InputButton } from '../../view/InputButton';
 import { OutputButton } from '../../view/OutputButton';
+import { animationDuration } from '../global';
 import { testVideoInput, testVideoOutput  } from './Config'
 
 @ComponentV2
@@ -55,8 +56,14 @@ export struct Video2Component {
               fontSize: 30,
               foreColor: this.crestronClient.channelAArray[item.buttonId]
             })
-              .scale({ x: this.scaleValue[index], y: this.scaleValue[index] })
-              .animation({ duration: 100, curve: Curve.EaseInOut })
+              .scale({
+                x: this.scaleValue[index],
+                y: this.scaleValue[index]
+              })
+              .animation({
+                duration: animationDuration,
+                curve: Curve.EaseInOut
+              })
               .onDrop((event: DragEvent) => {
                 this.crestronClient?.level(item.buttonId, this.dragItem)
                 this.scaleValue[index] = 1.0

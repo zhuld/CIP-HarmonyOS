@@ -1,6 +1,7 @@
+import { animationDuration, gradientAngle } from "../pages/global"
+
 @ComponentV2
 export struct InputButton {
-  private  gradientAngle: number = 40
   @Param label: string | Resource | undefined = undefined
   @Param icon: Resource | undefined = undefined
   @Param fontSize: number = 20
@@ -23,7 +24,7 @@ export struct InputButton {
     .justifyContent(FlexAlign.Center)
     .borderRadius("5%")
     .linearGradient({
-      angle: this.gradientAngle,
+      angle: gradientAngle,
       colors:
       [ [$r('app.color.tab_button_light'), 0.1],
         [this.foreColor, 1.0] ]
@@ -43,7 +44,7 @@ export struct InputButton {
     })
     .opacity(this.opacityValue)
     .animation({
-      duration: 100,
+      duration: animationDuration,
       curve: Curve.EaseInOut,
     })
     .onTouch((event: TouchEvent) => {

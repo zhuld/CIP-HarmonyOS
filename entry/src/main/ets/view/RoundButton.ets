@@ -1,6 +1,7 @@
+import { animationDuration, gradientAngle } from "../pages/global"
+
 @ComponentV2
 export struct RoundButton {
-  private gradientAngle: number = 40
   @Param label: string | Resource | undefined = undefined
   @Param icon: Resource | undefined = undefined
   @Param fontSize: number = 20
@@ -28,7 +29,7 @@ export struct RoundButton {
       .borderRadius('50%')
       .backgroundColor(Color.Transparent)
       .linearGradient({
-        angle: this.gradientAngle,
+        angle: gradientAngle,
         colors: this.checked ?
           [[$r('app.color.button_checked_light'), 0.1],
             [$r('app.color.button_checked'), 1.0]] :
@@ -47,7 +48,7 @@ export struct RoundButton {
         left: this.checked ? 3 : 0
       })
       .animation({
-        duration: 100,
+        duration: animationDuration,
         curve: Curve.EaseInOut
       })
 

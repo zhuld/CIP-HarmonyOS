@@ -1,3 +1,5 @@
+import { gradientAngle } from "../pages/global"
+
 export const inputColor : Array<ResourceColor> = [
   $r('app.color.tab_button'),
   $r('app.color.input_color_1'),
@@ -11,7 +13,6 @@ export const inputColor : Array<ResourceColor> = [
 ]
 @ComponentV2
 export struct OutputButton {
-  private  gradientAngle: number = 40
   @Param label: string | Resource | undefined = undefined
   @Param icon: Resource | undefined = undefined
   @Param fontSize: number = 20
@@ -31,7 +32,7 @@ export struct OutputButton {
     .justifyContent(FlexAlign.Center)
     .borderRadius("5%")
     .linearGradient({
-      angle: this.gradientAngle,
+      angle: gradientAngle,
       colors:
       [ [$r('app.color.tab_button_light'), 0.1],
         [inputColor[this.foreColor], 1.0] ]
