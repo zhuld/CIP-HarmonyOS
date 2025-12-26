@@ -22,6 +22,7 @@ export struct Category {
             .height(this.icon ? '70%' : 0)
             .aspectRatio(1)
             .fillColor($r('app.color.text_color')) // 根据状态切换颜色
+            .draggable(false)
           Text(this.title)
             .fontSize(30)
             .maxLines(1)

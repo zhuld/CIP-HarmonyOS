@@ -18,6 +18,7 @@ export struct RoundButton {
           .width('60%')
           .height(this.icon ? this.width : 0)
           .fillColor(this.checked ? $r('app.color.text_color_check') : $r('app.color.text_color')) // 根据状态切换颜色
+          .draggable(false)
       }
       .onTouch((event: TouchEvent) =>{
         if (this.onTouchAction) {

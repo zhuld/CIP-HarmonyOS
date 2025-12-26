@@ -15,6 +15,7 @@ export struct MyButton {
         .width(this.icon ? this.fontSize : 0)
         .aspectRatio(1)
         .fillColor(this.checked ? $r('app.color.text_color_check') : $r('app.color.text_color')) // 根据状态切换颜色
+        .draggable(false)
       Text(this.label)
         .fontColor(this.checked ? $r('app.color.text_color_check') : $r('app.color.text_color'))
         .maxLines(1)

@@ -24,6 +24,7 @@ export struct OutputButton {
         .height(this.icon ? '60%' : 0)
         .aspectRatio(1)
         .fillColor($r('app.color.text_color')) // 根据状态切换颜色
+        .draggable(false)
       Text(this.label)
         .fontColor($r('app.color.text_color'))
         .maxLines(1)

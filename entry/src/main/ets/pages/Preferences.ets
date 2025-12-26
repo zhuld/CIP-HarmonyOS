@@ -96,7 +96,7 @@ struct Config {
                 }
               })
               .type(InputType.Normal)
-              .fontColor(this.isIpAddress ? $r('app.color.text_color') : $r('app.color.text_color_red'))
+              .fontColor(this.isIpAddress ? $r('app.color.text_color') : $r('sys.color.warning'))
               .placeholderFont({ size: 32 })
               .fontSize(32)
               .borderRadius(5)
@@ -120,7 +120,7 @@ struct Config {
                   this.info = '端口号范围1-65535，默认41794'
                 }
               })
-              .fontColor(this.isPort ? $r('app.color.text_color') : $r('app.color.text_color_red'))
+              .fontColor(this.isPort ? $r('app.color.text_color') : $r('sys.color.warning'))
               .placeholderFont({ size: 32 })
               .fontSize(32)
               .borderRadius(5)
@@ -144,7 +144,7 @@ struct Config {
                   this.info = 'ID号范围1-255'
                 }
               })
-              .fontColor(this.isId ? $r('app.color.text_color') : $r('app.color.text_color_red'))
+              .fontColor(this.isId ? $r('app.color.text_color') : $r('sys.color.warning'))
               .placeholderFont({ size: 32 })
               .fontSize(32)
               .borderRadius(5)

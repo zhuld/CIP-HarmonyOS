@@ -90,7 +90,7 @@ export struct BatteryStatusComponent {
 
   private getBatteryColor(): ResourceColor {
     const soc = parseInt(this.batterySOC);
-    if (soc <= 20) return $r('app.color.text_color_red');
+    if (soc <= 20) return $r('sys.color.warning');
     if (soc <= 50) return $r('app.color.button_checked');
     return $r('app.color.text_color');
   }

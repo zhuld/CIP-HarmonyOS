@@ -37,16 +37,9 @@
     },
     {
       "name": "text_color",
-      "value": "#FF262626"
-    },
-    {
-      "name": "subTitle_color",
       "value": "#FF0D185D"
     },
-    {
-      "name": "text_color_red",
-      "value": "#FF9F0D0D"
-    },
+
     {
       "name": "background_1",
       "value": "#bed1ef"

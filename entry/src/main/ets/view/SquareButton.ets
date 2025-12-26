@@ -17,6 +17,7 @@ export struct SquareButton {
         .width('50%')
         .height(this.icon ? this.width : 0)
         .fillColor(this.checked ? $r('app.color.text_color_check') : $r('app.color.text_color')) // 根据状态切换颜色
+        .draggable(false)
       Text(this.label)
         .fontColor(this.checked ? $r('app.color.text_color_check') : $r('app.color.text_color'))
         .fontSize(this.label === '' ? 0 : this.fontSize)
