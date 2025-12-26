@@ -41,7 +41,7 @@ export struct OutputButton {
     .backgroundColor(Color.Transparent)
     .shadow({
       radius: 15,
-      color:  ColoringStrategy.AVERAGE, //  $r('app.color.shadow_color'),
+      color:  ColoringStrategy.AVERAGE,
       fill: false,
       offsetX: 5,
       offsetY: 6

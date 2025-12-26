@@ -19,7 +19,7 @@ export struct HomeComponent {
           NormalButton({
             label: item.buttonName,
             icon: item.buttonIcon,
-            buttonColor: item.buttonColor,
+            buttonColor2: item.buttonColor? item.buttonColor: $r('app.color.button_light'),
             fontSize: 30,
             checked: this.crestronClient.channelDArray[item.buttonId],
             onTouchAction: (event: TouchEvent) => {

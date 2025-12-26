@@ -38,7 +38,7 @@ export struct RoundButton {
       })
       .shadow({
         radius: this.checked ? 8 : 15,
-        color:  ColoringStrategy.AVERAGE, //  $r('app.color.shadow_color'),
+        color:  ColoringStrategy.AVERAGE,
         fill: false,
         offsetX: this.checked ? 2 : 5,
         offsetY: this.checked ? 3 : 6

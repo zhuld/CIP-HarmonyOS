@@ -14,36 +14,39 @@
     },
 
     {
-      "name": "button_checked_light",
-      "value": "#FFEE7549"
+      "name": "button_checked",
+      "value": "#FF995C29"
     },
     {
-      "name": "button_checked",
-      "value": "#FFD94F1C"
+      "name": "button_checked_light",
+      "value": "#FFE68040"
+    },
+
+    {
+      "name": "button",
+      "value": "#FF284F80"
     },
     {
       "name": "button_light",
-      "value": "#FF3C9AE3"
+      "value": "#FF4C8ED9"
     },
+
     {
-      "name": "button",
-      "value": "#FF085894"
+      "name": "tab_button",
+      "value": "#FF999999"
     },
     {
       "name": "tab_button_light",
-      "value": "#FFDEDEDE"
+      "value": "#FFCCCCCC"
     },
-    {
-      "name": "tab_button",
-      "value": "#FF919090"
-    },
+
     {
       "name": "text_color_check",
-      "value": "#F0DAE1E9"
+      "value": "#FFCCCCCC"
     },
     {
       "name": "text_color",
-      "value": "#ff02082f"
+      "value": "#FF262626"
     },
     {
       "name": "subTitle_color",
