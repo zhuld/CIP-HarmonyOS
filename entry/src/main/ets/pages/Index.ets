@@ -151,7 +151,7 @@ struct Index {
       })
         .width('100%')
         .layoutWeight(1)
-      Row() {
+      Row({space:20}) {
         // [Start Side_tab_list]
         // 创建分类列表，用于显示页面选项，并通过Scroller实现滚动功能
         List({ scroller: this.tabScroller }) {
@@ -168,16 +168,11 @@ struct Index {
                 }
               }
             })
-              .padding({
-                left: 10,
-                right: 30,
-                bottom: 20,
-                top: 10
-              })
+              .padding(10)
           },)
         }
         .height('100%')
-        .width('14%')
+        .width('13%')
         .scrollBar(BarState.Off)
 
         //内容
@@ -198,7 +193,7 @@ struct Index {
         .enableScrollInteraction(false)
         .scrollBar(BarState.Off)
         .height('100%')
-        .width('86%')
+        .width('85%')
         .onScrollStart(() => {
           this.contentScroller.scrollToIndex(this.currentPage)
         })
