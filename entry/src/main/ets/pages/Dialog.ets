@@ -1,4 +1,4 @@
-import { NormalButton } from "../view/NormalButton";
+import { NormalButton } from "../components/NormalButton";
 
 @CustomDialog
 export struct ConfirmDialog{

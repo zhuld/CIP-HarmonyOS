@@ -1,4 +1,4 @@
-import { Category } from "../view/Category"
+import { Category } from "../components/Category"
 
 @ComponentV2
 export struct ConnectComponent{

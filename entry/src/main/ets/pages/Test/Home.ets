@@ -1,8 +1,8 @@
 import { CrestronClient } from "../../crestron/CrestronClient";
-import { ButtonModel } from "../../model/Models";
-import { Category } from "../../view/Category";
-import { NormalButton } from "../../view/NormalButton";
-import { RoundButton } from "../../view/RoundButton";
+import { ButtonModel } from "../../models/Models";
+import { Category } from "../../components/Category";
+import { NormalButton } from "../../components/NormalButton";
+import { RoundButton } from "../../components/RoundButton";
 import { testHome1, testHome2 } from "./Config";
 
 @ComponentV2

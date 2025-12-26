@@ -1,7 +1,7 @@
 import { CrestronClient } from '../../crestron/CrestronClient'
-import { VolumeModel } from '../../model/Models'
-import { Category } from '../../view/Category'
-import { VolumeBar } from '../../view/VolumeBar'
+import { VolumeModel } from '../../models/Models'
+import { Category } from '../../components/Category'
+import { VolumeBar } from '../../components/VolumeBar'
 import { testVolumeInput, testVolumeOutput } from './Config'
 
 @ComponentV2

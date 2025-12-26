@@ -1,8 +1,8 @@
 import { CrestronClient } from "../../crestron/CrestronClient";
-import { ButtonModel } from "../../model/Models";
-import { Category } from "../../view/Category";
-import { RoundButton } from "../../view/RoundButton";
-import { SquareButton } from "../../view/SquareButton";
+import { ButtonModel } from "../../models/Models";
+import { Category } from "../../components/Category";
+import { RoundButton } from "../../components/RoundButton";
+import { SquareButton } from "../../components/SquareButton";
 import { testCamera, testPosition } from "./Config";
 
 @ComponentV2

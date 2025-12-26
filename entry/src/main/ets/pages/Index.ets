@@ -23,8 +23,8 @@ import { VideoComponent } from './Test/Video';
 import { ConnectComponent } from './Connect'
 import { Video2Component } from './Test/Video2';
 import { HomeComponent } from './Test/Home';
-import { PageModel } from '../model/Models';
-import { TabButton } from '../view/TabButton';
+import { PageModel } from '../models/Models';
+import { TabButton } from '../components/TabButton';
 import { pages, prefName } from './Test/Config';
 import { Head } from './Head';
 import { CrestronClient, JoinType } from '../crestron/CrestronClient';

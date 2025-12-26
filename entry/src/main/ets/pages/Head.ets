@@ -1,5 +1,5 @@
-import { BatteryStatusComponent } from "../view/Battery";
-import { IconButton } from "../view/IconButton";
+import { BatteryStatusComponent } from "../components/Battery";
+import { IconButton } from "../components/IconButton";
 
 @ComponentV2
 export struct Head {

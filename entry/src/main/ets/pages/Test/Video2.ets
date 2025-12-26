@@ -1,8 +1,8 @@
 import { CrestronClient } from '../../crestron/CrestronClient';
-import { ButtonModel } from '../../model/Models'
-import { Category } from '../../view/Category';
-import { InputButton } from '../../view/InputButton';
-import { OutputButton } from '../../view/OutputButton';
+import { ButtonModel } from '../../models/Models'
+import { Category } from '../../components/Category';
+import { InputButton } from '../../components/InputButton';
+import { OutputButton } from '../../components/OutputButton';
 import { animationDuration, testVideoInput, testVideoOutput  } from './Config'
 
 @ComponentV2

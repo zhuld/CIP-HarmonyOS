@@ -1,4 +1,4 @@
-import { ButtonModel, Buttons, PageModel, Pages, VolumeModel, Volumes } from "../../model/Models";
+import { ButtonModel, Buttons, PageModel, Pages, VolumeModel, Volumes } from "../../models/Models";
 
 //全局常量定义
 export const gradientAngle: number = 330; //渐变色角度
