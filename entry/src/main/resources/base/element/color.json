@@ -6,16 +6,16 @@
     },
     {
       "name": "catalog_background_1",
-      "value": "#BBFFFFFF"
+      "value": "#deebfe"
     },
     {
       "name": "catalog_background_2",
-      "value": "#BB888888"
+      "value": "#FFA8B1BF"
     },
 
     {
       "name": "button_checked",
-      "value": "#FF995C29"
+      "value": "#FFB36332"
     },
     {
       "name": "button_checked_light",
@@ -23,21 +23,12 @@
     },
 
     {
-      "name": "button",
-      "value": "#FF284F80"
-    },
-    {
       "name": "button_light",
-      "value": "#FF4C8ED9"
-    },
-
-    {
-      "name": "tab_button",
-      "value": "#FF999999"
+      "value": "#FF4194bf"
     },
     {
-      "name": "tab_button_light",
-      "value": "#FFCCCCCC"
+      "name": "button",
+      "value": "#FF55BEF2"
     },
 
     {
@@ -58,11 +49,11 @@
     },
     {
       "name": "background_1",
-      "value": "#FFBFC89E"
+      "value": "#bed1ef"
     },
     {
       "name": "background_2",
-      "value": "#88BFC89E"
+      "value": "#FFA1B2CC"
     },
     {
       "name": "input_color_1",

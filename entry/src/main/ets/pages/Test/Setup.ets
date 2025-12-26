@@ -45,19 +45,26 @@ export struct SetupComponent {
   }
 
   build() {
-    // HelloComponent自定义组件组合系统组件Row和Text
     Row({ space: 30 }) {
       Category({
         title: testSetup.title, // 动态绑定标题
         subTitle: testSetup.subTitle,
         icon: testSetup.icon,
+        checkButton: testSetup.checkId ? true : false,
+        checked: this.crestronClient.channelDArray[testSetup.checkId],
         contentBuilder: () => {
           this.SetupContent(testSetup.buttonList, 2)
-        }
+        },
+        onTouchAction: (event: TouchEvent) => {
+          if (event.type === TouchType.Down) {
+            this.crestronClient?.push(testSetup.checkId)
+          } else if (event.type === TouchType.Up) {
+            this.crestronClient?.release(testSetup.checkId)
+          }
+        },
       })
         .width('60%')
     }
-
     .margin({ bottom: 10, right: 10, left: 2 })
   }
 }

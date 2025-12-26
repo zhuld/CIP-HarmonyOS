@@ -21,7 +21,7 @@ export const testHome1: Buttons = new Buttons('' +
   '系统开关','长按2秒',
   $r('app.media.setup'),
   [
-    new ButtonModel(11, '普通会议', $r('app.media.home'), $r('sys.color.confirm')),
+    new ButtonModel(11, '普通会议', $r('app.media.home')),
     new ButtonModel(12, '视频会议', $r('app.media.camera'), $r('sys.color.confirm')),
     new ButtonModel(13, '系统关机', $r('app.media.onoff'), $r('sys.color.warning')),
   ]

@@ -1,7 +1,7 @@
 import { gradientAngle } from "../pages/Test/Config"
 
 export const inputColor : Array<ResourceColor> = [
-  $r('app.color.tab_button'),
+  $r('app.color.catalog_background_2'),
   $r('app.color.input_color_1'),
   $r('app.color.input_color_2'),
   $r('app.color.input_color_3'),
@@ -34,7 +34,7 @@ export struct OutputButton {
     .linearGradient({
       angle: gradientAngle,
       colors:
-      [ [$r('app.color.tab_button_light'), 0.1],
+      [ [$r('app.color.catalog_background_1'), 0.1],
         [inputColor[this.foreColor], 1.0] ]
     })
     .size({ width: '100%', height: '100%'})
