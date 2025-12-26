@@ -3,6 +3,7 @@ import { common } from '@kit.AbilityKit';
 import { MyButton } from '../components/MyButton';
 import { prefName } from './Test/Config';
 
+@Preview
 @Entry
 @ComponentV2
 struct Config {
@@ -159,6 +160,8 @@ struct Config {
             Toggle({ type: ToggleType.Switch, isOn: this.showDebug })
               .height(32)
               .width(55)
+              .switchPointColor($r('app.color.button_light'))
+              .selectedColor($r('app.color.button_checked_light'))
               .onClick(() =>{
                 this.showDebug = !this.showDebug
               })
