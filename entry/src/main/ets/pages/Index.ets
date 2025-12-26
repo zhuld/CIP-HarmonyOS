@@ -50,7 +50,7 @@ struct Index {
   private lastPage: number = 0
   dialogProcess: CustomDialogController = new CustomDialogController({
     builder: ProcessDialog({
-      title: '执行中，请稍后',
+      title: '指令执行中，请稍后',
     }),
     alignment: DialogAlignment.Center,
     autoCancel: false,
@@ -172,7 +172,7 @@ struct Index {
           },)
         }
         .height('100%')
-        .width('13%')
+        .width('12%')
         .scrollBar(BarState.Off)
 
         //内容
@@ -193,7 +193,7 @@ struct Index {
         .enableScrollInteraction(false)
         .scrollBar(BarState.Off)
         .height('100%')
-        .width('85%')
+        .width('86%')
         .onScrollStart(() => {
           this.contentScroller.scrollToIndex(this.currentPage)
         })

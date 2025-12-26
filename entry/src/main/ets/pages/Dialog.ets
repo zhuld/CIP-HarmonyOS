@@ -2,7 +2,7 @@ import { NormalButton } from "../components/NormalButton";
 
 @CustomDialog
 export struct ConfirmDialog{
-  controller: CustomDialogController;
+  private controller: CustomDialogController;
   @Prop title: string;
   @Prop message: string;
 
@@ -16,6 +16,7 @@ export struct ConfirmDialog{
         Image($r('app.media.notice'))
           .layoutWeight(1)
           .fillColor($r('app.color.text_color'))
+          .draggable(false)
         Text(this.message)
           .fontSize(26)
           .layoutWeight(6)
@@ -32,7 +33,6 @@ export struct ConfirmDialog{
         })
           .onClick(() => {
             this.controller.close();
-            // 执行取消回调
           })
           .layoutWeight(1)
 
@@ -42,7 +42,6 @@ export struct ConfirmDialog{
         })
           .onClick(() => {
             this.controller.close();
-            // 执行确认回调
           })
           .layoutWeight(1)
       }
@@ -67,10 +66,9 @@ export struct ConfirmDialog{
   }
 }
 
-
 @CustomDialog
 export struct ProcessDialog {
-  controller: CustomDialogController;
+  private controller: CustomDialogController;
   @Prop title: string;
 
   build() {
