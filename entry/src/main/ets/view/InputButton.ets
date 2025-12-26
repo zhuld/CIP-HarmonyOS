@@ -1,4 +1,4 @@
-import { animationDuration, gradientAngle } from "../pages/global"
+import { animationDuration, gradientAngle } from "../pages/Test/Config"
 
 @ComponentV2
 export struct InputButton {

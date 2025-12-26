@@ -1,6 +1,7 @@
 import { preferences } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';
 import { MyButton } from '../view/MyButton';
+import { prefName } from './Test/Config';
 
 @Entry
 @ComponentV2
@@ -8,13 +9,12 @@ struct Config {
   @Local ipAddress: string = '192.168.1.1';
   @Local port: number = 8080;
   @Local ipId: number = 3;
-  readonly prefName: string = 'network_settings';
-  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @Local isIpAddress: boolean = true;
   @Local isPort: boolean = true;
   @Local isId: boolean = true;
   @Local showDebug: boolean = false;
   @Local info: string = '系统设置，请勿随意修改';
+  private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
   aboutToAppear() {
     this.loadSettings();
@@ -23,7 +23,7 @@ struct Config {
   // 加载已保存的设置
   private async loadSettings() {
     try {
-      const pref = await preferences.getPreferences(this.context, this.prefName);
+      const pref = await preferences.getPreferences(this.context, prefName);
       this.ipAddress = await pref.get('ip', '192.168.1.10') as string;
       this.port = await pref.get('port', 41794) as number;
       this.ipId = await pref.get('ipId', 3) as number;
@@ -49,7 +49,7 @@ struct Config {
     }
     this.info = '系统设置，请勿随意修改'
     try {
-      const pref = await preferences.getPreferences(this.context, this.prefName);
+      const pref = await preferences.getPreferences(this.context, prefName);
       await pref.put('ip', this.ipAddress);
       await pref.put('port', this.port);
       await pref.put('ipId', this.ipId);

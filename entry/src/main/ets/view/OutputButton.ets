@@ -1,4 +1,4 @@
-import { gradientAngle } from "../pages/global"
+import { gradientAngle } from "../pages/Test/Config"
 
 export const inputColor : Array<ResourceColor> = [
   $r('app.color.tab_button'),

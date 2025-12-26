@@ -25,11 +25,10 @@ import { Video2Component } from './Test/Video2';
 import { HomeComponent } from './Test/Home';
 import { PageModel } from '../model/Models';
 import { TabButton } from '../view/TabButton';
-import { pages } from './Test/Config';
+import { pages, prefName } from './Test/Config';
 import { Head } from './Head';
 import { CrestronClient, JoinType } from '../crestron/CrestronClient';
 import { ProcessDialog } from './Dialog';
-
 
 @Entry
 @ComponentV2
@@ -40,7 +39,6 @@ struct Index {
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
   @Local crestronClient: CrestronClient = new CrestronClient();
   private connectTimer: number = 0;
-  readonly prefName: string = 'network_settings';
   @Local serverIP: string = '192.168.2.105';
   @Local serverPort: number = 41794;
   @Local cipId: number = 3
@@ -121,7 +119,7 @@ struct Index {
 
   private async loadPreferences() {
     try {
-      const pref = await preferences.getPreferences(this.context, this.prefName);
+      const pref = await preferences.getPreferences(this.context, prefName);
       this.serverIP = await pref.get('ip', '192.168.1.10') as string;
       this.serverPort = await pref.get('port', 41794) as number;
       this.cipId = await pref.get('ipId', 3) as number;

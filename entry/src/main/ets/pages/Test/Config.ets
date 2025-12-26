@@ -1,5 +1,10 @@
 import { ButtonModel, Buttons, PageModel, Pages, VolumeModel, Volumes } from "../../model/Models";
 
+//全局常量定义
+export const gradientAngle: number = 330; //渐变色角度
+export const animationDuration: number = 50; //动画时间
+export const prefName: string = 'network_settings'; //属性
+
 export const pages: Pages = new Pages(
   'HarmonyOS-控制面板',
   [

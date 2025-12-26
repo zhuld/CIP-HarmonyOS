@@ -3,8 +3,7 @@ import { ButtonModel } from '../../model/Models'
 import { Category } from '../../view/Category';
 import { InputButton } from '../../view/InputButton';
 import { OutputButton } from '../../view/OutputButton';
-import { animationDuration } from '../global';
-import { testVideoInput, testVideoOutput  } from './Config'
+import { animationDuration, testVideoInput, testVideoOutput  } from './Config'
 
 @ComponentV2
 export struct Video2Component {
