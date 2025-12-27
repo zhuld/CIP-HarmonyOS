@@ -2,7 +2,79 @@
   "color": [
     {
       "name": "start_window_background",
-      "value": "#000000"
+      "value": "#FF000000"
+    },
+    {
+      "name": "catalog_background_1",
+      "value": "#FF333435"
+    },
+    {
+      "name": "catalog_background_2",
+      "value": "#FF15151F"
+    },
+    {
+      "name": "button_checked",
+      "value": "#FFB36332"
+    },
+    {
+      "name": "button_checked_light",
+      "value": "#FFE68040"
+    },
+    {
+      "name": "button_light",
+      "value": "#FF04304C"
+    },
+    {
+      "name": "button",
+      "value": "#FF075180"
+    },
+    {
+      "name": "text_color_check",
+      "value": "#FFE6E6E6"
+    },
+    {
+      "name": "text_color",
+      "value": "#FFACAFC6"
+    },
+    {
+      "name": "background_1",
+      "value": "#FF1A1818"
+    },
+    {
+      "name": "background_2",
+      "value": "#FF2D2929"
+    },
+    {
+      "name": "input_color_1",
+      "value": "#4286f4"
+    },
+    {
+      "name": "input_color_2",
+      "value": "#f5af19"
+    },
+    {
+      "name": "input_color_3",
+      "value": "#f953c6"
+    },
+    {
+      "name": "input_color_4",
+      "value": "#ff4b2b"
+    },
+    {
+      "name": "input_color_5",
+      "value": "#96c93d"
+    },
+    {
+      "name": "input_color_6",
+      "value": "#6dd5ed"
+    },
+    {
+      "name": "input_color_7",
+      "value": "#2e8b57"
+    },
+    {
+      "name": "input_color_8",
+      "value": "#a0522d"
     }
   ]
 }
