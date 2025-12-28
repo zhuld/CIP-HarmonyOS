@@ -6,11 +6,15 @@
     },
     {
       "name": "catalog_background_1",
-      "value": "#deebfe"
+      "value": "#FFdeebfe"
     },
     {
       "name": "catalog_background_2",
       "value": "#FFA8B1BF"
+    },
+    {
+      "name": "shadow",
+      "value": "#FF43474D"
     },
     {
       "name": "button_checked",
@@ -26,7 +30,7 @@
     },
     {
       "name": "button",
-      "value": "#FFBDDCEF"
+      "value": "#FFADCED9"
     },
     {
       "name": "text_color_check",
@@ -58,7 +62,7 @@
     },
     {
       "name": "input_color_4",
-      "value": "#ff4b2b"
+      "value": "#FFEF2020"
     },
     {
       "name": "input_color_5",
@@ -70,11 +74,11 @@
     },
     {
       "name": "input_color_7",
-      "value": "#2e8b57"
+      "value": "#FF217245"
     },
     {
       "name": "input_color_8",
-      "value": "#a0522d"
+      "value": "#FFC3430F"
     }
   ]
 }

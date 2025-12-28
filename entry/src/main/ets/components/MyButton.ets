@@ -46,7 +46,7 @@ export struct MyButton {
     })
     .shadow({
       radius: this.checked ? 8 : 15,
-      color:  ColoringStrategy.AVERAGE,
+      color: $r('app.color.shadow'),
       fill: false,
       offsetX: this.checked ? 2 : 5,
       offsetY: this.checked ? 3 : 6

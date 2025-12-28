@@ -52,10 +52,10 @@ export struct CameraComponent {
           .width(160)
           .height(10)
           .margin(10)
-          .fill($r('app.color.catalog_background_2'))
+          .fill($r('app.color.button_light'))
           .shadow({
             radius: 5,
-            color: ColoringStrategy.AVERAGE,
+            color: $r('app.color.shadow'),
             offsetX: 5,
             offsetY: 5,
           })

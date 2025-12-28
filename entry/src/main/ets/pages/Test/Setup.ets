@@ -3,6 +3,7 @@ import { ButtonModel } from '../../models/Models'
 import { Category } from '../../components/Category';
 import { NormalButton } from '../../components/NormalButton';
 import { testSetup } from './Config'
+import { RoundButton } from '../../components/RoundButton';
 
 @ComponentV2
 export struct SetupComponent {
@@ -12,7 +13,7 @@ export struct SetupComponent {
   SetupContent(buttonList: ButtonModel[], columns: number) {
     GridRow({
       columns: columns,
-      gutter: { x: 40, y: 40 }
+      gutter: { x: 120, y: 40 }
     }) {
       ForEach(buttonList, (item: ButtonModel, index?: number) => {
         if (index !== undefined) {
@@ -24,7 +25,7 @@ export struct SetupComponent {
             }
           } else {
             GridCol({ span: 1 }) {
-              NormalButton({
+              RoundButton({
                 label: item.buttonName,
                 icon: item.buttonIcon,
                 fontSize: 30,
@@ -36,12 +37,12 @@ export struct SetupComponent {
                     this.crestronClient?.release(item.buttonId)
                   }
                 }
-              }).height(80)
+              })//.height(80)
             }
           }
         }
       }, (item: ButtonModel) => item.buttonId.toString())
-    }.padding({ right: 20, left: 20 })
+    }.padding({ right: 40, left: 40 })
   }
 
   build() {
@@ -63,7 +64,7 @@ export struct SetupComponent {
           }
         },
       })
-        .width('60%')
+        .width('50%')
     }
     .margin({ bottom: 10, right: 10, left: 2 })
   }
