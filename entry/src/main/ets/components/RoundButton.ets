@@ -1,4 +1,4 @@
-import { animationDuration, gradientAngle } from "../pages/Test/Config"
+import { animationDuration, gradientAngle, shadowRadius } from "../pages/Test/Config"
 
 @ComponentV2
 export struct RoundButton {
@@ -38,11 +38,11 @@ export struct RoundButton {
             [this.buttonColor, 1.0]]
       })
       .shadow({
-        radius: this.checked ? 8 : 15,
+        radius: shadowRadius,
         color: $r('app.color.shadow'),
         fill: false,
-        offsetX: this.checked ? 2 : 5,
-        offsetY: this.checked ? 3 : 6
+        offsetX: this.checked ? 0 : 5,
+        offsetY: this.checked ? 0 : 6
       })
       .margin({
         top: this.checked ? 3 : 0,

@@ -1,3 +1,4 @@
+import { shadowRadius } from "../pages/Test/Config";
 import { SquareButton } from "./SquareButton";
 
 @ComponentV2
@@ -83,7 +84,7 @@ export struct Category {
       ]
     })
     .shadow({
-      radius: 15,
+      radius: shadowRadius,
       color: $r('app.color.shadow'),
       fill: false,
       offsetX: 10,

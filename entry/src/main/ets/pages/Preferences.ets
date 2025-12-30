@@ -160,7 +160,7 @@ struct Config {
             Toggle({ type: ToggleType.Switch, isOn: this.showDebug })
               .height(32)
               .width(55)
-              .switchPointColor($r('app.color.button_light'))
+              .switchPointColor(this.showDebug? $r('app.color.button_light'): $r('app.color.button'))
               .selectedColor($r('app.color.button_checked_light'))
               .onClick(() =>{
                 this.showDebug = !this.showDebug

@@ -1,4 +1,4 @@
-import { animationDuration, gradientAngle } from "../pages/Test/Config"
+import { animationDuration, gradientAngle, shadowRadius } from "../pages/Test/Config"
 
 @ComponentV2
 export struct MyButton {
@@ -29,7 +29,7 @@ export struct MyButton {
       }
     })
     .justifyContent(FlexAlign.Center)
-    .borderRadius("5%")
+    .borderRadius(15)
     .linearGradient({
       angle: gradientAngle,
       colors: this.checked ?
@@ -45,11 +45,11 @@ export struct MyButton {
       left: this.checked ? 3 : 0
     })
     .shadow({
-      radius: this.checked ? 8 : 15,
+      radius: shadowRadius,
       color: $r('app.color.shadow'),
       fill: false,
-      offsetX: this.checked ? 2 : 5,
-      offsetY: this.checked ? 3 : 6
+      offsetX: this.checked ? 0 : 5,
+      offsetY: this.checked ? 0 : 6
     })
     .animation({
       duration: animationDuration,

@@ -4,6 +4,7 @@ import { ButtonModel, Buttons, PageModel, Pages, VolumeModel, Volumes } from "..
 export const gradientAngle: number = 330; //渐变色角度
 export const animationDuration: number = 50; //动画时间
 export const prefName: string = 'network_settings'; //属性
+export const shadowRadius: number = 15; //阴影的大小
 
 export const pages: Pages = new Pages(
   'HarmonyOS-控制面板',
@@ -141,3 +142,15 @@ export const testSetup: Buttons = new Buttons(
     new ButtonModel(84, $r('app.string.off'),$r('app.media.onoff')),
   ]
 )
+
+export const inputColor : Array<ResourceColor> = [
+  $r('app.color.catalog_background_2'),
+  $r('app.color.input_color_1'),
+  $r('app.color.input_color_2'),
+  $r('app.color.input_color_3'),
+  $r('app.color.input_color_4'),
+  $r('app.color.input_color_5'),
+  $r('app.color.input_color_6'),
+  $r('app.color.input_color_7'),
+  $r('app.color.input_color_8'),
+]

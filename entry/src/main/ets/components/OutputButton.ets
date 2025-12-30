@@ -1,16 +1,5 @@
-import { gradientAngle } from "../pages/Test/Config"
+import { gradientAngle, inputColor } from "../pages/Test/Config"
 
-export const inputColor : Array<ResourceColor> = [
-  $r('app.color.catalog_background_2'),
-  $r('app.color.input_color_1'),
-  $r('app.color.input_color_2'),
-  $r('app.color.input_color_3'),
-  $r('app.color.input_color_4'),
-  $r('app.color.input_color_5'),
-  $r('app.color.input_color_6'),
-  $r('app.color.input_color_7'),
-  $r('app.color.input_color_8'),
-]
 @ComponentV2
 export struct OutputButton {
   @Param label: string | Resource | undefined = undefined
@@ -19,7 +8,7 @@ export struct OutputButton {
   @Param foreColor: number = 0
 
   build() {
-    Row({space:this.icon? 10:0}) {
+    Row({ space: this.icon ? 10 : 0 }) {
       Image(this.icon)
         .height(this.icon ? '60%' : 0)
         .aspectRatio(1)
@@ -31,21 +20,21 @@ export struct OutputButton {
         .fontSize(this.fontSize)
     }
     .justifyContent(FlexAlign.Center)
-    .borderRadius("5%")
+    .borderRadius(15)
     .linearGradient({
       angle: gradientAngle,
       colors:
-      [ [$r('app.color.catalog_background_1'), 0.1],
-        [inputColor[this.foreColor], 1.0] ]
+      [[$r('app.color.catalog_background_1'), 0.1],
+        [$r('app.color.catalog_background_2'), 1.0]]
     })
-    .size({ width: '100%', height: '100%'})
+    .size({ width: '100%', height: '100%' })
     .backgroundColor(Color.Transparent)
     .shadow({
-      radius: 15,
-      color: $r('app.color.shadow'),
+      radius: 60,
+      color: inputColor[this.foreColor],
       fill: false,
-      offsetX: 5,
-      offsetY: 6
+      offsetX: 0,
+      offsetY: 0
     })
   }
 }
