@@ -8,7 +8,6 @@ export struct  VolumeBar {
   @Param value: number = 0
   @Param checked: boolean = false
   private lastValue: number = 0
-  @Local pressed: boolean = false
   @Event onMuteAction?: (event: TouchEvent) => void
   @Event onVolumeChanged?: (value: number) => void
 
@@ -33,11 +32,11 @@ export struct  VolumeBar {
         reverse: true,
       })
         .layoutWeight(10)
-        .blockColor(this.pressed ? $r('app.color.button_checked') : $r('app.color.button'))
+        .blockColor( $r('app.color.button_light'))
         .trackThickness(10) // 设置滑动条粗细为10
         .trackColor($r('app.color.catalog_background_2'))
         .selectedColor($r('app.color.button_checked_light'))
-        .showSteps(true)
+        .stepSize(1)
         .minResponsiveDistance(1)
         .onChange((value: number) => {
           if (this.lastValue !== value) {

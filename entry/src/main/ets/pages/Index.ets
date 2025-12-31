@@ -48,7 +48,7 @@ struct Index {
   @Local messageR: string = ''
   private isDialogOpened: boolean = false
   private lastPage: number = 0
-  dialogProcess: CustomDialogController = new CustomDialogController({
+  private dialogProcess: CustomDialogController = new CustomDialogController({
     builder: ProcessDialog({
       title: '指令执行中，请稍后',
     }),

@@ -10,13 +10,13 @@ export struct CameraComponent {
   @Param @Require  crestronClient: CrestronClient
 
   @Builder
-  CameraContent(buttonList: ButtonModel[], columns: number) {
+  CameraContent(buttonList: ButtonModel[]) {
     GridRow({
-      columns: columns,
+      columns: 3,
       gutter: { x: 10, y: -30 }
     }) {
       ForEach(buttonList, (item: ButtonModel, index?: number) => {
-        GridCol({ span: 1 }) {
+        GridCol() {
           if (index !== undefined) {
             if (buttonList[index].buttonId === 0) {
               Text(``)
@@ -42,9 +42,9 @@ export struct CameraComponent {
   }
 
   @Builder
-  PositionContent(buttonList: ButtonModel[], columns: number) {
+  PositionContent(buttonList: ButtonModel[]) {
     GridRow({
-      columns: columns,
+      columns: 2,
       gutter: { x: 120, y: 20 }
     }) {
       GridCol({ span: 2 }) {
@@ -87,7 +87,7 @@ export struct CameraComponent {
       Category({
         title: testCamera.title, // 动态绑定标题
         contentBuilder: () => {
-          this.CameraContent(testCamera.buttonList, 3)
+          this.CameraContent(testCamera.buttonList)
         }
       })
         .layoutWeight(1)
@@ -105,7 +105,7 @@ export struct CameraComponent {
           }
         },
         contentBuilder: () => {
-          this.PositionContent(testPosition.buttonList, 2)
+          this.PositionContent(testPosition.buttonList)
         } // 动态绑定内容
       })
         .layoutWeight(1)
