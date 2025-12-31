@@ -44,7 +44,7 @@ export struct Video2Component {
   OutputContent(outputList: ButtonModel[], columns: number) {
     GridRow({
       columns: columns,
-      gutter: { x: 40, y: 25 }
+      gutter: { x: 40, y: 35 }
     }) {
       ForEach(outputList, (item: ButtonModel, index?: number) => {
         GridCol({ span: 1 }) {
@@ -74,7 +74,7 @@ export struct Video2Component {
               .onDragLeave(() => {
                 this.scaleValue[index] = 1.0
               })
-              .height(80)
+              .height(70)
           }
         }
       }, (item: ButtonModel) => item.buttonId.toString())
