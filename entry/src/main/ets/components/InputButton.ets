@@ -11,7 +11,7 @@ export struct InputButton {
   @Event onDragAction?:(start: boolean) => void
 
   build() {
-    Row({space:this.icon? 10:0}) {
+    Row({ space: this.icon ? 10 : 0 }) {
       Image(this.icon)
         .height(this.icon ? '60%' : 0)
         .aspectRatio(1)
@@ -28,10 +28,10 @@ export struct InputButton {
     .linearGradient({
       angle: gradientAngle,
       colors:
-      [ [$r('app.color.catalog_background_1'), 0.1],
-        [this.foreColor, 1.0] ]
+      [[$r('app.color.catalog_background_1'), 0.1],
+        [this.foreColor, 1.0]]
     })
-    .size({ width: '100%', height: '100%'})
+    .size({ width: '100%', height: '100%' })
     .backgroundColor(Color.Transparent)
     .margin({
       top: this.checked ? 3 : 0,
@@ -58,16 +58,40 @@ export struct InputButton {
     })
     .draggable(true)
     .onDragStart(() => {
-      if(this.onDragAction){
+      if (this.onDragAction) {
         this.onDragAction(true)
         this.opacityValue = 0.2
       }
     })
     .onDragEnd(() => {
-      if(this.onDragAction){
+      if (this.onDragAction) {
         this.onDragAction(false)
         this.opacityValue = 1
       }
     })
+  }
+  @Builder
+  pixelMapBuilder() {
+    Row({ space: this.icon ? 10 : 0 }) {
+      Image(this.icon)
+        .height(this.icon ? '60%' : 0)
+        .aspectRatio(1)
+        .fillColor($r('app.color.text_color')) // 根据状态切换颜色
+        .draggable(false)
+      Text(this.label)
+        .fontColor($r('app.color.text_color'))
+        .maxLines(1)
+        .fontSize(this.fontSize)
+    }
+    .justifyContent(FlexAlign.Center)
+    .borderRadius(15)
+    .linearGradient({
+      angle: gradientAngle,
+      colors:
+      [[$r('app.color.catalog_background_1'), 0.1],
+        [this.foreColor, 1.0]]
+    })
+    .backgroundColor(Color.Transparent)
+    .size({width:300, height:100})
   }
 }

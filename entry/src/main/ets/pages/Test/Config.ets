@@ -47,14 +47,14 @@ export const testVideoInput: Buttons = new Buttons(
   '拖拽输入信号到输出设备',
   $r('app.media.input'),
   [
-    new ButtonModel(31, '演讲台',undefined,$r('app.color.input_color_1')),
-    new ButtonModel(32, '地插',undefined,$r('app.color.input_color_2')),
-    new ButtonModel(33, '墙插',undefined,$r('app.color.input_color_3')),
-    new ButtonModel(34, '无线投屏',undefined,$r('app.color.input_color_4')),
-    new ButtonModel(35, '电脑',undefined,$r('app.color.input_color_5')),
+    new ButtonModel(31, '演讲台',$r('app.media.platform'),$r('app.color.input_color_1')),
+    new ButtonModel(32, '地插',$r('app.media.HDMI'),$r('app.color.input_color_2')),
+    new ButtonModel(33, '墙插',$r('app.media.HDMI'),$r('app.color.input_color_3')),
+    new ButtonModel(34, '无线投屏',$r('app.media.casting'),$r('app.color.input_color_4')),
+    new ButtonModel(35, '电脑',$r('app.media.computer'),$r('app.color.input_color_5')),
     new ButtonModel(36, '预留',undefined,$r('app.color.input_color_6')),
-    new ButtonModel(37, '地插后',undefined,$r('app.color.input_color_7')),
-    new ButtonModel(38, '墙插后',undefined,$r('app.color.input_color_8')),
+    new ButtonModel(37, '地插后',$r('app.media.HDMI'),$r('app.color.input_color_7')),
+    new ButtonModel(38, '墙插后',$r('app.media.HDMI'),$r('app.color.input_color_8')),
   ]
 )
 
