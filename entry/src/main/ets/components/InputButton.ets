@@ -70,28 +70,4 @@ export struct InputButton {
       }
     })
   }
-  @Builder
-  pixelMapBuilder() {
-    Row({ space: this.icon ? 10 : 0 }) {
-      Image(this.icon)
-        .height(this.icon ? '60%' : 0)
-        .aspectRatio(1)
-        .fillColor($r('app.color.text_color')) // 根据状态切换颜色
-        .draggable(false)
-      Text(this.label)
-        .fontColor($r('app.color.text_color'))
-        .maxLines(1)
-        .fontSize(this.fontSize)
-    }
-    .justifyContent(FlexAlign.Center)
-    .borderRadius(15)
-    .linearGradient({
-      angle: gradientAngle,
-      colors:
-      [[$r('app.color.catalog_background_1'), 0.1],
-        [this.foreColor, 1.0]]
-    })
-    .backgroundColor(Color.Transparent)
-    .size({width:300, height:100})
-  }
 }
