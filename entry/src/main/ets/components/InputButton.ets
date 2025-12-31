@@ -1,4 +1,4 @@
-import { animationDuration, gradientAngle, shadowRadius } from "../pages/Test/Config"
+import { animationDuration, gradientAngle, shadowRadius } from '../pages/Test/Config'
 
 @ComponentV2
 export struct InputButton {
@@ -8,7 +8,7 @@ export struct InputButton {
   @Param foreColor: ResourceColor = $r('app.color.button')
   @Local checked: boolean = false
   @Local opacityValue: number = 1
-  @Event onDragAction?:(start: boolean) => void
+  @Event onDragAction?: (start: boolean) => void
 
   build() {
     Row({ space: this.icon ? 10 : 0 }) {
@@ -24,7 +24,6 @@ export struct InputButton {
     }
     .justifyContent(FlexAlign.Center)
     .borderRadius(15)
-    .clip(true)
     .linearGradient({
       angle: gradientAngle,
       colors:
