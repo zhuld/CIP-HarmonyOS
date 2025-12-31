@@ -29,7 +29,7 @@ export struct SquareButton {
       }
     })
     .justifyContent(FlexAlign.Center)
-    .borderRadius("15%")
+    .borderRadius(15)
     .linearGradient({
       angle: gradientAngle,
       colors: this.checked ?
