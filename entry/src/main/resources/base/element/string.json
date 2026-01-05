@@ -55,6 +55,14 @@
     {
       "name": "project",
       "value": "投影机"
+    },
+    {
+      "name": "colorMode",
+      "value": "浅色模式"
+    },
+    {
+      "name": "processDialog",
+      "value": "指令执行中，请稍后"
     }
   ]
 }

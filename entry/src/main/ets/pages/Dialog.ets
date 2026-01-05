@@ -69,7 +69,7 @@ export struct ConfirmDialog{
 @CustomDialog
 export struct ProcessDialog {
   private controller: CustomDialogController;
-  @Prop title: string;
+  @Prop title: string | Resource;
 
   build() {
     Column() {

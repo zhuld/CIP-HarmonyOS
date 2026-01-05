@@ -52,13 +52,10 @@ export struct CameraComponent {
           .width(160)
           .height(10)
           .margin(10)
-          .fill($r('app.color.button_light'))
-          .shadow({
-            radius: shadowRadius,
-            color: $r('app.color.shadow'),
-            offsetX: shadowRadius,
-            offsetY: shadowRadius,
-          })
+          .fill($r('app.color.button'))
+          .stroke($r('app.color.button_light'))
+          .strokeWidth(1)
+          .radius(2)
       }
 
       ForEach(buttonList, (item: ButtonModel,index:number) => {

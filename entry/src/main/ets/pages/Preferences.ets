@@ -1,5 +1,5 @@
 import { preferences } from '@kit.ArkData';
-import { common } from '@kit.AbilityKit';
+import { common, ConfigurationConstant } from '@kit.AbilityKit';
 import { MyButton } from '../components/MyButton';
 import { buttonRadius, prefName } from './Test/Config';
 
@@ -14,6 +14,7 @@ struct Config {
   @Local isPort: boolean = true;
   @Local isId: boolean = true;
   @Local showDebug: boolean = false;
+  @Local isDarkMode: boolean = false;
   @Local info: string = '系统设置，请勿随意修改';
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
@@ -29,6 +30,7 @@ struct Config {
       this.port = await pref.get('port', 41794) as number;
       this.ipId = await pref.get('ipId', 3) as number;
       this.showDebug = await pref.get('debug',false) as boolean
+      this.isDarkMode = await pref.get('darkMode', false) as boolean;
     } catch (error) {
       console.error('加载设置失败:', error.message);
     }
@@ -55,6 +57,7 @@ struct Config {
       await pref.put('port', this.port);
       await pref.put('ipId', this.ipId);
       await pref.put('debug',this.showDebug);
+      await pref.put('darkMode',this.isDarkMode);
       await pref.flush();
       return Promise.resolve(true)
     } catch (error) {
@@ -112,10 +115,10 @@ struct Config {
               .fontSize(32)
               .layoutWeight(1)
               .fontColor($r('app.color.text_color'))
-              TextInput({
-                text: this.port.toString(),
-                placeholder: '输入端口号'
-              })
+            TextInput({
+              text: this.port.toString(),
+              placeholder: '输入端口号'
+            })
               .type(InputType.Number)
               .onChange((value: string) => {
                 this.port = Number(value);
@@ -169,10 +172,32 @@ struct Config {
             Toggle({ type: ToggleType.Switch, isOn: this.showDebug })
               .height(32)
               .width(55)
-              .switchPointColor(this.showDebug? $r('app.color.button_light'): $r('app.color.button'))
+              .switchPointColor(this.showDebug ? $r('app.color.button_light') : $r('app.color.button'))
               .selectedColor($r('app.color.button_checked_light'))
-              .onClick(() =>{
+              .onClick(() => {
                 this.showDebug = !this.showDebug
+              })
+          }
+
+          Row() {
+            Text($r('app.string.colorMode'))
+              .fontSize(32)
+              .layoutWeight(1)
+              .fontColor($r('app.color.text_color'))
+            Toggle({ type: ToggleType.Switch, isOn: this.isDarkMode })
+              .height(32)
+              .width(55)
+              .switchPointColor(this.isDarkMode ? $r('app.color.button_light') : $r('app.color.button'))
+              .selectedColor($r('app.color.button_checked_light'))
+              .onClick(() => {
+                this.isDarkMode = !this.isDarkMode;
+                try {
+                  this.context.getApplicationContext()
+                    .setColorMode(this.isDarkMode ? ConfigurationConstant.ColorMode.COLOR_MODE_DARK
+                      : ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
+                } catch (error) {
+                  console.error('Failed to set colorMode. Cause: %{public}s', JSON.stringify(error));
+                }
               })
           }
         }

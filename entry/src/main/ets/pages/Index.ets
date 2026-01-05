@@ -1,4 +1,4 @@
-import { common } from '@kit.AbilityKit';
+import { common, ConfigurationConstant } from '@kit.AbilityKit';
 import { preferences } from '@kit.ArkData';
 
 import { CameraComponent } from './Test/Camera';
@@ -19,7 +19,6 @@ import { LengthMetrics } from '@kit.ArkUI';
 @Entry
 @ComponentV2
 struct Index {
-  @Local currentPage: number = 0;
   private tabScroller: Scroller = new Scroller();
   private contentScroller: Scroller = new Scroller();
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
@@ -28,23 +27,35 @@ struct Index {
   private lastPage: number = 0;
   private dialogProcess: CustomDialogController = new CustomDialogController({
     builder: ProcessDialog({
-      title: '指令执行中，请稍后',
+      title: $r('app.string.processDialog'),
     }),
     alignment: DialogAlignment.Center,
     autoCancel: false,
     width: '50%',
     height: '50%',
   });
+  @Local currentPage: number = 0;
   @Local crestronClient: CrestronClient = new CrestronClient();
-  @Local serverIP: string = '192.168.2.105';
+  @Local serverIP: string = '192.168.1.10';
   @Local serverPort: number = 41794;
   @Local cipId: number = 3;
   @Local showDebug: boolean = false;
   @Local isConnected: boolean = false;
+  @Local isDarkMode: boolean = false;
   @Local messageT: string = '';
   @Local messageR: string = '';
 
   async aboutToAppear() {
+    await this.loadPreferences();
+
+    try {
+      this.context.getApplicationContext()
+        .setColorMode(this.isDarkMode ? ConfigurationConstant.ColorMode.COLOR_MODE_DARK
+          : ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
+    } catch (error) {
+      console.error('Failed to set colorMode. Cause: %{public}s', JSON.stringify(error));
+    }
+
     this.connectTimer = setInterval(() => {
       if (this.isConnected) {
         this.crestronClient.ping();
@@ -95,8 +106,6 @@ struct Index {
       }
     })
 
-    await this.loadPreferences();
-
     this.crestronClient.connect(this.serverIP, this.serverPort, this.cipId);
 
     this.contentScroller.scrollToIndex(pages.pageList.length);
@@ -110,6 +119,7 @@ struct Index {
       this.serverPort = await pref.get('port', 41794) as number;
       this.cipId = await pref.get('ipId', 3) as number;
       this.showDebug = await pref.get('debug', false) as boolean;
+      this.isDarkMode = await pref.get('darkMode', false) as boolean;
     } catch (error) {
       console.error('加载设置失败:', error.message);
     }
