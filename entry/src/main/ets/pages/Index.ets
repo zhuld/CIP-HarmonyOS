@@ -1,20 +1,20 @@
 import { common, ConfigurationConstant } from '@kit.AbilityKit';
 import { preferences } from '@kit.ArkData';
+import { LengthMetrics } from '@kit.ArkUI';
 
 import { CameraComponent } from './Test/Camera';
 import { SetupComponent } from './Test/Setup';
 import { SoundComponent } from './Test/Sound';
 import { VideoComponent } from './Test/Video';
-import { ConnectComponent } from './Connect'
 import { Video2Component } from './Test/Video2';
 import { HomeComponent } from './Test/Home';
+import { pages, prefName } from './Test/Config';
+import { ConnectComponent } from './Connect'
 import { PageModel } from '../models/Models';
 import { TabButton } from '../components/TabButton';
-import { pages, prefName } from './Test/Config';
 import { Head } from '../components/Head';
 import { CrestronClient, JoinType } from '../crestron/CrestronClient';
 import { ProcessDialog } from './Dialog';
-import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
