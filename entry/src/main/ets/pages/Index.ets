@@ -28,6 +28,7 @@ struct Index {
   private dialogProcess: CustomDialogController = new CustomDialogController({
     builder: ProcessDialog({
       title: $r('app.string.processDialog'),
+      autoClose:5000,
       onClose: () => {
         this.crestronClient.channelDArray[processID] = false;
         this.isDialogOpened = false
@@ -85,12 +86,12 @@ struct Index {
           this.messageR = value === 1 ? `${channel}:High` : `${channel}:Low`
         }
         if (channel === processID) {
-          if (value === 1 && !this.isDialogOpened) {
-            this.dialogProcess.open()
-            this.isDialogOpened = true
-          } else {
+          if (value === 1 && this.isDialogOpened) {
             this.dialogProcess.close()
             this.isDialogOpened = false
+          } else {
+            this.dialogProcess.open()
+            this.isDialogOpened = true
           }
         }
       } else if (joinType === JoinType.Analog) {
