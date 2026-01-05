@@ -69,7 +69,28 @@ export struct ConfirmDialog{
 @CustomDialog
 export struct ProcessDialog {
   private controller: CustomDialogController;
+  private timerID: number = -1 // 保存定时器ID用于清理
   @Prop title: string | Resource;
+  @Prop autoClose: number = 60000;
+
+  onClose?:() => void
+  // 添加生命周期回调
+  aboutToAppear() {
+    // 设置定时关闭
+    this.timerID = setTimeout(() => {
+      this.controller.close()
+      if(this.onClose){
+        this.onClose();
+      }
+    }, this.autoClose)
+  }
+
+  aboutToDisappear() {
+    // 清理定时器防止内存泄漏
+    if (this.timerID !== -1) {
+      clearTimeout(this.timerID)
+    }
+  }
 
   build() {
     Column() {

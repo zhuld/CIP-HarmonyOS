@@ -7,7 +7,7 @@ import { SoundComponent } from './Test/Sound';
 import { VideoComponent } from './Test/Video';
 import { Video2Component } from './Test/Video2';
 import { HomeComponent } from './Test/Home';
-import { pages, prefName } from './Test/Config';
+import { pages, prefName, processID } from './Test/Config';
 import { ConnectComponent } from './Connect'
 import { PageModel } from '../models/Models';
 import { TabButton } from '../components/TabButton';
@@ -24,9 +24,14 @@ struct Index {
   private connectTimer: number = 0;
   private isDialogOpened: boolean = false;
   private lastPage: number = 0;
+
   private dialogProcess: CustomDialogController = new CustomDialogController({
     builder: ProcessDialog({
       title: $r('app.string.processDialog'),
+      onClose: () => {
+        this.crestronClient.channelDArray[processID] = false;
+        this.isDialogOpened = false
+      }
     }),
     alignment: DialogAlignment.Center,
     autoCancel: false,
@@ -79,7 +84,7 @@ struct Index {
         if (this.showDebug) {
           this.messageR = value === 1 ? `${channel}:High` : `${channel}:Low`
         }
-        if (channel === 1) {
+        if (channel === processID) {
           if (value === 1 && !this.isDialogOpened) {
             this.dialogProcess.open()
             this.isDialogOpened = true

@@ -6,7 +6,7 @@ export const animationDuration: number = 50; //动画时间
 export const prefName: string = 'network_settings'; //属性
 export const shadowRadius: number = 10; //阴影的大小
 export const buttonRadius: number = 15; //按钮圆角半径
-
+export const processID: number = 1; //
 export const pages: Pages = new Pages(
   'HarmonyOS-控制面板',
   [
