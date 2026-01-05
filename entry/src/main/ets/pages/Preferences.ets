@@ -1,7 +1,7 @@
 import { preferences } from '@kit.ArkData';
 import { common } from '@kit.AbilityKit';
 import { MyButton } from '../components/MyButton';
-import { prefName } from './Test/Config';
+import { buttonRadius, prefName } from './Test/Config';
 
 @Preview
 @Entry
@@ -85,7 +85,10 @@ struct Config {
               .fontSize(32)
               .layoutWeight(1)
               .fontColor($r('app.color.text_color'))
-            TextInput({ text: this.ipAddress, placeholder: '输入IP地址' })
+            TextInput({
+              text: this.ipAddress,
+              placeholder: '输入IP地址'
+            })
               .onChange((value: string) => {
                 this.ipAddress = value;
                 if (this.isValidIP(value)) {
@@ -100,7 +103,7 @@ struct Config {
               .fontColor(this.isIpAddress ? $r('app.color.text_color') : $r('sys.color.warning'))
               .placeholderFont({ size: 32 })
               .fontSize(32)
-              .borderRadius(5)
+              .borderRadius(buttonRadius)
               .layoutWeight(2)
           }
 
@@ -109,7 +112,10 @@ struct Config {
               .fontSize(32)
               .layoutWeight(1)
               .fontColor($r('app.color.text_color'))
-              TextInput({ text: this.port.toString(), placeholder: '输入端口号' })
+              TextInput({
+                text: this.port.toString(),
+                placeholder: '输入端口号'
+              })
               .type(InputType.Number)
               .onChange((value: string) => {
                 this.port = Number(value);
@@ -124,7 +130,7 @@ struct Config {
               .fontColor(this.isPort ? $r('app.color.text_color') : $r('sys.color.warning'))
               .placeholderFont({ size: 32 })
               .fontSize(32)
-              .borderRadius(5)
+              .borderRadius(buttonRadius)
               .layoutWeight(2)
           }
 
@@ -133,7 +139,10 @@ struct Config {
               .fontSize(32)
               .layoutWeight(1)
               .fontColor($r('app.color.text_color'))
-            TextInput({ text: this.ipId.toString(), placeholder: '输入ID号' })
+            TextInput({
+              text: this.ipId.toString(),
+              placeholder: '输入ID号'
+            })
               .type(InputType.Number)
               .onChange((value: string) => {
                 this.ipId = Number(value);
@@ -148,7 +157,7 @@ struct Config {
               .fontColor(this.isId ? $r('app.color.text_color') : $r('sys.color.warning'))
               .placeholderFont({ size: 32 })
               .fontSize(32)
-              .borderRadius(5)
+              .borderRadius(buttonRadius)
               .layoutWeight(2)
           }
 

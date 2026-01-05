@@ -1,18 +1,3 @@
-/*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
- * Licensed under the Apache License,Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { common } from '@kit.AbilityKit';
 import { preferences } from '@kit.ArkData';
 
@@ -26,9 +11,10 @@ import { HomeComponent } from './Test/Home';
 import { PageModel } from '../models/Models';
 import { TabButton } from '../components/TabButton';
 import { pages, prefName } from './Test/Config';
-import { Head } from './Head';
+import { Head } from '../components/Head';
 import { CrestronClient, JoinType } from '../crestron/CrestronClient';
 import { ProcessDialog } from './Dialog';
+import { LengthMetrics } from '@kit.ArkUI';
 
 @Entry
 @ComponentV2
@@ -37,17 +23,9 @@ struct Index {
   private tabScroller: Scroller = new Scroller();
   private contentScroller: Scroller = new Scroller();
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
-  @Local crestronClient: CrestronClient = new CrestronClient();
   private connectTimer: number = 0;
-  @Local serverIP: string = '192.168.2.105';
-  @Local serverPort: number = 41794;
-  @Local cipId: number = 3
-  @Local showDebug: boolean = false
-  @Local isConnected: boolean = false;
-  @Local messageT: string = ''
-  @Local messageR: string = ''
-  private isDialogOpened: boolean = false
-  private lastPage: number = 0
+  private isDialogOpened: boolean = false;
+  private lastPage: number = 0;
   private dialogProcess: CustomDialogController = new CustomDialogController({
     builder: ProcessDialog({
       title: '指令执行中，请稍后',
@@ -57,6 +35,14 @@ struct Index {
     width: '50%',
     height: '50%',
   });
+  @Local crestronClient: CrestronClient = new CrestronClient();
+  @Local serverIP: string = '192.168.2.105';
+  @Local serverPort: number = 41794;
+  @Local cipId: number = 3;
+  @Local showDebug: boolean = false;
+  @Local isConnected: boolean = false;
+  @Local messageT: string = '';
+  @Local messageR: string = '';
 
   async aboutToAppear() {
     this.connectTimer = setInterval(() => {
@@ -147,11 +133,11 @@ struct Index {
         messageT: this.messageT,
         messageR: this.messageR,
         title: pages.title,
-        fontSize:18,
+        fontSize: 18,
       })
         .width('100%')
         .layoutWeight(1)
-      Row({space:20}) {
+      Row({ space: 20 }) {
         // [Start Side_tab_list]
         // 创建分类列表，用于显示页面选项，并通过Scroller实现滚动功能
         List({ scroller: this.tabScroller }) {
@@ -174,6 +160,12 @@ struct Index {
         .height('100%')
         .width('12%')
         .scrollBar(BarState.Off)
+        .fadingEdge(
+          true,
+          {
+            fadingEdgeLength: LengthMetrics.vp(40)
+          }
+        )
 
         //内容
         List({ scroller: this.contentScroller, space: 100 }) {

@@ -1,4 +1,4 @@
-import { gradientAngle, inputColor } from "../pages/Test/Config"
+import { buttonRadius, gradientAngle, inputColor, shadowRadius } from "../pages/Test/Config"
 
 @ComponentV2
 export struct OutputButton {
@@ -20,7 +20,7 @@ export struct OutputButton {
         .fontSize(this.fontSize)
     }
     .justifyContent(FlexAlign.Center)
-    .borderRadius(15)
+    .borderRadius(buttonRadius)
     .linearGradient({
       angle: gradientAngle,
       colors:
@@ -30,11 +30,9 @@ export struct OutputButton {
     .size({ width: '100%', height: '100%' })
     .backgroundColor(Color.Transparent)
     .shadow({
-      radius: 60,
+      radius: shadowRadius * 6,
       color: inputColor[this.foreColor],
       fill: false,
-      offsetX: 0,
-      offsetY: 0
     })
   }
 }

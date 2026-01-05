@@ -3,7 +3,7 @@ import { ButtonModel } from "../../models/Models";
 import { Category } from "../../components/Category";
 import { RoundButton } from "../../components/RoundButton";
 import { SquareButton } from "../../components/SquareButton";
-import { testCamera, testPosition } from "./Config";
+import { shadowRadius, testCamera, testPosition } from "./Config";
 
 @ComponentV2
 export struct CameraComponent {
@@ -54,10 +54,10 @@ export struct CameraComponent {
           .margin(10)
           .fill($r('app.color.button_light'))
           .shadow({
-            radius: 5,
+            radius: shadowRadius,
             color: $r('app.color.shadow'),
-            offsetX: 5,
-            offsetY: 5,
+            offsetX: shadowRadius,
+            offsetY: shadowRadius,
           })
       }
 

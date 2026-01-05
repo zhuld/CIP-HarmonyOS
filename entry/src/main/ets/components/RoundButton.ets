@@ -41,8 +41,8 @@ export struct RoundButton {
         radius: shadowRadius,
         color: $r('app.color.shadow'),
         fill: false,
-        offsetX: this.checked ? 0 : 5,
-        offsetY: this.checked ? 0 : 6
+        offsetX: this.checked ? 0 : shadowRadius,
+        offsetY: this.checked ? 0 : shadowRadius
       })
       .margin({
         top: this.checked ? 3 : 0,

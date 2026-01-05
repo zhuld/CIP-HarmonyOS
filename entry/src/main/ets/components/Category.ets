@@ -1,4 +1,4 @@
-import { shadowRadius } from "../pages/Test/Config";
+import { buttonRadius, shadowRadius } from "../pages/Test/Config";
 import { SquareButton } from "./SquareButton";
 
 @ComponentV2
@@ -6,13 +6,14 @@ export struct Category {
   @Builder
   BuilderFunction() {
   }
+
   @Param title: string | Resource = ''; // 可修改的标题文本
   @Param subTitle: string | Resource = ''; // 可修改的副标题文本
   @Param icon: Resource | undefined = undefined;
   @Param checked: boolean = false;
   @Param checkButton: boolean = false;
   @BuilderParam contentBuilder: () => void = this.BuilderFunction; // 可修改的内容区域
-  @Event onTouchAction?:(event: TouchEvent) => void
+  @Event onTouchAction?: (event: TouchEvent) => void
 
   build() {
     Column({ space: 10 }) {
@@ -35,13 +36,13 @@ export struct Category {
             checked: this.checked,
             icon: this.checked ? $r('app.media.check') : undefined,
             onTouchAction: (event: TouchEvent) => {
-                if (this.onTouchAction) {
-                  this.onTouchAction(event)
-                }
+              if (this.onTouchAction) {
+                this.onTouchAction(event)
+              }
             }
           })
             .width(30)
-            .visibility(this.checkButton? Visibility.Visible : Visibility.None)
+            .visibility(this.checkButton ? Visibility.Visible : Visibility.None)
           Text(this.subTitle)
             .fontSize(26)
             .maxLines(1)
@@ -74,7 +75,7 @@ export struct Category {
     }
     .height('100%')
     .width('100%')
-    .borderRadius(30)
+    .borderRadius(buttonRadius * 2)
     .backgroundColor(Color.Transparent)
     .linearGradient({
       colors: [
@@ -86,9 +87,9 @@ export struct Category {
     .shadow({
       radius: shadowRadius,
       color: $r('app.color.shadow'),
-      fill: false,
-      offsetX: 10,
-      offsetY: 12,
+      fill: true,
+      offsetX: shadowRadius,
+      offsetY: shadowRadius,
     })
   }
 }

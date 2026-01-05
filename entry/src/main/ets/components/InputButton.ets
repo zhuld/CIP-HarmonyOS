@@ -1,4 +1,4 @@
-import { animationDuration, gradientAngle, shadowRadius } from '../pages/Test/Config'
+import { animationDuration, buttonRadius, gradientAngle, shadowRadius } from '../pages/Test/Config'
 
 @ComponentV2
 export struct InputButton {
@@ -23,7 +23,7 @@ export struct InputButton {
         .fontSize(this.fontSize)
     }
     .justifyContent(FlexAlign.Center)
-    .borderRadius(15)
+    .borderRadius(buttonRadius)
     .linearGradient({
       angle: gradientAngle,
       colors:
@@ -40,8 +40,8 @@ export struct InputButton {
       radius: shadowRadius,
       color: $r('app.color.shadow'),
       fill: false,
-      offsetX: this.checked ? 0 : 5,
-      offsetY: this.checked ? 0 : 6
+      offsetX: this.checked ? 0 : shadowRadius,
+      offsetY: this.checked ? 0 : shadowRadius
     })
     .opacity(this.opacityValue)
     .animation({

@@ -1,4 +1,4 @@
-import { animationDuration, gradientAngle, shadowRadius } from "../pages/Test/Config"
+import { animationDuration, buttonRadius, gradientAngle, shadowRadius } from "../pages/Test/Config"
 
 @ComponentV2
 export struct MyButton {
@@ -6,8 +6,8 @@ export struct MyButton {
   @Param icon: Resource | undefined = undefined
   @Param fontSize: number = 20
   @Local checked: boolean = false
-  @Param buttonColor: ResourceColor =  $r('app.color.button')
-  @Param buttonColor2: ResourceColor =  $r('app.color.button_light')
+  @Param buttonColor: ResourceColor = $r('app.color.button')
+  @Param buttonColor2: ResourceColor = $r('app.color.button_light')
 
   build() {
     Row({ space: this.icon ? 5 : 0 }) {
@@ -29,7 +29,7 @@ export struct MyButton {
       }
     })
     .justifyContent(FlexAlign.Center)
-    .borderRadius(15)
+    .borderRadius(buttonRadius)
     .linearGradient({
       angle: gradientAngle,
       colors: this.checked ?
@@ -48,8 +48,8 @@ export struct MyButton {
       radius: shadowRadius,
       color: $r('app.color.shadow'),
       fill: false,
-      offsetX: this.checked ? 0 : 5,
-      offsetY: this.checked ? 0 : 6
+      offsetX: this.checked ? 0 : shadowRadius,
+      offsetY: this.checked ? 0 : shadowRadius
     })
     .animation({
       duration: animationDuration,
