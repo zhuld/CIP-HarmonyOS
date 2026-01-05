@@ -1,6 +1,5 @@
 import { common, ConfigurationConstant } from '@kit.AbilityKit';
 import { preferences } from '@kit.ArkData';
-import { LengthMetrics } from '@kit.ArkUI';
 
 import { CameraComponent } from './Test/Camera';
 import { SetupComponent } from './Test/Setup';
@@ -150,55 +149,58 @@ struct Index {
       Row({ space: 20 }) {
         // [Start Side_tab_list]
         // 创建分类列表，用于显示页面选项，并通过Scroller实现滚动功能
-        List({ scroller: this.tabScroller }) {
-          ForEach(pages.pageList, (item: PageModel, index?: number) => {
-            TabButton({
-              label: item.pageName,
-              icon: item.pageIcon,
-              checked: (this.currentPage === index ? true : false),
-              isEnabled: this.isConnected,
-              onTouchAction: (event: TouchEvent) => {
-                if (index !== undefined && event.type === TouchType.Down) {
-                  this.currentPage = index;
-                  this.contentScroller.scrollToIndex(index);
+        Stack() {
+          List({ scroller: this.tabScroller }) {
+            ForEach(pages.pageList, (item: PageModel, index?: number) => {
+              TabButton({
+                label: item.pageName,
+                icon: item.pageIcon,
+                checked: (this.currentPage === index ? true : false),
+                isEnabled: this.isConnected,
+                onTouchAction: (event: TouchEvent) => {
+                  if (index !== undefined && event.type === TouchType.Down) {
+                    this.currentPage = index;
+                    this.contentScroller.scrollToIndex(index);
+                  }
                 }
-              }
-            })
-              .padding(10)
-          },)
+              })
+                .padding(10)
+            },)
+          }
+          .height('100%')
+          .width('100%')
+          .scrollBar(BarState.Off)
+          .fadingEdge(true)
         }
         .height('100%')
-        .width('12%')
-        .scrollBar(BarState.Off)
-        .fadingEdge(
-          true,
-          {
-            fadingEdgeLength: LengthMetrics.vp(40)
-          }
-        )
+        .layoutWeight(1)
 
         //内容
-        List({ scroller: this.contentScroller, space: 100 }) {
-          HomeComponent({ crestronClient: this.crestronClient })
-          Video2Component({ crestronClient: this.crestronClient })
-          VideoComponent({ crestronClient: this.crestronClient })
-          SoundComponent({ crestronClient: this.crestronClient })
-          CameraComponent({ crestronClient: this.crestronClient })
-          SetupComponent({ crestronClient: this.crestronClient })
-          ConnectComponent({
-            serverIP: this.serverIP,
-            serverPort: this.serverPort,
-            ipId: this.cipId,
-            isConnected: this.isConnected
+        Stack() {
+          List({ scroller: this.contentScroller, space: 100 }) {
+            HomeComponent({ crestronClient: this.crestronClient })
+            Video2Component({ crestronClient: this.crestronClient })
+            VideoComponent({ crestronClient: this.crestronClient })
+            SoundComponent({ crestronClient: this.crestronClient })
+            CameraComponent({ crestronClient: this.crestronClient })
+            SetupComponent({ crestronClient: this.crestronClient })
+            ConnectComponent({
+              serverIP: this.serverIP,
+              serverPort: this.serverPort,
+              ipId: this.cipId,
+              isConnected: this.isConnected
+            })
+          }
+          .enableScrollInteraction(false)
+          .scrollBar(BarState.Off)
+          .height('100%')
+          .width('100%')
+          .onScrollStart(() => {
+            this.contentScroller.scrollToIndex(this.currentPage)
           })
         }
-        .enableScrollInteraction(false)
-        .scrollBar(BarState.Off)
         .height('100%')
-        .width('86%')
-        .onScrollStart(() => {
-          this.contentScroller.scrollToIndex(this.currentPage)
-        })
+        .layoutWeight(7)
       }
       .width('100%')
       .layoutWeight(20)
