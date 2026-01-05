@@ -18,12 +18,7 @@ struct Config {
   @Local info: string = '系统设置，请勿随意修改';
   private context = this.getUIContext().getHostContext() as common.UIAbilityContext;
 
-  aboutToAppear() {
-    this.loadSettings();
-  }
-
-  // 加载已保存的设置
-  private async loadSettings() {
+  async aboutToAppear() {
     try {
       const pref = await preferences.getPreferences(this.context, prefName);
       this.ipAddress = await pref.get('ip', '192.168.1.10') as string;
@@ -206,11 +201,28 @@ struct Config {
       .width('100%')
       .height('42%')
       .scrollable(ScrollDirection.Vertical)
-      .scrollBar(BarState.Auto)
+      .scrollBar(BarState.On)
       .padding({right:20,left:20})
       .clip(true)
 
       Row({ space: 40 }) {
+        Text(this.info)
+          .fontSize(32)
+          .layoutWeight(3)
+          .fontColor($r('app.color.text_color'))
+          .height(70)
+        MyButton({ label: '取消', fontSize: 32, })
+          .layoutWeight(1)
+          .height(70)
+          .onClick(() => {
+            this.getUIContext().getRouter().back()
+          })
+        MyButton({ label: '应用', fontSize: 32, })
+          .layoutWeight(1)
+          .height(70)
+          .onClick(() => {
+            this.saveSettings();
+          })
         MyButton({ label: '保存', fontSize: 32, })
           .layoutWeight(1)
           .height(70)
@@ -220,28 +232,10 @@ struct Config {
                 this.getUIContext().getRouter().back();
             })
           })
-        MyButton({ label: '应用', fontSize: 32, })
-          .layoutWeight(1)
-          .height(70)
-          .onClick(() => {
-            this.saveSettings();
-          })
-        MyButton({ label: '取消', fontSize: 32, })
-          .layoutWeight(1)
-          .height(70)
-          .onClick(() => {
-            this.getUIContext().getRouter().back()
-          })
-        Text(this.info)
-          .fontSize(32)
-          .layoutWeight(3)
-          .fontColor($r('app.color.text_color'))
-          .height(70)
       }
       .height(70)
       .width('100%')
       .padding({right:20,left:20})
-      .direction(Direction.Rtl)
     }
     .padding(30)
     .height('100%')
