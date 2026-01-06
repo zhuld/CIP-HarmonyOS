@@ -3,8 +3,29 @@ import { NormalButton } from "../components/NormalButton";
 @CustomDialog
 export struct ConfirmDialog{
   private controller: CustomDialogController;
-  @Prop title: string;
+  private timerID: number = -1 // 保存定时器ID用于清理
+  @Prop title: string | Resource;
+  @Prop autoClose: number = 30000;
   @Prop message: string;
+
+  onClose?:(event: boolean) => void
+  // 添加生命周期回调
+  aboutToAppear() {
+    // 设置定时关闭
+    this.timerID = setTimeout(() => {
+      this.controller.close()
+      if(this.onClose){
+        this.onClose(false);
+      }
+    }, this.autoClose)
+  }
+
+  aboutToDisappear() {
+    // 清理定时器防止内存泄漏
+    if (this.timerID !== -1) {
+      clearTimeout(this.timerID)
+    }
+  }
 
   build() {
     Column() {
@@ -33,6 +54,9 @@ export struct ConfirmDialog{
         })
           .onClick(() => {
             this.controller.close();
+            if(this.onClose){
+              this.onClose(false);
+            }
           })
           .layoutWeight(1)
 
@@ -42,6 +66,9 @@ export struct ConfirmDialog{
         })
           .onClick(() => {
             this.controller.close();
+            if(this.onClose){
+              this.onClose(true);
+            }
           })
           .layoutWeight(1)
       }

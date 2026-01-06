@@ -63,6 +63,10 @@
     {
       "name": "processDialog",
       "value": "指令执行中，请稍后"
+    },
+    {
+      "name": "confirmDialog",
+      "value": "提示"
     }
   ]
 }

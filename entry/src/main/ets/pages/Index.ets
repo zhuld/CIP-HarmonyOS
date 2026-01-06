@@ -28,7 +28,7 @@ struct Index {
   private dialogProcess: CustomDialogController = new CustomDialogController({
     builder: ProcessDialog({
       title: $r('app.string.processDialog'),
-      autoClose:5000,
+      autoClose:60000,
       onClose: () => {
         this.crestronClient.channelDArray[processID] = false;
         this.isDialogOpened = false
