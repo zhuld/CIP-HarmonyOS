@@ -118,7 +118,6 @@ export struct ProcessDialog {
       clearTimeout(this.timerID)
     }
   }
-
   build() {
     Column() {
       Text(this.title)

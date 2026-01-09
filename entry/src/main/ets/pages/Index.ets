@@ -28,17 +28,18 @@ struct Index {
   private dialogProcess: CustomDialogController = new CustomDialogController({
     builder: ProcessDialog({
       title: $r('app.string.processDialog'),
-      autoClose:60000,
+      autoClose:50000,
       onClose: () => {
         this.crestronClient.channelDArray[processID] = false;
         this.isDialogOpened = false
       }
     }),
+    onWillDismiss: () => { },
     alignment: DialogAlignment.Center,
-    autoCancel: false,
     width: '50%',
     height: '50%',
   });
+
   @Local currentPage: number = 0;
   @Local crestronClient: CrestronClient = new CrestronClient();
   @Local serverIP: string = '192.168.1.10';
@@ -86,10 +87,12 @@ struct Index {
           this.messageR = value === 1 ? `${channel}:High` : `${channel}:Low`
         }
         if (channel === processID) {
-          if (value === 1 && this.isDialogOpened) {
-            this.dialogProcess.close()
-            this.isDialogOpened = false
-          } else {
+          if (value === 0) {
+            if (this.isDialogOpened) {
+              this.dialogProcess.close()
+              this.isDialogOpened = false
+            }
+          } else if (!this.isDialogOpened) {
             this.dialogProcess.open()
             this.isDialogOpened = true
           }
@@ -112,7 +115,6 @@ struct Index {
     })
 
     this.crestronClient.connect(this.serverIP, this.serverPort, this.cipId);
-
     this.contentScroller.scrollToIndex(pages.pageList.length);
     this.currentPage = pages.pageList.length
   }

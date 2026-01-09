@@ -4,8 +4,7 @@ import { SquareButton } from "./SquareButton";
 @ComponentV2
 export struct Category {
   @Builder
-  BuilderFunction() {
-  }
+  BuilderFunction() { }
 
   @Param title: string | Resource = ''; // 可修改的标题文本
   @Param subTitle: string | Resource = ''; // 可修改的副标题文本
