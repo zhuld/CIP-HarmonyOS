@@ -3,7 +3,7 @@ import { ButtonModel } from "../../models/Models";
 import { Category } from "../../components/Category";
 import { RoundButton } from "../../components/RoundButton";
 import { SquareButton } from "../../components/SquareButton";
-import { shadowRadius, testCamera, testPosition } from "./Config";
+import { buttonRadius, shadowRadius, testCamera, testPosition } from "./Config";
 
 @ComponentV2
 export struct CameraComponent {
@@ -38,45 +38,61 @@ export struct CameraComponent {
           }
         }
       }, (item: ButtonModel) => item.buttonId.toString())
-    }.padding({ right: 30, left: 30 })
+    }
+    .padding({ right: 30, left: 30 })
   }
 
   @Builder
   PositionContent(buttonList: ButtonModel[]) {
-    GridRow({
-      columns: 2,
-      gutter: { x: 120, y: 20 }
-    }) {
-      GridCol({ span: 2 }) {
-        Rect()
-          .width(160)
-          .height(10)
-          .margin(10)
-          .fill($r('app.color.button'))
-          .stroke($r('app.color.button_light'))
-          .strokeWidth(1)
-          .radius(2)
-      }
-
-      ForEach(buttonList, (item: ButtonModel,index:number) => {
-        GridCol({ span: index +1 < buttonList.length?  1 : 2 }) {
-          SquareButton({
-            label: item.buttonName,
-            icon: item.buttonIcon,
-            fontSize: 30,
-            checked: this.crestronClient.channelDArray[item.buttonId],
-            onTouchAction: (event: TouchEvent) => {
-              if (event.type === TouchType.Down) {
-                this.crestronClient?.push(item.buttonId)
-              } else if (event.type === TouchType.Up) {
-                this.crestronClient?.release(item.buttonId)
+    Column({space:30}) {
+      Rect()
+        .width(160)
+        .height(10)
+        .fill($r('app.color.button'))
+        .stroke($r('app.color.button_light'))
+        .strokeWidth(1)
+        .radius(2)
+      GridRow({
+        columns: 2,
+        gutter: { x: 120, y: 20 }
+      }) {
+        ForEach(buttonList, (item: ButtonModel, index: number) => {
+          GridCol({ span: index + 1 < buttonList.length ? 1 : 2 }) {
+            SquareButton({
+              label: item.buttonName,
+              icon: item.buttonIcon,
+              fontSize: 30,
+              checked: this.crestronClient.channelDArray[item.buttonId],
+              onTouchAction: (event: TouchEvent) => {
+                if (event.type === TouchType.Down) {
+                  this.crestronClient?.push(item.buttonId)
+                } else if (event.type === TouchType.Up) {
+                  this.crestronClient?.release(item.buttonId)
+                }
               }
-            }
-          })
-            .width( index +1 < buttonList.length? '100%': '27%')
-        }
-      }, (item: ButtonModel) => item.buttonId.toString())
-    }.padding({ right: 70, left: 70 })
+            })
+              .width(index + 1 < buttonList.length ? '100%' : '27%')
+          }
+        }, (item: ButtonModel) => item.buttonId.toString())
+      }
+      .padding(30)
+      .margin({right:50,left:50})
+      .borderRadius(buttonRadius)
+      .linearGradient({
+        angle: 140,
+        colors: [
+          [$r('app.color.catalog_background_2'), 0],
+          [$r('app.color.catalog_background_1'), 0.6]
+        ]
+      })
+      .shadow({
+        radius: shadowRadius,
+        color: $r('app.color.shadow'),
+        fill: true,
+        offsetX: shadowRadius,
+        offsetY: shadowRadius,
+      })
+    }
   }
 
   build() {

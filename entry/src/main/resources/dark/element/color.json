@@ -25,12 +25,12 @@
       "value": "#FFE68040"
     },
     {
-      "name": "button_light",
+      "name": "button",
       "value": "#FF063D5F"
     },
     {
-      "name": "button",
-      "value": "#FF0E78BC"
+      "name": "button_light",
+      "value": "#FF0B79BD"
     },
     {
       "name": "text_color_check",

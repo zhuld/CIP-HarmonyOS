@@ -10,7 +10,7 @@
     },
     {
       "name": "catalog_background_2",
-      "value": "#FFA8B1BF"
+      "value": "#FF9BA5B3"
     },
     {
       "name": "shadow",
@@ -26,11 +26,11 @@
     },
     {
       "name": "button_light",
-      "value": "#FF66C1E7"
+      "value": "#FF81D7FC"
     },
     {
       "name": "button",
-      "value": "#FFADCED9"
+      "value": "#FF5D9CB7"
     },
     {
       "name": "text_color_check",
