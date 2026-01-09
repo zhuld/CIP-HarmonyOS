@@ -23,6 +23,7 @@ export struct NormalButton {
         .maxLines(1)
         .fontSize(this.fontSize)
     }
+
     .onTouch((event: TouchEvent) =>{
       if (this.onTouchAction) {
         this.onTouchAction(event)
