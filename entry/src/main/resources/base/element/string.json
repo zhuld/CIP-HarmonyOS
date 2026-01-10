@@ -41,6 +41,22 @@
       "value": "摄像头"
     },
     {
+      "name": "netMeeting",
+      "value": "视频会议"
+    },
+    {
+      "name": "screenShare",
+      "value": "无线投屏"
+    },
+    {
+      "name": "computer",
+      "value": "内网电脑"
+    },
+    {
+      "name": "computer2",
+      "value": "外网电脑"
+    },
+    {
       "name": "setup",
       "value": "设备控制"
     },

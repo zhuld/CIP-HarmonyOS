@@ -1,4 +1,5 @@
 # CIPClient
 ## Demo Crestron CIP client working under HarmonyOS
 
-![Video Page](/preview/Screenshot.png "Screenshot")
+![Light Mode](/preview/Screenshot_light.png "Screenshot Light")
+![Dark Mode](/preview/Screenshot_dark.png "Screenshot Dark")

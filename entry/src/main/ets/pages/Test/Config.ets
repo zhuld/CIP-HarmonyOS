@@ -23,7 +23,7 @@ export const testHome1: Buttons = new Buttons('' +
   '系统开关','长按2秒',
   $r('app.media.setup'),
   [
-    new ButtonModel(11, '普通会议', $r('app.media.home')),
+    new ButtonModel(11, '普通会议', $r('app.media.home'), $r('sys.color.confirm')),
     new ButtonModel(12, '视频会议', $r('app.media.camera'), $r('sys.color.confirm')),
     new ButtonModel(13, '系统关机', $r('app.media.onoff'), $r('sys.color.warning')),
   ]
@@ -34,12 +34,10 @@ export const testHome2: Buttons = new Buttons(
   undefined,
   undefined,
   [
-    new ButtonModel(21, '视频会议', $r('app.media.volume')),
-    new ButtonModel(22, $r('app.string.camera'), $r('app.media.mute')),
-    new ButtonModel(23, $r('app.string.HDMI'), $r('app.media.HDMI')),
-    new ButtonModel(24, $r('app.string.volume'), $r('app.media.volume')),
-    new ButtonModel(25, $r('app.string.camera'), $r('app.media.camera')),
-    new ButtonModel(26, $r('app.string.home'), $r('app.media.home')),
+    new ButtonModel(21, $r('app.string.netMeeting'), $r('app.media.camera')),
+    new ButtonModel(22, $r('app.string.computer'), $r('app.media.computer')),
+    new ButtonModel(23, $r('app.string.computer2'), $r('app.media.computer')),
+    new ButtonModel(24, $r('app.string.screenShare'), $r('app.media.casting')),
   ]
 )
 
@@ -51,10 +49,10 @@ export const testVideoInput: Buttons = new Buttons(
     new ButtonModel(31, '演讲台',$r('app.media.platform'),$r('app.color.input_color_1')),
     new ButtonModel(32, '地插',$r('app.media.HDMI'),$r('app.color.input_color_2')),
     new ButtonModel(33, '墙插',$r('app.media.HDMI'),$r('app.color.input_color_3')),
-    new ButtonModel(34, '无线投屏',$r('app.media.casting'),$r('app.color.input_color_4')),
-    new ButtonModel(35, '电脑',$r('app.media.computer'),$r('app.color.input_color_5')),
+    new ButtonModel(34, $r('app.string.screenShare'),$r('app.media.casting'),$r('app.color.input_color_4')),
+    new ButtonModel(35, $r('app.string.computer'),$r('app.media.computer'),$r('app.color.input_color_5')),
     new ButtonModel(36, '预留',undefined,$r('app.color.input_color_6')),
-    new ButtonModel(37, '地插后',$r('app.media.HDMI'),$r('app.color.input_color_7')),
+    new ButtonModel(37, $r('app.string.computer2'),$r('app.media.computer'),$r('app.color.input_color_7')),
     new ButtonModel(38, '墙插后',$r('app.media.HDMI'),$r('app.color.input_color_8')),
   ]
 )
