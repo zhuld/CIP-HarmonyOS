@@ -6,8 +6,7 @@ export const animationDuration: number = 50; //动画时间
 export const prefName: string = 'prefence'; //属性
 export const shadowRadius: number = 15; //阴影的大小
 export const shadowOffsetX: number = 2; //阴影的大小
-export const shadowOffsetY: number = 10; //阴影的大小
-shadowOffsetX
+export const shadowOffsetY: number = 12; //阴影的大小
 export const buttonRadius: number = 15; //按钮圆角半径
 export const processID: number = 1; //
 
@@ -81,8 +80,8 @@ export const testVolumeInput: Volumes = new Volumes(
   undefined,
   [
     new VolumeModel(51, '无线话筒', -10, -30, 0),
-    new VolumeModel(52, '有线话筒', 0, -30, 0),
-    new VolumeModel(53, '电脑音频', 0, -30, 0),
+    new VolumeModel(54, '有线话筒', 0, -30, 0),
+    new VolumeModel(57, '电脑音频', 0, -30, 0),
   ]
 )
 
@@ -91,7 +90,7 @@ export const testVolumeOutput: Volumes = new Volumes(
   undefined,
   undefined,
   [
-    new VolumeModel(54, "总音量", 0, -30, 6),
+    new VolumeModel(60, "总音量", 0, -30, 6),
   ]
 )
 
@@ -101,17 +100,17 @@ export const testCamera: Buttons = new Buttons(
   undefined,
   [
     new ButtonModel(0),
-    new ButtonModel(61, "", $r('app.media.up')),
+    new ButtonModel(71, "", $r('app.media.up')),
     new ButtonModel(0),
-    new ButtonModel(62, "", $r('app.media.left')),
+    new ButtonModel(72, "", $r('app.media.left')),
     new ButtonModel(0),
-    new ButtonModel(63, "", $r('app.media.right')),
+    new ButtonModel(73, "", $r('app.media.right')),
     new ButtonModel(0),
-    new ButtonModel(64, "", $r('app.media.down')),
+    new ButtonModel(74, "", $r('app.media.down')),
     new ButtonModel(0),
-    new ButtonModel(65, "", $r('app.media.zoomin')),
+    new ButtonModel(75, "", $r('app.media.zoomin')),
     new ButtonModel(0),
-    new ButtonModel(66, "", $r('app.media.zoomout')),
+    new ButtonModel(76, "", $r('app.media.zoomout')),
   ]
 )
 
@@ -120,15 +119,15 @@ export const testPosition: Buttons = new Buttons(
   '自动跟踪',
   undefined,
   [
-    new ButtonModel(71,'7'),
-    new ButtonModel(72,'8'),
-    new ButtonModel(73,'5'),
-    new ButtonModel(74,'6'),
-    new ButtonModel(75,'3'),
-    new ButtonModel(76,'4'),
-    new ButtonModel(77,'1'),
-    new ButtonModel(78,'2'),
-    new ButtonModel(79,'0'),
+    new ButtonModel(81,'7'),
+    new ButtonModel(82,'8'),
+    new ButtonModel(83,'5'),
+    new ButtonModel(84,'6'),
+    new ButtonModel(85,'3'),
+    new ButtonModel(86,'4'),
+    new ButtonModel(87,'1'),
+    new ButtonModel(88,'2'),
+    new ButtonModel(89,'0'),
   ],
   70
 )
@@ -139,11 +138,11 @@ export const testSetup: Buttons = new Buttons(
   $r('app.media.onoff'),
   [
     new ButtonModel(0, $r('app.string.project')),
-    new ButtonModel(81, $r('app.string.on'),$r('app.media.onoff')),
-    new ButtonModel(82, $r('app.string.off'),$r('app.media.onoff')),
+    new ButtonModel(91, $r('app.string.on'),$r('app.media.onoff')),
+    new ButtonModel(92, $r('app.string.off'),$r('app.media.onoff')),
     new ButtonModel(0, $r('app.string.camera')),
-    new ButtonModel(83, $r('app.string.on'),$r('app.media.onoff')),
-    new ButtonModel(84, $r('app.string.off'),$r('app.media.onoff')),
+    new ButtonModel(93, $r('app.string.on'),$r('app.media.onoff')),
+    new ButtonModel(94, $r('app.string.off'),$r('app.media.onoff')),
   ]
 )
 

@@ -20,12 +20,28 @@ export struct SoundComponent {
             value: this.crestronClient.channelAArray[item.volumeId],
             min: item.mini,
             max: item.max,
-            checked: this.crestronClient.channelDArray[item.volumeId],
+            muteChecked: this.crestronClient.channelDArray[item.volumeId],
+            plusChecked: this.crestronClient.channelDArray[item.volumeId+1],
+            minusChecked: this.crestronClient.channelDArray[item.volumeId+2],
             onMuteAction: (event: TouchEvent) => {
               if (event.type === TouchType.Down) {
                 this.crestronClient?.push(item.volumeId)
               } else if (event.type === TouchType.Up) {
                 this.crestronClient?.release(item.volumeId)
+              }
+            },
+            onPlusAction: (event: TouchEvent) => {
+              if (event.type === TouchType.Down) {
+                this.crestronClient?.push(item.volumeId + 1)
+              } else if (event.type === TouchType.Up) {
+                this.crestronClient?.release(item.volumeId + 1)
+              }
+            },
+            onMinusAction: (event: TouchEvent) => {
+              if (event.type === TouchType.Down) {
+                this.crestronClient?.push(item.volumeId + 2)
+              } else if (event.type === TouchType.Up) {
+                this.crestronClient?.release(item.volumeId + 2)
               }
             },
             onVolumeChanged: (value: number) => {

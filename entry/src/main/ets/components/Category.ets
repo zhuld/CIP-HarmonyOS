@@ -87,8 +87,8 @@ export struct Category {
       radius: shadowRadius,
       color: $r('app.color.shadow'),
       fill: true,
-      offsetX: this.checked ? 0 : shadowOffsetX,
-      offsetY: this.checked ? 0 : shadowOffsetY
+      offsetX: shadowOffsetX,
+      offsetY: shadowOffsetY
     })
   }
 }
