@@ -1,4 +1,6 @@
-import { animationDuration, buttonRadius, gradientAngle, shadowRadius } from "../pages/Test/Config"
+import { animationDuration, buttonRadius, gradientAngle, shadowOffsetX,
+  shadowOffsetY,
+  shadowRadius } from "../pages/Test/Config"
 
 @ComponentV2
 export struct MyButton {
@@ -45,11 +47,11 @@ export struct MyButton {
       left: this.checked ? 3 : 0
     })
     .shadow({
-      radius: shadowRadius,
+      radius: this.checked ? shadowRadius / 3 : shadowRadius,
       color: $r('app.color.shadow'),
       fill: false,
-      offsetX: this.checked ? 0 : shadowRadius,
-      offsetY: this.checked ? 0 : shadowRadius
+      offsetX: this.checked ? 0 : shadowOffsetX,
+      offsetY: this.checked ? 0 : shadowOffsetY
     })
     .animation({
       duration: animationDuration,

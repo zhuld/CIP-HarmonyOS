@@ -1,4 +1,6 @@
-import { animationDuration, buttonRadius, gradientAngle, shadowRadius } from '../pages/Test/Config'
+import { animationDuration, buttonRadius, gradientAngle, shadowOffsetX,
+  shadowOffsetY,
+  shadowRadius } from '../pages/Test/Config'
 
 @ComponentV2
 export struct InputButton {
@@ -27,7 +29,7 @@ export struct InputButton {
     .linearGradient({
       angle: gradientAngle,
       colors:
-      [[$r('app.color.catalog_background_1'), 0.1],
+      [[$r('app.color.category_background_1'), 0.1],
         [this.foreColor, 1.0]]
     })
     .size({ width: '100%', height: '100%' })
@@ -37,11 +39,11 @@ export struct InputButton {
       left: this.checked ? 3 : 0
     })
     .shadow({
-      radius: shadowRadius,
+      radius: this.checked ? shadowRadius / 3 : shadowRadius,
       color: $r('app.color.shadow'),
       fill: false,
-      offsetX: this.checked ? 0 : shadowRadius,
-      offsetY: this.checked ? 0 : shadowRadius
+      offsetX: this.checked ? 0 : shadowOffsetX,
+      offsetY: this.checked ? 0 : shadowOffsetY
     })
     .opacity(this.opacityValue)
     .animation({

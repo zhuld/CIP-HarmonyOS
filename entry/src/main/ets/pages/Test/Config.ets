@@ -4,7 +4,10 @@ import { ButtonModel, Buttons, PageModel, Pages, VolumeModel, Volumes } from "..
 export const gradientAngle: number = 330; //渐变色角度
 export const animationDuration: number = 50; //动画时间
 export const prefName: string = 'prefence'; //属性
-export const shadowRadius: number = 10; //阴影的大小
+export const shadowRadius: number = 15; //阴影的大小
+export const shadowOffsetX: number = 2; //阴影的大小
+export const shadowOffsetY: number = 10; //阴影的大小
+shadowOffsetX
 export const buttonRadius: number = 15; //按钮圆角半径
 export const processID: number = 1; //
 
@@ -145,7 +148,7 @@ export const testSetup: Buttons = new Buttons(
 )
 
 export const inputColor : Array<ResourceColor> = [
-  $r('app.color.catalog_background_2'),
+  $r('app.color.category_background_2'),
   $r('app.color.input_color_1'),
   $r('app.color.input_color_2'),
   $r('app.color.input_color_3'),

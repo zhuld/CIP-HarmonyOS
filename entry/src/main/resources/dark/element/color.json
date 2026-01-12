@@ -5,11 +5,11 @@
       "value": "#FF192744"
     },
     {
-      "name": "catalog_background_1",
+      "name": "category_background_1",
       "value": "#FF455681"
     },
     {
-      "name": "catalog_background_2",
+      "name": "category_background_2",
       "value": "#FF29334D"
     },
     {
@@ -30,7 +30,7 @@
     },
     {
       "name": "text_color",
-      "value": "#FFACAFC6"
+      "value": "#FFCFD2EC"
     },
     {
       "name": "background_1",

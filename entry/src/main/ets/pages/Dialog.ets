@@ -85,9 +85,9 @@ export struct ConfirmDialog{
     .backgroundColor(Color.Transparent)
     .linearGradient({
       colors:[
-        [$r('app.color.catalog_background_1'), 0.2],
-        [$r('app.color.catalog_background_2'), 0.2],
-        [$r('app.color.catalog_background_1'), 0.24]
+        [$r('app.color.category_background_1'), 0.2],
+        [$r('app.color.category_background_2'), 0.2],
+        [$r('app.color.category_background_1'), 0.24]
       ]
     })
   }
@@ -148,9 +148,9 @@ export struct ProcessDialog {
     .backgroundColor(Color.Transparent)
     .linearGradient({
       colors: [
-        [$r('app.color.catalog_background_1'), 0.2],
-        [$r('app.color.catalog_background_2'), 0.2],
-        [$r('app.color.catalog_background_1'), 0.26]
+        [$r('app.color.category_background_1'), 0.2],
+        [$r('app.color.category_background_2'), 0.2],
+        [$r('app.color.category_background_1'), 0.26]
       ]
     })
   }

@@ -15,8 +15,8 @@ export struct TabButton {
       icon: this.icon,
       fontSize: this.fontSize,
       checked: this.checked,
-      buttonColor:$r('app.color.catalog_background_2'),
-      buttonColor2:$r('app.color.catalog_background_1')
+      buttonColor:$r('app.color.category_background_2'),
+      buttonColor2:$r('app.color.category_background_1')
     })
       .onTouch((event: TouchEvent) => {
         if (this.onTouchAction && this.isEnabled) {

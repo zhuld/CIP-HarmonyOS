@@ -1,4 +1,6 @@
-import { animationDuration, buttonRadius, gradientAngle, shadowRadius } from "../pages/Test/Config"
+import { animationDuration, buttonRadius, gradientAngle, shadowOffsetX,
+  shadowOffsetY,
+  shadowRadius } from "../pages/Test/Config"
 
 @ComponentV2
 export struct NormalButton {
@@ -12,7 +14,7 @@ export struct NormalButton {
   @Event onTouchAction?:(event: TouchEvent) => void
 
   build() {
-    Row({space:this.icon? 10:0}) {
+    Row({ space: this.icon ? 10 : 0 }) {
       Image(this.icon)
         .height(this.icon ? '60%' : 0)
         .aspectRatio(1)
@@ -23,8 +25,7 @@ export struct NormalButton {
         .maxLines(1)
         .fontSize(this.fontSize)
     }
-
-    .onTouch((event: TouchEvent) =>{
+    .onTouch((event: TouchEvent) => {
       if (this.onTouchAction) {
         this.onTouchAction(event)
       }
@@ -34,23 +35,23 @@ export struct NormalButton {
     .linearGradient({
       angle: gradientAngle,
       colors: this.checked ?
-        [ [$r('app.color.button_checked_light'), 0.1],
-          [$r('app.color.button_checked'), 1.0]]:
+        [[$r('app.color.button_checked_light'), 0.1],
+          [$r('app.color.button_checked'), 1.0]] :
         [[this.buttonColor2, 0.1],
           [this.buttonColor, 1.0]]
     })
-    .size({ width: '100%', height: '100%'})
+    .size({ width: '100%', height: '100%' })
     .backgroundColor(Color.Transparent)
     .margin({
       top: this.checked ? 3 : 0,
-      left: this.checked  ? 3 : 0
+      left: this.checked ? 3 : 0
     })
     .shadow({
-      radius: shadowRadius,
-      color:  $r('app.color.shadow'),
+      radius: this.checked ? shadowRadius / 3 : shadowRadius,
+      color: $r('app.color.shadow'),
       fill: false,
-      offsetX: this.checked ? 0 : shadowRadius,
-      offsetY: this.checked ? 0 : shadowRadius
+      offsetX: this.checked ? 0 : shadowOffsetX,
+      offsetY: this.checked ? 0 : shadowOffsetY
     })
     .animation({
       duration: animationDuration,

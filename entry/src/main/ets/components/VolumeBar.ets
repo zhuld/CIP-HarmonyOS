@@ -37,11 +37,11 @@ export struct  VolumeBar {
         .trackColor(
           new LinearGradient([
             { color:  $r('sys.color.warning'), offset: 1.0 },
-            { color:  $r('sys.color.alert'), offset: 0.8 },
-            { color:  $r('sys.color.confirm'), offset: 0.6 }
+            { color:  $r('sys.color.alert'), offset: 0.9 },
+            { color:  $r('sys.color.confirm'), offset: 0.7 }
           ])
         )
-        .selectedColor(Color.Transparent)
+        .selectedColor($r('app.color.button'))
         .stepSize(1)
         .minResponsiveDistance(1)
         .onChange((value: number) => {

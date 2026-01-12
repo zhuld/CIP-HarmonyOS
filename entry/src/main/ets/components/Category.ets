@@ -1,4 +1,4 @@
-import { buttonRadius, shadowRadius } from "../pages/Test/Config";
+import { buttonRadius, shadowOffsetX, shadowOffsetY, shadowRadius } from "../pages/Test/Config";
 import { SquareButton } from "./SquareButton";
 
 @ComponentV2
@@ -78,17 +78,17 @@ export struct Category {
     .backgroundColor(Color.Transparent)
     .linearGradient({
       colors: [
-        [$r('app.color.catalog_background_1'), 0.1],
-        [$r('app.color.catalog_background_2'), 0.1],
-        [$r('app.color.catalog_background_1'), 0.12]
+        [$r('app.color.category_background_1'), 0.1],
+        [$r('app.color.category_background_2'), 0.1],
+        [$r('app.color.category_background_1'), 0.12]
       ]
     })
     .shadow({
       radius: shadowRadius,
       color: $r('app.color.shadow'),
       fill: true,
-      offsetX: shadowRadius,
-      offsetY: shadowRadius,
+      offsetX: this.checked ? 0 : shadowOffsetX,
+      offsetY: this.checked ? 0 : shadowOffsetY
     })
   }
 }

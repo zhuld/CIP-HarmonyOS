@@ -24,13 +24,13 @@ export struct OutputButton {
     .linearGradient({
       angle: gradientAngle,
       colors:
-      [[$r('app.color.catalog_background_1'), 0.1],
-        [$r('app.color.catalog_background_2'), 1.0]]
+      [[$r('app.color.category_background_1'), 0.1],
+        [$r('app.color.category_background_2'), 1.0]]
     })
     .size({ width: '100%', height: '100%' })
     .backgroundColor(Color.Transparent)
     .shadow({
-      radius: shadowRadius * 6,
+      radius: shadowRadius * 4,
       color: inputColor[this.foreColor],
       fill: false,
     })
