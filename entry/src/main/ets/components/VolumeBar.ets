@@ -16,7 +16,7 @@ export struct  VolumeBar {
   @Event onVolumeChanged?: (value: number) => void
 
   build() {
-    Column({ space: 0 }) {
+    Column() {
       Text(this.name)
         .fontSize(30)
         .layoutWeight(1)
@@ -27,7 +27,7 @@ export struct  VolumeBar {
         .layoutWeight(1)
         .maxLines(1)
         .fontColor($r('app.color.text_color'))
-      Row({ space: 10 }) {
+      Row() {
         Slider({
           min: this.min,
           max: this.max,
@@ -49,7 +49,7 @@ export struct  VolumeBar {
           .stepSize(1)
           .minResponsiveDistance(1)
           .height('95%')
-          .layoutWeight(2)
+          .layoutWeight(1)
           .blockSize({
             width: 50,
             height: 50
@@ -68,7 +68,7 @@ export struct  VolumeBar {
             checked: this.plusChecked,
             icon: $r('app.media.zoomin')
           })
-            .width('70')
+            .width('60')
             .onTouch((event: TouchEvent) => {
               if (this.onPlusAction) {
                 this.onPlusAction(event)
@@ -78,7 +78,7 @@ export struct  VolumeBar {
             checked: this.minusChecked,
             icon: $r('app.media.zoomout')
           })
-            .width('70')
+            .width('60')
             .onTouch((event: TouchEvent) => {
               if (this.onMinusAction) {
                 this.onMinusAction(event)
@@ -88,7 +88,7 @@ export struct  VolumeBar {
             checked: this.muteChecked,
             icon: this.muteChecked ? $r('app.media.mute') : $r('app.media.unmute')
           })
-            .width('70')
+            .width('60')
             .onTouch((event: TouchEvent) => {
               if (this.onMuteAction) {
                 this.onMuteAction(event)
@@ -96,7 +96,7 @@ export struct  VolumeBar {
             })
         }
         .height('100%')
-        .layoutWeight(3)
+        .layoutWeight(2)
         .justifyContent(FlexAlign.End)
       }
       .width('100%')
