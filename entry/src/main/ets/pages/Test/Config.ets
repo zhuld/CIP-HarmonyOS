@@ -19,8 +19,9 @@ export const pages: Pages = new Pages(
   ]
 )
 
-export const testHome1: Buttons = new Buttons('' +
-  '系统开关','长按2秒',
+export const testHome1: Buttons = new Buttons(
+  '系统开关',
+  '长按2秒',
   $r('app.media.setup'),
   [
     new ButtonModel(11, '普通会议', $r('app.media.home'), $r('sys.color.confirm')),

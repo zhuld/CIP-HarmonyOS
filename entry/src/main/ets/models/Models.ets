@@ -44,7 +44,8 @@ export class Buttons {
     this.subTitle = subTitle;
     this.buttonList = buttonList;
     this.checkId = checkId
-  }
+  };
+
 }
 
 export class VolumeModel {

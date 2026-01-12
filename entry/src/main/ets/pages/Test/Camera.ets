@@ -3,7 +3,7 @@ import { ButtonModel } from "../../models/Models";
 import { Category } from "../../components/Category";
 import { RoundButton } from "../../components/RoundButton";
 import { SquareButton } from "../../components/SquareButton";
-import { buttonRadius, shadowRadius, testCamera, testPosition } from "./Config";
+import { buttonRadius, gradientAngle, shadowRadius, testCamera, testPosition } from "./Config";
 
 @ComponentV2
 export struct CameraComponent {
@@ -79,10 +79,10 @@ export struct CameraComponent {
       .margin({right:50,left:50})
       .borderRadius(buttonRadius)
       .linearGradient({
-        angle: 140,
+        angle: gradientAngle,
         colors: [
-          [$r('app.color.catalog_background_2'), 0],
-          [$r('app.color.catalog_background_1'), 0.6]
+          [$r('app.color.catalog_background_1'), 0.4],
+          [$r('app.color.catalog_background_2'), 1]
         ]
       })
       .shadow({
