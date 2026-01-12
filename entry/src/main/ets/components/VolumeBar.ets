@@ -32,10 +32,16 @@ export struct  VolumeBar {
         reverse: true,
       })
         .layoutWeight(10)
-        .blockColor( $r('app.color.button_light'))
+        .blockColor($r('app.color.button_light'))
         .trackThickness(10) // 设置滑动条粗细为10
-        .trackColor($r('app.color.catalog_background_2'))
-        .selectedColor($r('app.color.button_checked_light'))
+        .trackColor(
+          new LinearGradient([
+            { color:  $r('sys.color.warning'), offset: 1.0 },
+            { color:  $r('sys.color.alert'), offset: 0.8 },
+            { color:  $r('sys.color.confirm'), offset: 0.6 }
+          ])
+        )
+        .selectedColor(Color.Transparent)
         .stepSize(1)
         .minResponsiveDistance(1)
         .onChange((value: number) => {

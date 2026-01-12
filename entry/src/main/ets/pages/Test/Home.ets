@@ -7,9 +7,10 @@ import { testHome1, testHome2 } from "./Config";
 
 @ComponentV2
 export struct HomeComponent {
-  @Param @Require crestronClient : CrestronClient
+  @Param @Require crestronClient: CrestronClient
+
   @Builder
-  SystemContent(buttonList :ButtonModel[],columns:number) {
+  SystemContent(buttonList: ButtonModel[], columns: number) {
     GridRow({
       columns: columns,
       gutter: { x: 40, y: 40 }
@@ -30,17 +31,17 @@ export struct HomeComponent {
               }
             }
           })
-            .height(80)
+            .height(100)
         }
       }, (item: ButtonModel) => item.buttonId.toString())
     }.padding({ right: 20, left: 20 })
   }
 
   @Builder
-  ModeContent(buttonList :ButtonModel[],columns:number) {
+  ModeContent(buttonList: ButtonModel[], columns: number) {
     GridRow({
       columns: columns,
-      gutter: { x: 40, y: 40 }
+      gutter: { x: 80, y: 40 }
     }) {
       ForEach(buttonList, (item: ButtonModel) => {
         GridCol({ span: 1 }) {
@@ -58,8 +59,8 @@ export struct HomeComponent {
             }
           })
         }
-      },(item: ButtonModel) => item.buttonId.toString())
-    }.padding({right:20,left:20})
+      }, (item: ButtonModel) => item.buttonId.toString())
+    }.padding({ right: 50, left: 50 })
   }
 
   build() {
@@ -67,21 +68,21 @@ export struct HomeComponent {
       Category({
         title: testHome1.title, // 动态绑定标题
         subTitle: testHome1.subTitle,
-        icon:testHome1.icon,
-        contentBuilder: () =>{
-          this.SystemContent(testHome1.buttonList,1)
+        icon: testHome1.icon,
+        contentBuilder: () => {
+          this.SystemContent(testHome1.buttonList, 1)
         }
       })
-        .layoutWeight(2)
+        .layoutWeight(1)
 
       Category({
         title: testHome2.title, // 动态绑定标题
-        contentBuilder: () =>{
-          this.ModeContent(testHome2.buttonList,3)
+        contentBuilder: () => {
+          this.ModeContent(testHome2.buttonList, 2)
         } // 动态绑定内容
       })
-        .layoutWeight(3)
+        .layoutWeight(1)
     }
-    .margin({ bottom: 10, right: 10 ,left:2})
+    .margin({ bottom: 10, right: 10, left: 2 })
   }
 }

@@ -12,7 +12,7 @@ export struct SetupComponent {
   SetupContent(buttonList: ButtonModel[], columns: number) {
     GridRow({
       columns: columns,
-      gutter: { x: 120, y: 40 }
+      gutter: { x: 100, y: 40 }
     }) {
       ForEach(buttonList, (item: ButtonModel, index?: number) => {
         if (index !== undefined) {
@@ -36,12 +36,12 @@ export struct SetupComponent {
                     this.crestronClient?.release(item.buttonId)
                   }
                 }
-              })//.height(80)
+              })
             }
           }
         }
       }, (item: ButtonModel) => item.buttonId.toString())
-    }.padding({ right: 40, left: 40 })
+    }.padding({ right: 50, left: 50 })
   }
 
   build() {
