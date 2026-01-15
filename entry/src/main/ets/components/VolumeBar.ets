@@ -1,4 +1,5 @@
 import { RoundButton } from "./RoundButton"
+import { SquareButton } from "./SquareButton"
 
 @ComponentV2
 export struct  VolumeBar {
@@ -22,12 +23,48 @@ export struct  VolumeBar {
         .layoutWeight(1)
         .maxLines(1)
         .fontColor($r('app.color.text_color'))
-      Text((Math.floor(this.value * (this.max - this.min) / 65535) + this.min).toString())
-        .fontSize(30)
-        .layoutWeight(1)
-        .maxLines(1)
-        .fontColor($r('app.color.text_color'))
+
       Row() {
+        Column({ space: 20 }) {
+          Text((Math.floor(this.value * (this.max - this.min) / 65535) + this.min).toString())
+            .fontSize(30)
+            .layoutWeight(1)
+            .maxLines(1)
+            .fontColor($r('app.color.text_color'))
+          SquareButton({
+            checked: this.plusChecked,
+            icon: $r('app.media.zoomin')
+          })
+            .width('60')
+            .onTouch((event: TouchEvent) => {
+              if (this.onPlusAction) {
+                this.onPlusAction(event)
+              }
+            })
+          SquareButton({
+            checked: this.minusChecked,
+            icon: $r('app.media.zoomout')
+          })
+            .width('60')
+            .onTouch((event: TouchEvent) => {
+              if (this.onMinusAction) {
+                this.onMinusAction(event)
+              }
+            })
+          SquareButton({
+            checked: this.muteChecked,
+            icon: this.muteChecked ? $r('app.media.mute') : $r('app.media.unmute')
+          })
+            .width('60')
+            .onTouch((event: TouchEvent) => {
+              if (this.onMuteAction) {
+                this.onMuteAction(event)
+              }
+            })
+        }
+        .height('100%')
+        .layoutWeight(1)
+        .justifyContent(FlexAlign.End)
         Slider({
           min: this.min,
           max: this.max,
@@ -48,7 +85,7 @@ export struct  VolumeBar {
           .selectedColor($r('app.color.button'))
           .stepSize(1)
           .minResponsiveDistance(1)
-          .height('95%')
+          .height('100%')
           .layoutWeight(1)
           .blockSize({
             width: 50,
@@ -63,44 +100,10 @@ export struct  VolumeBar {
               }
             }
           })
-        Column({ space: 10 }) {
-          RoundButton({
-            checked: this.plusChecked,
-            icon: $r('app.media.zoomin')
-          })
-            .width('60')
-            .onTouch((event: TouchEvent) => {
-              if (this.onPlusAction) {
-                this.onPlusAction(event)
-              }
-            })
-          RoundButton({
-            checked: this.minusChecked,
-            icon: $r('app.media.zoomout')
-          })
-            .width('60')
-            .onTouch((event: TouchEvent) => {
-              if (this.onMinusAction) {
-                this.onMinusAction(event)
-              }
-            })
-          RoundButton({
-            checked: this.muteChecked,
-            icon: this.muteChecked ? $r('app.media.mute') : $r('app.media.unmute')
-          })
-            .width('60')
-            .onTouch((event: TouchEvent) => {
-              if (this.onMuteAction) {
-                this.onMuteAction(event)
-              }
-            })
-        }
-        .height('100%')
-        .layoutWeight(2)
-        .justifyContent(FlexAlign.End)
       }
       .width('100%')
-      .layoutWeight(10)
+      .padding({bottom:10})
+      .layoutWeight(12)
     }
   }
 }
