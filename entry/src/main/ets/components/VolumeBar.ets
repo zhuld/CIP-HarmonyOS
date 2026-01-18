@@ -1,4 +1,3 @@
-import { RoundButton } from "./RoundButton"
 import { SquareButton } from "./SquareButton"
 
 @ComponentV2
