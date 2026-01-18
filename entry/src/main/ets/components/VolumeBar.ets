@@ -82,6 +82,8 @@ export struct  VolumeBar {
               { color: $r('sys.color.confirm'), offset: 0.7 }
             ])
           )
+          .blockBorderWidth(2)
+          .blockBorderColor($r('app.color.button'))
           .selectedColor($r('app.color.button'))
           .stepSize(1)
           .minResponsiveDistance(1)

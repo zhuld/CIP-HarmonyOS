@@ -10,6 +10,7 @@ export struct NormalButton {
   @Param checked: boolean = false
   @Param buttonColor: ResourceColor =  $r('app.color.button')
   @Param buttonColor2: ResourceColor =  $r('app.color.button_light')
+  @Param duration: number = animationDuration
 
   @Event onTouchAction?:(event: TouchEvent) => void
 
@@ -54,7 +55,7 @@ export struct NormalButton {
       offsetY: this.checked ? 0 : shadowOffsetY
     })
     .animation({
-      duration: animationDuration,
+      duration: this.duration,
       curve: Curve.EaseInOut
     })
   }
